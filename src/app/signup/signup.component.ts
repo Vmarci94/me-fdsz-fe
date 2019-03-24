@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     this.userService.callRegister(this.user)
       .subscribe(response => {
         // if (response.status === 200) {
-          this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
         // }
       });
 
