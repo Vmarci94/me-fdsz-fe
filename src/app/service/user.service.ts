@@ -12,18 +12,19 @@ const TOKEN_NAME = 'token_name';
 export class UserService {
 
   private userUrl = '/users';
+
   constructor(private http: HttpClient) {
 
   }
 
-  validation(pUser: User): Observable<boolean> {
+  callLoginValidation(pUser: User): Observable<Response> {
     const url = environment.connectionURL + this.userUrl + '/login';
-    return this.http.post<boolean>(url, pUser, {headers: environment.header});
+    return this.http.post<Response>(url, pUser, {headers: environment.header});
   }
 
-  callRegister(pUser: User): Observable<User> {
+  callRegister(pUser: User): Observable<Response> {
     const url = environment.connectionURL + this.userUrl + '/sign-in';
-    return this.http.post<User>(url, pUser, {headers: environment.header});
+    return this.http.post<Response>(url, pUser, {headers: environment.header});
   }
 
   getDefaultToken(): Observable<string> {

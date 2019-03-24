@@ -9,7 +9,9 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-    constructor(
+
+
+  constructor(
       public router: Router
     ) {}
 
