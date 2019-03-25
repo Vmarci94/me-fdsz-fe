@@ -22,9 +22,9 @@ export class UserService {
     return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
   }
 
-  callRegister(pUser: User): Observable<Response> {
+  callRegister(pUser: User): Observable<any> {
     const url = environment.connectionURL + this.userUrl + '/sign-in';
-    return this.http.post<Response>(url, pUser, {headers: environment.header});
+    return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
   }
 
   getDefaultToken(): Observable<string> {

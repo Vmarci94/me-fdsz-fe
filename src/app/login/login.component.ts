@@ -22,10 +22,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLoggedin() {
-    localStorage.setItem('isLoggedin', 'true'); //todo ezt majd ki kell venni
     this.userService.callLoginValidation(this.user).subscribe(response => {
       if (response.status === 202) {
+        localStorage.setItem('isLoggedin', 'true'); // todo ezt majd ki kell venni
         this.router.navigate(['/dashboard']);
+      } else {
+        localStorage.setItem('isLoggedin', 'false');
       }
     });
   }
