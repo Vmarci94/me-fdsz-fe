@@ -18,7 +18,7 @@ export class UserService {
   }
 
   callLoginValidation(pUser: User): Observable<any> {
-    const url = environment.connectionURL + this.userUrl + '/login';
+    const url = environment.connectionURL + this.userUrl + '/signup';
     return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
   }
 
