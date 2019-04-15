@@ -7,11 +7,12 @@ import {MainAppComponent} from './components/main-app/main-app.component';
 import {AppComponent} from './components/app/app.component';
 import {HomeComponent} from './components/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent, MainAppComponent, HomeComponent
+    SignupComponent, MainAppComponent, HomeComponent, TestComponent
   ],
   imports: [
     BrowserModule,
