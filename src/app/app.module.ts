@@ -7,17 +7,18 @@ import {MainAppComponent} from './components/main-app/main-app.component';
 import {AppComponent} from './components/app/app.component';
 import {HomeComponent} from './components/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { TestComponent } from './components/test/test.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent, MainAppComponent, HomeComponent, TestComponent
+    SignupComponent, MainAppComponent, HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
