@@ -1,25 +1,24 @@
-import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LanguageTranslationModule} from './shared/modules/language-translation/language-translation.module';
+import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {AuthGuard} from './shared';
+import {SignupComponent} from './components/signup-modal/signup.component';
+import {MainAppComponent} from './components/main-app/main-app.component';
+import {AppComponent} from './components/app/app.component';
+import {HomeComponent} from './components/home/home.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    LanguageTranslationModule,
-    AppRoutingModule
+  declarations: [
+    AppComponent,
+    SignupComponent, MainAppComponent, HomeComponent
   ],
-  declarations: [AppComponent],
-  providers: [AuthGuard],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
+  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
