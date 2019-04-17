@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-main-app',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainAppComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
+    this.userService.callPreAuthToken()
+      .subscribe(token => localStorage.setItem('TOKEN', token));
   }
 
 }

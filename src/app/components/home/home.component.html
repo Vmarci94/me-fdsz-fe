@@ -31,10 +31,10 @@
     <div class="header-content">
       <h1>Felsőoktatási Dolgozók Szakszervezete</h1>
       <h2>Miskolci Egyetem</h2>
-      <button type="button" class="btn btn-success my-btn mt-4" data-toggle="modal" data-target="#signinmodal">
+      <button type="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#signinmodal">
         Bejelentkezés
       </button>
-      <button type="button" class="btn btn-success my-btn mt-4" data-toggle="modal" data-target="#signupModal">
+      <button type="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#signupModal">
         Regisztráció
       </button>
     </div>
@@ -66,7 +66,7 @@
             <div class="form-group">
               <a class="float-right" href="#">Forgot?</a>
               <label>Your password</label>
-              <input class="form-control" placeholder="******" type="password" required [(ngModel)]="user.password">
+              <input name="password" class="form-control" placeholder="******" type="password" required [(ngModel)]="user.password">
             </div> <!-- form-group// -->
             <div class="form-group">
               <div class="checkbox">
@@ -99,22 +99,31 @@
         <article class="card-body">
           <form>
             <div class="form-group">
-              <label>Your email</label>
+              <label>Email cím</label>
               <input name="email" class="form-control" placeholder="Email" type="email" required
-                     [(ngModel)]="user.email">
+                     [(ngModel)]="user.email"/>
             </div> <!-- form-group// -->
             <div class="form-group">
-              <a class="float-right" href="#">Forgot?</a>
-              <label>Your password</label>
-              <input class="form-control" placeholder="******" type="password" required [(ngModel)]="user.password">
+              <label>Felhasználó név</label>
+              <input name="username" class="form-control" placeholder="Felhasználó név" required
+                     [(ngModel)]="user.userName"/>
             </div> <!-- form-group// -->
+            <div class="form-group">
+              <label>Jelszó</label>
+              <input name="password" class="form-control" placeholder="******" type="password" required [(ngModel)]="user.password"/>
+            </div> <!-- form-group// -->
+            <div class="form-group">
+              <label>Ismételd meg a jelszavad</label>
+              <input name="password" class="form-control" placeholder="******" required/>
+            </div> <!-- form-group// -->
+
             <div class="form-group">
               <div class="checkbox">
-                <label> <input type="checkbox"> Save password </label>
+                <label> <input type="checkbox"/> Jelszó mentése </label>
               </div> <!-- checkbox .// -->
             </div> <!-- form-group// -->
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">Bejelentkezés</button>
+              <button type="submit" class="btn btn-primary btn-block" (click)="callSignUp()">Regisztráció</button>
             </div> <!-- form-group// -->
           </form>
         </article>
