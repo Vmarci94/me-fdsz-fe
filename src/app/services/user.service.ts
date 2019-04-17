@@ -3,6 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {User} from '../model/user';
+import 'rxjs-compat/add/operator/map';
+import {Token} from '../model/token';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +27,9 @@ export class UserService {
     return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
   }
 
-  public callPreAuthToken(): Observable<string> {
+  public callPreAuthToken(): Observable<Token>{
     const url = environment.connectionURL + UserService.usersServiceUrl + '/pre-auth-token';
-    return this.http.get<string>(url);
+    return this.http.get<Token>(url);
   }
 
 }

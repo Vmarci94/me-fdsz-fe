@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/user.service';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-main-app',
@@ -9,12 +9,15 @@ import {UserService} from '../../services/user.service';
 })
 export class MainAppComponent implements OnInit {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private localStorageService: LocalStorageService) {
   }
 
   ngOnInit() {
-    this.userService.callPreAuthToken()
-      .subscribe(token => localStorage.setItem('TOKEN', token));
+    this.userService.callPreAuthToken().subscribe(currentToken => {
+        console.log(currentToken.token);
+        this.localStorageService.addToken(currentToken.token);
+      }
+    );
   }
 
 }

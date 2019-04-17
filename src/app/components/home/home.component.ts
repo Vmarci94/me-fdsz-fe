@@ -26,18 +26,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  // bejelentkezés
-  signin() {
-    this.userService.callSignin(this.user);
-  }
-
-
-  // regisztrácio
+  // regisztráció
   signup() {
-    this.modalService.open(SignupComponent);
-  }
-
-  callSignUp() {
     this.userService.callSignup(this.user).subscribe(value => {
       console.log(value);
     });
