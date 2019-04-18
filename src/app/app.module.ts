@@ -10,11 +10,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {TokenInterceptor} from './auth/token.interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { FeedPageComponent } from './components/feed-page/feed-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent, MainAppComponent, HomeComponent
+    SignupComponent, MainAppComponent, HomeComponent, FeedPageComponent
   ],
   imports: [
     BrowserModule,
