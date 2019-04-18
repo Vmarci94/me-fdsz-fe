@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {UserService} from '../../services/user.service';
 import {User} from '../../model/user';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    private userService: UserService
-    // private snackBar: MatSnackBar
-  ) {
+    private userService: UserService) {
   }
 
   user = new User();
@@ -32,5 +31,4 @@ export class HomeComponent implements OnInit {
       console.log(value);
     });
   }
-
 }

@@ -13,10 +13,15 @@ export class LocalStorageService {
 
   public addToken(token: string) {
     const currentToken = this.storage.get(LocalStorageService.TOKEN_KEY);
-    if (currentToken === null) {
+    if (currentToken == null) {
       console.log('új token beállítása');
       this.storage.set(LocalStorageService.TOKEN_KEY, token);
     }
+  }
+
+  public getToken(): string {
+    const result = this.storage.get(LocalStorageService.TOKEN_KEY);
+    return result ? result : null;
   }
 
 }
