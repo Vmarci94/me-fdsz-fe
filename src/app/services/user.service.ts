@@ -17,9 +17,9 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  public callSignin(pUser: User): Observable<any> {
+  public callSignin(pUser: User): Observable<Token> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/signin';
-    return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
+    return this.http.post<Token>(url, pUser, {headers: environment.header});
   }
 
   public callSignup(pUser: User): Observable<any> {

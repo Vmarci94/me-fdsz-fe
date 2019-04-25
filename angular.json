@@ -29,7 +29,8 @@
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
+              "src/styles/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.js",
@@ -93,9 +94,8 @@
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
-              "src/styles/app.scss"
+              "src/styles/styles.scss"
             ],
-            "scripts": [],
             "assets": [
               "src/assets",
               "src/favicon.ico"

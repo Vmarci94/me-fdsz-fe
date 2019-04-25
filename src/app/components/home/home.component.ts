@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {SignupComponent} from '../signup-modal/signup.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
 import {UserService} from '../../services/user.service';
 import {User} from '../../model/user';
-import {environment} from '../../../environments/environment';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +15,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    private userService: UserService) {
+    private userService: UserService,
+    private localStorageService: LocalStorageService) {
   }
 
   user = new User();
@@ -31,4 +30,13 @@ export class HomeComponent implements OnInit {
       console.log(value);
     });
   }
+
+  // bejelentkezés
+  signin() {
+    this.userService.callSignin(this.user).subscribe(tokenDTO => {
+      this.localStorageService.updateToken( tokenDTO.token );
+      this.router.navigate(['feeds']);
+    });
+  }
+
 }

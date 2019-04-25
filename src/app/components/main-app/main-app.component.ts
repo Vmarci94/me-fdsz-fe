@@ -13,14 +13,14 @@ export class MainAppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = this.localStorageService.getToken();
-    if (token == null) {
-      this.userService.callPreAuthToken().subscribe(currentToken => {
-          console.log(currentToken.token);
-          this.localStorageService.addToken(currentToken.token);
-        }
-      );
-    }
+    // const token = this.localStorageService.getToken();
+    // if (token == null) {
+    //   this.userService.callPreAuthToken().subscribe(currentToken => {
+    //       console.log(currentToken.token);
+    //       this.localStorageService.addToken(currentToken.token);
+    //     }
+    //   );
+    // }
 
   }
 

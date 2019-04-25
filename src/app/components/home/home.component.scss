@@ -1,91 +1,108 @@
-*{box-sizing: border-box;}
-body{ margin: 0;
-  font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana," sans-serif";
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, " sans-serif";
   font-size: 1rem;
   line-height: 1.5;
   color: #333;
   overflow-x: hidden;
 }
 
-.video-header{height: 100vh;
+.video-header {
+  height: 100vh;
   display: flex;
   align-items: center;
   color: #fff;
-
 }
 
-.wrap{
+.wrap {
   max-width: 960px;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin:auto;
   text-align: center;
-
+  margin: 10px;
 }
-.fullscreen-video-wrap{
+
+.fullscreen-video-wrap {
   position: absolute;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
   overflow: hidden;
-
 }
-.fullscreen-video-wrap video{
+
+.fullscreen-video-wrap video {
   min-height: 100%;
   min-width: 100%;
+  margin-bottom: 0;
 
 }
 
-.header-overlay{
+.header-overlay {
   height: 100vh;
   width: 100vw;
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(34,33,33,0.65);
+  background: rgba(34, 33, 33, 0.65);
   opacity: 0.80;
 
 }
 
-.header-content{
+.header-content {
   z-index: 2;
-  margin-top:20%;
+  margin-top: 20%;
   padding: 0 5rem;
 }
 
-.header-content h1{
+.header-content h1 {
   font-size: 50px;
   margin-bottom: 0;
 
 }
-.header-content p{
+
+.header-content p {
   font-size: 1.5rem;
   display: block;
   padding-bottom: 2rem;
   margin-top: 10px;
 }
 
-.header-content button{
+.header-content button {
   height: 60px;
   width: 130px;
   justify-content: center;
   padding: 1rem 1rem;
   margin: 1.25rem;
 }
-//
-//.my-btn{
-//
-//}
 
-@media(max-width:768px){
-  .header-content h1{font-size: 40px;}
-  .header-content p{font-size: 1rem;}
+@media(max-width: 768px) {
+  .header-content h1 {
+    font-size: 40px;
+  }
+  .header-content p {
+    font-size: 1rem;
+  }
 }
 
-section{text-align: center; margin-top: 50px; font-size: 1.5rem;}
+//section{text-align: center; margin-top: 50px; font-size: 1.5rem;}
 
-.navbar{z-index: 10;}
-.my-nav .nav-link{color: aliceblue;}
-.my-nav .navbar-brand{color: aliceblue;}
-.navbar-toggler-icon{color: aliceblue;}
+.navbar {
+  z-index: 10;
+}
+
+.my-nav .nav-link {
+  color: aliceblue;
+}
+
+.my-nav .navbar-brand {
+  color: aliceblue;
+}
+
+.navbar-toggler-icon {
+  color: aliceblue;
+}

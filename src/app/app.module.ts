@@ -11,18 +11,19 @@ import {FormsModule} from '@angular/forms';
 import {TokenInterceptor} from './auth/token.interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FeedPageComponent } from './components/feed-page/feed-page.component';
+import { PageHeaderComponent } from './shared/module/page-header/page-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent, MainAppComponent, HomeComponent, FeedPageComponent
+    SignupComponent, MainAppComponent, HomeComponent, FeedPageComponent, PageHeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {

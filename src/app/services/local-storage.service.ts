@@ -16,12 +16,20 @@ export class LocalStorageService {
     if (currentToken == null) {
       console.log('új token beállítása');
       this.storage.set(LocalStorageService.TOKEN_KEY, token);
+    } else{
+      throw new Error('Már volt beállítva token!');
     }
   }
+
 
   public getToken(): string {
     const result = this.storage.get(LocalStorageService.TOKEN_KEY);
     return result ? result : null;
+  }
+
+  public updateToken(token: string) {
+    console.log('token frissítés!');
+    this.storage.set(LocalStorageService.TOKEN_KEY, token);
   }
 
 }
