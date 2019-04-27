@@ -6,25 +6,10 @@
 
     <div class="container">
       <div class="row">
-        <!-- TODO: Kártya formázása -->
-        <div class="card col-3 m-3 p-0" *ngFor="let feedPost of feedPostList">
-          <a href="#">
-            <img class="card-img-top" alt="blog_img" src= />
-          </a>
-          <div class="card-body">
-            <h2 class="card-title"><a href="#">{{feedPost.title}}</a></h2>
-            <p size="12px">
-              {{feedPost.contentText}}
-            </p>
-          </div>
-          <div class="my-footer card-footer">
-            <a href="#">Read More</a>
-            <a href="#"><i class="far fa-heart"></i> 59 Likes</a>
-            <a href="#"><i class="far fa-comments"></i> 120 Comments</a>
-          </div>
-        </div>
+        <app-feed-post class="card col-3 m-3 p-0" *ngFor="let feedPostItem of feedPostList" [feedPost]="feedPostItem"></app-feed-post>
       </div>
     </div>
+
   </div>
 </section>
 
