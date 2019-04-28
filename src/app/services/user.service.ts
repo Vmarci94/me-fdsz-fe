@@ -27,7 +27,7 @@ export class UserService {
     return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
   }
 
-  public callPreAuthToken(): Observable<Token>{
+  public callPreAuthToken(): Observable<Token> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/pre-auth-token';
     return this.http.get<Token>(url);
   }

@@ -1,7 +1,4 @@
-
-
-
-<div class="video-header wrap">
+<div class="video-header">
   <div class="fullscreen-video-wrap">
     <video src="assets/videos/me.mp4" autoplay loop muted></video>
   </div>
@@ -41,7 +38,8 @@
             <div class="form-group">
               <a class="float-right" href="#">Forgot?</a>
               <label>Your password</label>
-              <input name="password" class="form-control" placeholder="******" type="password" required [(ngModel)]="user.password">
+              <input name="password" class="form-control" placeholder="******" type="password" required
+                     [(ngModel)]="user.password">
             </div> <!-- form-group// -->
             <div class="form-group">
               <div class="checkbox">
@@ -49,7 +47,9 @@
               </div> <!-- checkbox .// -->
             </div> <!-- form-group// -->
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block" (click)="signin()" data-dismiss="modal">Bejelentkezés</button>
+              <button type="submit" class="btn btn-primary btn-block" (click)="signin()" data-dismiss="modal">
+                Bejelentkezés
+              </button>
             </div> <!-- form-group// -->
           </form>
         </article>
@@ -85,7 +85,8 @@
             </div> <!-- form-group// -->
             <div class="form-group">
               <label>Jelszó</label>
-              <input name="password" class="form-control" placeholder="******" type="password" required [(ngModel)]="user.password"/>
+              <input name="password" class="form-control" placeholder="******" type="password" required
+                     [(ngModel)]="user.password"/>
             </div> <!-- form-group// -->
             <div class="form-group">
               <label>Ismételd meg a jelszavad</label>
@@ -117,9 +118,9 @@
         <div class="card py-4 h-100">
           <div class="card-body text-center">
             <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-            <h4 class="text-uppercase m-0">Address</h4>
+            <h4 class="text-uppercase m-0">Cím</h4>
             <hr class="my-4">
-            <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+            <div class="small text-black-50">3035 Miskolc, Egyetem Város</div>
           </div>
         </div>
       </div>
@@ -131,7 +132,7 @@
             <h4 class="text-uppercase m-0">Email</h4>
             <hr class="my-4">
             <div class="small text-black-50">
-              <a href="#">hello@yourdomain.com</a>
+              <a href="#">vmarci94@gmail.com</a>
             </div>
           </div>
         </div>
@@ -141,27 +142,35 @@
         <div class="card py-4 h-100">
           <div class="card-body text-center">
             <i class="fas fa-mobile-alt text-primary mb-2"></i>
-            <h4 class="text-uppercase m-0">Phone</h4>
+            <h4 class="text-uppercase m-0">Telefon</h4>
             <hr class="my-4">
-            <div class="small text-black-50">+1 (555) 902-8832</div>
+            <div class="small text-black-50">+36 (30) 525-7026</div>
+          </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="social d-flex justify-content-center">
-      <a href="#" class="mx-2">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#" class="mx-2">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#" class="mx-2">
-        <i class="fab fa-github"></i>
-      </a>
     </div>
-
   </div>
+
+  <div class="row">
+    <div class="container">
+
+      <div class="social d-flex justify-content-center">
+        <a href="#" class="mx-2">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="mx-2">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
 </section>
 
 <!-- Footer -->
