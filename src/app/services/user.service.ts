@@ -27,9 +27,14 @@ export class UserService {
     return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
   }
 
-  public callPreAuthToken(): Observable<Token> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/pre-auth-token';
-    return this.http.get<Token>(url);
+  public callGetCurrentUsername(): string {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-current-username';
+    this.http.get<string>(url).subscribe(userName => {
+        return userName;
+      }
+    );
+    return null;
   }
+
 
 }

@@ -16,16 +16,45 @@
           <a class="nav-link" href="#">Hírek</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Beszámolók</a>
+          <a class="nav-link" href="#">Beszámolók</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Üdülő</a>
+          <a class="nav-link" href="#">Üdülő</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      <!--      <form class="form-inline my-2 my-lg-0">-->
+      <!--        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+      <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+      <!--      </form>-->
+
+      <div class="nav-item dropdown">
+
+        <button class="btn-outline-info nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                *ngIf="isLogedIn"
+                aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user"></i> {{getUserName()}}
+        </button>
+
+        <button class="btn btn-outline-info" *ngIf="!isLogedIn"
+                aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user"></i> Bejelentkezés
+        </button>
+
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="profilDropDown">
+          <a class="dropdown-item" href="javascript:void(0)">
+            <i class="fa fa-fw fa-user"></i> Személyes
+          </a>
+          <a class="dropdown-item" href="javascript:void(0)">
+            <i class="fa fa-fw fa-gear"></i> Beállítások
+          </a>
+          <a class="dropdown-item">
+            <i class="fa fa-fw fa-power-off"></i> Kijelentkezés
+          </a>
+        </div>
+      </div>
+
+
     </div>
   </nav>
 </header>

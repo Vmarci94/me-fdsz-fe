@@ -1,12 +1,31 @@
-$hedear-primary-color: #665;
+@import "~src/styles/variables";
+
+button.btn-outline-info {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+#profilDropDown {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
 
 header#me-header {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   color: $hedear-primary-color;
+
+  a {
+    color: gray;
+
+    &:hover {
+      color: $hover-color;
+      text-decoration: none;
+    }
+  }
 }
 
-img.resize{
+img.resize {
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -21,7 +40,7 @@ img.resize.logo {
   height: 36.0653px;
 }
 
-.from-inline{
+.from-inline {
   display: flex;
   justify-content: center;
   flex-direction: column;

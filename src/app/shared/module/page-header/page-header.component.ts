@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../../services/auth.service';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-page-header',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageHeaderComponent implements OnInit {
 
-  constructor() { }
+  private isLogedIn: false;
+
+  constructor(private authService: AuthService, private userService: UserService) {
+  }
 
   ngOnInit() {
+    this.authService.isLogedIn.subscribe(isLogedIn => this.isLogedIn = isLogedIn);
   }
+
+  public getUserName(): string {
+    return this.userService.callGetCurrentUsername();
+  }
+
 
 }
