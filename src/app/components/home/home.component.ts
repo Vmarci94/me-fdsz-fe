@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {User} from '../../model/user';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private userService: UserService,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService,
+    private authService: AuthService) {
   }
 
   user = new User();
@@ -34,9 +36,15 @@ export class HomeComponent implements OnInit {
   // bejelentkezés
   signin() {
     this.userService.callSignin(this.user).subscribe(tokenDTO => {
-      this.localStorageService.updateToken( tokenDTO.token );
+      this.localStorageService.updateToken(tokenDTO.token);
+      this.authService.emitLoggedStatus();
       this.router.navigate(['feeds']);
     });
+  }
+
+  signout() {
+    this.localStorageService.updateToken(null);
+    this.authService.emitLoggedStatus();
   }
 
 }

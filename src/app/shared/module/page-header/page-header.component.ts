@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {UserService} from '../../../services/user.service';
+import {LocalStorageService} from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-page-header',
@@ -9,18 +10,21 @@ import {UserService} from '../../../services/user.service';
 })
 export class PageHeaderComponent implements OnInit {
 
-  private isLogedIn: false;
+  private isLogedIn: boolean;
 
-  constructor(private authService: AuthService, private userService: UserService) {
+  private userName: string;
+
+  constructor(private authService: AuthService, private userService: UserService, private localStorageService: LocalStorageService) {
   }
 
   ngOnInit() {
+    this.isLogedIn = this.localStorageService.getToken() != null;
     this.authService.isLogedIn.subscribe(isLogedIn => this.isLogedIn = isLogedIn);
+    if (this.isLogedIn) {
+      this.userService.callGetCurrentUsername().subscribe(result => {
+        this.userName = result.userName;
+      });
+    }
   }
-
-  public getUserName(): string {
-    return this.userService.callGetCurrentUsername();
-  }
-
 
 }

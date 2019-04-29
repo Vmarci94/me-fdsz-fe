@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -14,6 +14,8 @@ export class UserService {
 
   private static readonly usersServiceUrl: string = '/users';
 
+  @Output() public userName: EventEmitter<string> = new EventEmitter();
+
   constructor(private http: HttpClient) {
   }
 
@@ -27,14 +29,9 @@ export class UserService {
     return this.http.post(url, pUser, {headers: environment.header, observe: 'response'});
   }
 
-  public callGetCurrentUsername(): string {
+  public callGetCurrentUsername(): Observable<User> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/get-current-username';
-    this.http.get<string>(url).subscribe(userName => {
-        return userName;
-      }
-    );
-    return null;
+    return this.http.get<User>(url);
   }
-
 
 }
