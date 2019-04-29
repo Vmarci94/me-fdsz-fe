@@ -6,7 +6,7 @@ import {LOCAL_STORAGE, StorageService} from 'ngx-webstorage-service';
 })
 export class LocalStorageService {
 
-  public static readonly TOKEN_KEY = 'TOKEN';
+  private static readonly TOKEN_KEY = 'TOKEN';
 
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService) {
   }
@@ -32,4 +32,7 @@ export class LocalStorageService {
     this.storage.set(LocalStorageService.TOKEN_KEY, token);
   }
 
+  deleteToken() {
+    this.storage.remove(LocalStorageService.TOKEN_KEY);
+  }
 }

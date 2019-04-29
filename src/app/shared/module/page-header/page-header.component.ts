@@ -10,7 +10,7 @@ import {LocalStorageService} from '../../../services/local-storage.service';
 })
 export class PageHeaderComponent implements OnInit {
 
-  private isLogedIn: boolean;
+  private isLogedIn: false;
 
   private userName: string;
 
@@ -18,13 +18,17 @@ export class PageHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLogedIn = this.localStorageService.getToken() != null;
-    this.authService.isLogedIn.subscribe(isLogedIn => this.isLogedIn = isLogedIn);
-    if (this.isLogedIn) {
+    this.authService.isLogedIn.subscribe(isLogedIn => {
+      this.isLogedIn = isLogedIn;
       this.userService.callGetCurrentUsername().subscribe(result => {
         this.userName = result.userName;
       });
-    }
+    });
   }
 
+  signout() {
+    this.authService.emitLoggedStatus();
+    this.localStorageService.deleteToken();
+
+  }
 }
