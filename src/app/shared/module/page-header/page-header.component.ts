@@ -10,7 +10,7 @@ import {LocalStorageService} from '../../../services/local-storage.service';
 })
 export class PageHeaderComponent implements OnInit {
 
-  private isLogedIn: false;
+  private isLogedIn: boolean;
 
   private userName: string;
 
@@ -24,6 +24,9 @@ export class PageHeaderComponent implements OnInit {
         this.userName = result.userName;
       });
     });
+    if (this.localStorageService.getToken() != null) {
+      this.authService.isLogedIn.emit(true);
+    }
   }
 
 }

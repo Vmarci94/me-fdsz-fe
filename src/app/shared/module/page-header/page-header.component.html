@@ -1,6 +1,6 @@
 <header class="header-component" id="me-header">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" routerLink="/home">
+    <a class="navbar-brand" routerLink="/">
       <img class="resize cimer" src="/assets/images/me_logo_cimer_neg.png" alt="BME AUT">
       <img class="resize logo" src="/assets/images/me_logo_black_neg.png" alt="BME AUT">
     </a>
@@ -39,13 +39,10 @@
         </button>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="profilDropDown">
-          <a class="dropdown-item" href="javascript:void(0)">
-            <i class="fa fa-fw fa-user"></i> Személyes
-          </a>
           <a class="dropdown-item" routerLink="personal">
             <i class="fa fa-fw fa-gear"></i> Beállítások
           </a>
-          <a class="dropdown-item" routerLink="home" (click)="userService.signout()">
+          <a class="dropdown-item" routerLink="home" routerLink="/" (click)="userService.signout()">
             <i class="fa fa-fw fa-power-off"></i> Kijelentkezés
           </a>
         </div>

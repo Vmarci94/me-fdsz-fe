@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, " sans-serif";
+  font-family: Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, "sans-serif", serif;
   font-size: 1rem;
   line-height: 1.5;
   color: #333;
@@ -12,7 +12,7 @@ body {
 }
 
 .video-header {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   color: #fff;
@@ -80,22 +80,4 @@ body {
   .header-content p {
     font-size: 1rem;
   }
-}
-
-//section{text-align: center; margin-top: 50px; font-size: 1.5rem;}
-
-.navbar {
-  z-index: 10;
-}
-
-.my-nav .nav-link {
-  color: aliceblue;
-}
-
-.my-nav .navbar-brand {
-  color: aliceblue;
-}
-
-.navbar-toggler-icon {
-  color: aliceblue;
 }

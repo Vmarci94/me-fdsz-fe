@@ -4,7 +4,7 @@
     <p id="alcim">At vero eos et accusamus et iusto odio dignissimos ducimus qui <br> blanditiis praesentium</p>
 
     <div class="container">
-      <div class="row">
+      <div class="row d-flex justify-content-center">
         <app-feed-post class="card col-3 m-3 p-0" *ngFor="let feedPostItem of feedPostList"
                        [feedPost]="feedPostItem"></app-feed-post>
       </div>
@@ -12,16 +12,3 @@
 
   </div>
 </section>
-
-<!-- TODO: lábléc formázása -->
-<footer>
-  <div>
-    <p>© 2018 BME AUT, All right reserved, Designed by <a href="#">BME AUT</a></p>
-    <div>
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#"><i class="fab fa-google-plus-g"></i></a>
-    </div>
-  </div>
-</footer>

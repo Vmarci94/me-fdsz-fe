@@ -1,37 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
-//@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// Variables
 
-@import "variables";
-@import "contact";
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #868e96;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #161616;
+$hover-color: #28a745;
+$hedear-primary-color: #665;
 
-div.my-footer, .card-footer {
-  font-size: 12px;
-  background: transparent;
-  border-top: 2px dashed gray;
-
-  a {
-    color: gray;
-
-    &:hover {
-      color: darkgreen;
-      text-decoration: none;
-    }
-  }
-
-}
-
-#alcim {
-  text-align: center
-}
-
-div.container {
-  display: flex;
-  align-items: center;
-  justify-content: center
-}
-
-div.row {
-  display: flex;
-  align-items: center;
-  justify-content: center
-}
+$primary: #64a19d;
