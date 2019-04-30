@@ -2,7 +2,7 @@
   <div class="modal-header">
     <h4 class="card-title mb-4 mt-1">Regisztráció</h4>
     <!--        <button class="float-right btn btn-outline-primary" data-toggle="modal" data-target="signupmodal">Regisztráció</button>-->
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" (click)="activeModal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -26,7 +26,7 @@
         </div> <!-- form-group// -->
         <div class="form-group">
           <label>Ismételd meg a jelszavad</label>
-          <input name="password" class="form-control" placeholder="******" required/>
+          <input name="password" class="form-control" placeholder="******" type="password" required/>
         </div> <!-- form-group// -->
 
         <div class="form-group">
@@ -35,7 +35,8 @@
           </div> <!-- checkbox .// -->
         </div> <!-- form-group// -->
         <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block" (click)="signup()">Regisztráció</button>
+          <button type="submit" class="btn btn-primary btn-block" (click)="activeModal.close(user)">Regisztráció
+          </button>
         </div> <!-- form-group// -->
       </form>
     </article>

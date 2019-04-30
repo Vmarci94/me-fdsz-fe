@@ -15,11 +15,19 @@ import {FeedPostComponent} from './shared/module/feed-post/feed-post.component';
 import {SigninComponent} from './shared/module/modals/signin/signin.component';
 import {SignupComponent} from './shared/module/modals/signup/signup.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {PersonalComponent} from './components/personal/personal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainAppComponent, HomeComponent, FeedPageComponent, PageHeaderComponent, FeedPostComponent, SigninComponent, SignupComponent
+    MainAppComponent,
+    HomeComponent,
+    FeedPageComponent,
+    PageHeaderComponent,
+    FeedPostComponent,
+    SigninComponent,
+    SignupComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserModule,

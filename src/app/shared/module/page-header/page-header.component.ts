@@ -26,9 +26,4 @@ export class PageHeaderComponent implements OnInit {
     });
   }
 
-  signout() {
-    this.authService.emitLoggedStatus();
-    this.localStorageService.deleteToken();
-
-  }
 }

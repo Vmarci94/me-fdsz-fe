@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../../../../model/user';
 
@@ -7,20 +7,11 @@ import {User} from '../../../../model/user';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
-
-  callBack: EventEmitter<User> = new EventEmitter();
+export class SignupComponent {
 
   private user = new User();
 
-  constructor(public activeModal: NgbActiveModal) {
-  }
-
-  ngOnInit(): void {
-  }
-
-  signup() {
-    this.callBack.emit(this.user);
+  constructor(private activeModal: NgbActiveModal) {
   }
 
 }
