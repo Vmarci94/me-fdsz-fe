@@ -10,7 +10,7 @@ import {UserService} from '../../services/user.service';
 export class PersonalComponent implements OnInit, OnChanges {
 
   @Input()
-  user: User;
+  user = new User();
 
   constructor(private userService: UserService) {
   }
