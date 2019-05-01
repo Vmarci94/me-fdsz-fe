@@ -30,7 +30,7 @@ export class UserService {
   }
 
   public callGetCurrentUser(): Observable<User> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-current-username';
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-currnet-user';
     return this.http.get<User>(url);
   }
 
@@ -66,6 +66,11 @@ export class UserService {
     this.http.post(url, pUser, {headers: environment.header, observe: 'response'}).subscribe(value => {
       console.log(value);
     });
+  }
+
+  updateUserData(user: User): Observable<User> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
+    return this.http.post<User>(url, user);
   }
 
 }

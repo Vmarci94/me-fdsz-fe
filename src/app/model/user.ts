@@ -7,5 +7,7 @@ export class User {
   public personalName: string;
   public userName: string;
   public password: string;
+  public phoneNumber: string;
+  public location: string;
 
 }
