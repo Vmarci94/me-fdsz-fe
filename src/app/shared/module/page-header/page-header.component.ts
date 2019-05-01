@@ -20,7 +20,7 @@ export class PageHeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.isLogedIn.subscribe(isLogedIn => {
       this.isLogedIn = isLogedIn;
-      this.userService.callGetCurrentUsername().subscribe(result => {
+      this.userService.callGetCurrentUser().subscribe(result => {
         this.userName = result.userName;
       });
     });

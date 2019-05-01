@@ -29,7 +29,7 @@ export class UserService {
               private authService: AuthService) {
   }
 
-  public callGetCurrentUsername(): Observable<User> {
+  public callGetCurrentUser(): Observable<User> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/get-current-username';
     return this.http.get<User>(url);
   }
