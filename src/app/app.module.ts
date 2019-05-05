@@ -16,6 +16,7 @@ import {SignupComponent} from './shared/module/modals/signup/signup.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PersonalComponent} from './components/personal/personal.component';
 import {FooterComponent} from './shared/footer/footer.component';
+import {ResortPageComponent} from './components/resort-page/resort-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {FooterComponent} from './shared/footer/footer.component';
     SigninComponent,
     SignupComponent,
     PersonalComponent,
-    FooterComponent
+    FooterComponent,
+    ResortPageComponent
   ],
   imports: [
     BrowserModule,

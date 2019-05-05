@@ -5,6 +5,6 @@ export class FeedPost {
 
   title: string;
   contentText: string;
-  imageUrl: string;
+  imageSrc: string;
 
 }
