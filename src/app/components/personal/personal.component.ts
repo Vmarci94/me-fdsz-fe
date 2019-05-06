@@ -29,7 +29,6 @@ export class PersonalComponent implements OnInit {
     });
     this.ngForm.form.valueChanges.skip(12).subscribe(x => {
       this.isChanged = true;
-      debugger;
     });
 
   }
