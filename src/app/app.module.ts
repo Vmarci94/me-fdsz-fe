@@ -17,6 +17,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PersonalComponent} from './components/personal/personal.component';
 import {FooterComponent} from './shared/footer/footer.component';
 import {ResortPageComponent} from './components/resort-page/resort-page.component';
+import {AdminPageComponent} from './components/admin-page/admin-page.component';
+import {UserCardsComponent} from './components/user-cards/user-cards.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {ResortPageComponent} from './components/resort-page/resort-page.componen
     SignupComponent,
     PersonalComponent,
     FooterComponent,
-    ResortPageComponent
+    ResortPageComponent,
+    AdminPageComponent,
+    UserCardsComponent
   ],
   imports: [
     BrowserModule,

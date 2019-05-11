@@ -50,6 +50,16 @@ export class UserService {
     this.localStorageService.deleteToken();
   }
 
+  public updateUserData(user: User): Observable<User> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
+    return this.http.post<User>(url, user);
+  }
+
+  public getAllClientUser(): Observable<User> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all-client-user';
+    return this.http.get<User>(url);
+  }
+
   // bejelentkezés
   private callSignin(pUser: User) {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/signin';
@@ -66,11 +76,6 @@ export class UserService {
     this.http.post(url, pUser, {headers: environment.header, observe: 'response'}).subscribe(value => {
       console.log(value);
     });
-  }
-
-  updateUserData(user: User): Observable<User> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
-    return this.http.post<User>(url, user);
   }
 
 }
