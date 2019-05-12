@@ -1,57 +1,49 @@
-<div class="col-lg-5 panel panel-info">
-  <div class="panel-body">
-    <input class="form-control" placeholder="Filter cards..." [(ngModel)]="searchTerm"
-           (keyup.enter)="currentPage=0;getUsers()">
-    <!-- Here comes the list of cards. -->
-    <div class="list-group">
-      <a *ngFor="let user of (users | async)" [class.active]="user === selectedUser"
-         (click)="selectedUser = user">
-        <h6 class="text-info">{{user.title}} {{user.firstName}} {{user.secoundName}} (<i>{{"fixme"}}</i>)
-        </h6>
-      </a>
+<div class="container-fluid card-group row">
+
+  <div class="col-lg-5 card border-primary">
+    <div class="card-body">
+      <input class="form-control" placeholder="Filter cards..." [(ngModel)]="searchTerm"
+             (keyup.enter)="currentPage=0;getUsers()">
+      <!-- Here comes the list of cards. -->
+      <div class="list-group">
+        <a *ngFor="let user of (users | async)" [class.active]="user === selectedUser"
+           class="list-group-item list-group-item-action"
+           (click)="selectedUser = user">
+          <h6 class="text-info">{{user.title}} {{user.firstName}} {{user.secoundName}} (<i>{{"fixme"}}</i>)
+          </h6>
+        </a>
+      </div>
     </div>
-    <!--    [PAGING START]    -->
-    <!--    <div class="paging">-->
-    <!--      <button class="col-xs-4 btn btn-info" [disabled]="currentPage <= 0"-->
-    <!--              (click)="currentPage=currentPage-1;getCards()">-->
-    <!--        <i class="glyphicon glyphicon-chevron-left"></i>-->
-    <!--      </button>-->
-    <!--      <div class="col-xs-4 page-numbers">-->
-    <!--        {{currentPage + 1}}/{{maxPages}}-->
-    <!--      </div>-->
-    <!--      <button class="col-xs-4 btn btn-info" [disabled]="currentPage >= maxPages - 1"-->
-    <!--              (click)="currentPage=currentPage+1;getCards()">-->
-    <!--        <i class="glyphicon glyphicon-chevron-right"></i>-->
-    <!--      </button>-->
-    <!--    </div>-->
-    <!--    [PAGING END]-->
+  </div>
+
+  <div class="col-lg-7 card current-card" *ngIf="selectedUser">
+    <!-- Here comes the selected or newly created user's editor / detail. -->
+    <div class="card-body">
+      <img class="profile-picture pull-right" [src]="selectedUser.image">
+      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.image">
+      <h4 class="text-warning">{{selectedUser.firstName}}
+        {{selectedUser.secoundName}}
+        <i class="glyphicon glyphicon-pencil" (click)="editCard()" *ngIf="!editing"></i></h4>
+      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.firstName">
+      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.secoundName">
+      <h6 class="text-warning">"
+        <b>{{selectedUser.role}}</b> at
+        <b><a>COMPANY_ID</a></b></h6>
+      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.role">
+      <!--    <select class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.companyId">-->
+      <!--      <option *ngFor="let company of companies" [ngValue]="company.id">{{company.name}}</option>-->
+      <!--    </select>-->
+      <p class="text-info">{{selectedUser.email}}</p>
+      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.email">
+      <button class="btn btn-default" *ngIf="editing" (click)="saveCard(selectedUser)">Save</button>
+      <button class="btn btn-warning" *ngIf="editing" (click)="cancel()">Cancel</button>
+      <!--    <button class="btn btn-danger pull-right" *ngIf="editing && selectedUser.id" (click)="confirmDelete()">-->
+      <!--      Delete</button>-->
+    </div>
+    <!--<div class="panel-body">
+        <button class="btn btn-info">Create user</button>
+    </div>-->
   </div>
 </div>
-<div class="col-lg-7 panel panel-warning current-card" *ngIf="selectedUser">
-  <!-- Here comes the selected or newly created user's editor / detail. -->
-  <div class="panel-body">
-    <img class="profile-picture pull-right" [src]="selectedUser.image">
-    <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.image">
-    <h4 class="text-warning">{{selectedUser.firstName}}
-      {{selectedUser.secoundName}}
-      <i class="glyphicon glyphicon-pencil" (click)="editCard()" *ngIf="!editing"></i></h4>
-    <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.firstName">
-    <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.secoundName">
-    <h6 class="text-warning">"
-      <b>{{selectedUser.role}}</b> at
-      <b><a>COMPANY_ID</a></b></h6>
-    <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.role">
-    <!--    <select class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.companyId">-->
-    <!--      <option *ngFor="let company of companies" [ngValue]="company.id">{{company.name}}</option>-->
-    <!--    </select>-->
-    <p class="text-info">{{selectedUser.email}}</p>
-    <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.email">
-    <button class="btn btn-default" *ngIf="editing" (click)="saveCard(selectedUser)">Save</button>
-    <button class="btn btn-warning" *ngIf="editing" (click)="cancel()">Cancel</button>
-    <!--    <button class="btn btn-danger pull-right" *ngIf="editing && selectedUser.id" (click)="confirmDelete()">-->
-    <!--      Delete</button>-->
-  </div>
-  <!--<div class="panel-body">
-      <button class="btn btn-info">Create user</button>
-  </div>-->
-</div>
+
+
