@@ -1,14 +1,14 @@
 <section id="main">
-  <div>
-    <h1>The Blog</h1>
-    <p id="alcim">At vero eos et accusamus et iusto odio dignissimos ducimus qui <br> blanditiis praesentium</p>
+  <blockquote class="blockquote text-center">
+    <p class="display-2 mb-0">Hírek</p>
+    <p id="alcim" class="text-muted">Itt olvashatsz a legfrissebb híreinkről</p>
 
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <app-feed-post class="card col-3 m-3 p-0" *ngFor="let feedPostItem of feedPostList"
-                       [feedPost]="feedPostItem"></app-feed-post>
-      </div>
+  </blockquote>
+
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <app-feed-post class="card col-3 m-3 p-0" *ngFor="let feedPostItem of feedPostList"
+                     [feedPost]="feedPostItem"></app-feed-post>
     </div>
-
   </div>
 </section>
