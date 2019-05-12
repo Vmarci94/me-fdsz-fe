@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {User} from '../model/user';
@@ -55,9 +55,15 @@ export class UserService {
     return this.http.post<User>(url, user);
   }
 
-  public getAllClientUser(): Observable<User> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all-client-user';
-    return this.http.get<User>(url);
+  public getAllClientUser(): Observable<User[]> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all-client-users';
+    return this.http.get<User[]>(url);
+  }
+
+  public searchClientUsersByName(fullName: string): Observable<User[]> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-client-users-by-name';
+    const options = {params: new HttpParams().set('fullName', fullName)};
+    return this.http.get<User[]>(url, options);
   }
 
   // bejelentkezés

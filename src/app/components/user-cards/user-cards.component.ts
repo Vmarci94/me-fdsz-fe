@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {User} from '../../model/user';
-import {SearchResult} from '../../model/search-result';
 import {UserService} from '../../services/user.service';
 
 @Component({
@@ -11,15 +10,15 @@ import {UserService} from '../../services/user.service';
 })
 export class UserCardsComponent implements OnInit {
 
-  selectedCard: User;
+  selectedUser: User;
   originalCard: User;
   editing = false;
-  searchTerm = '';
+  searchTerm: '';
 
   currentPage = 0;
   maxPages = 0;
 
-  users: Observable<SearchResult>;
+  users: Observable<User[]>;
 
   constructor(private userService: UserService) {
   }
@@ -30,43 +29,46 @@ export class UserCardsComponent implements OnInit {
 
   private getUsers() {
     this.users = this.userService.getAllClientUser();
-    this.cards.subscribe(r => {
-      this.maxPages = Math.ceil(r.allResults / 5);
-      this.currentPage = r.page;
-    });
+
+    // this.cards.subscribe(r => {
+    //   this.maxPages = Math.ceil(r.allResults / 5);
+    //   this.currentPage = r.page;
+    // });
   }
 
   editCard() {
     this.editing = true;
-    this.originalCard = this.selectedCard;
-    this.selectedCard = {...this.originalCard}; // make a copy of the object
+    this.originalCard = this.selectedUser;
+    this.selectedUser = {...this.originalCard}; // make a copy of the object
   }
 
-  saveCard(card: Card) {
-    this.cardService.addOrUpdateCard(card)
-      .subscribe(() => {
-        this.editing = false;
-        this.getCards();
-        this.selectedCard = undefined;
-        this.originalCard = undefined;
-      });
+  saveCard(user: User) {
+    console.log('implement me!');
+    // this.cardService.addOrUpdateCard(user)
+    //   .subscribe(() => {
+    //     this.editing = false;
+    //     this.getCards();
+    //     this.selectedUser = undefined;
+    //     this.originalCard = undefined;
+    //   });
   }
 
   cancel() {
     this.editing = false;
-    this.selectedCard = this.originalCard;
+    this.selectedUser = this.originalCard;
     this.originalCard = undefined;
   }
 
   confirmDelete() {
-    if (confirm(`Are you sure you want to delete card for
-         ${this.selectedCard.firstName} ${this.selectedCard.lastName}?`)) {
-      this.cardService.deleteCard(this.selectedCard.id).subscribe(() => {
-        this.editing = false;
-        this.getCards();
-        this.selectedCard = undefined;
-        this.originalCard = undefined;
-      });
-    }
+    console.log('implement me!');
+    // if (confirm(`Are you sure you want to delete user for
+    //      ${this.selectedUser.firstName} ${this.selectedUser.lastName}?`)) {
+    //   this.cardService.deleteCard(this.selectedUser.id).subscribe(() => {
+    //     this.editing = false;
+    //     this.getCards();
+    //     this.selectedUser = undefined;
+    //     this.originalCard = undefined;
+    //   });
+    // }
   }
 }

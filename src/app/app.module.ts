@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
@@ -19,6 +19,7 @@ import {FooterComponent} from './shared/footer/footer.component';
 import {ResortPageComponent} from './components/resort-page/resort-page.component';
 import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {UserCardsComponent} from './components/user-cards/user-cards.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {UserCardsComponent} from './components/user-cards/user-cards.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     {
@@ -51,7 +53,8 @@ import {UserCardsComponent} from './components/user-cards/user-cards.component';
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SigninComponent, SignupComponent]
+  entryComponents: [SigninComponent, SignupComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {
 }
