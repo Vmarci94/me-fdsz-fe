@@ -7,16 +7,16 @@
       <!-- Here comes the list of cards. -->
       <div class="list-group">
         <a *ngFor="let user of (users | async)" [class.active]="user === selectedUser"
-           class="list-group-item list-group-item-action"
+           class="list-group-item list-group-item list-group-item-success list-group-item-action"
            (click)="selectedUser = user">
-          <h6 class="text-info">{{user.title}} {{user.firstName}} {{user.secoundName}} (<i>{{"fixme"}}</i>)
+          <h6 class="text-info text-center">{{user.title}} {{user.firstName}} {{user.secoundName}} (<i>{{"fixme"}}</i>)
           </h6>
         </a>
       </div>
     </div>
   </div>
 
-  <div class="col-lg-7 card current-card" *ngIf="selectedUser">
+  <div class="col-lg-7 card current-card " *ngIf="selectedUser">
     <!-- Here comes the selected or newly created user's editor / detail. -->
     <div class="card-body">
       <img class="profile-picture pull-right" [src]="selectedUser.image">
