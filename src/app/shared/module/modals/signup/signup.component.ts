@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NgbActiveModal, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../../../../model/user';
+import {UserService} from '../../../../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,14 +14,21 @@ export class SignupComponent {
 
   private birthDayDate: NgbDateStruct;
 
-  constructor(private activeModal: NgbActiveModal) {
+  constructor(private activeModal: NgbActiveModal, private userSercice: UserService) {
   }
 
-  private close() {
+  public submint() {
     if (this.birthDayDate != null) {
       this.user.birthDay = new Date(this.birthDayDate.year, this.birthDayDate.month, this.birthDayDate.day);
     }
-    this.activeModal.close(this.user);
+    this.userSercice.callSignup(this.user).subscribe(
+      result => {
+        this.activeModal.close(result);
+      },
+      err => {
+        console.log('Sikertelen regisztráció!');
+      }
+    );
   }
 
 }

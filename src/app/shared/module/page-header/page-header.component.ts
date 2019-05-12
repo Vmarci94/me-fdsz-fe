@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {UserService} from '../../../services/user.service';
 import {LocalStorageService} from '../../../services/local-storage.service';
+import {MyModalsService} from '../../../services/my-modals.service';
 
 @Component({
   selector: 'app-page-header',
@@ -14,7 +15,10 @@ export class PageHeaderComponent implements OnInit {
 
   private userName: string;
 
-  constructor(private authService: AuthService, private userService: UserService, private localStorageService: LocalStorageService) {
+  constructor(private authService: AuthService,
+              private modalsService: MyModalsService,
+              private localStorageService: LocalStorageService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
