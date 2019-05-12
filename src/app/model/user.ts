@@ -8,10 +8,9 @@ export class User {
   public secoundName: string;
   public fullName: string;
 
-  public birthDay: { year: number, month: number };
+  public birthDay: Date;
   public phoneNumber: string;
   public location: string;
-
 
   public email: string;
   public userName: string;
