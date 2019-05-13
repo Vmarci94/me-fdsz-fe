@@ -20,6 +20,7 @@ import {ResortPageComponent} from './components/resort-page/resort-page.componen
 import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {UserCardsComponent} from './components/user-cards/user-cards.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {InvalidTokenModalComponent} from './shared/module/modals/invalid-token-modal/invalid-token-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     FooterComponent,
     ResortPageComponent,
     AdminPageComponent,
-    UserCardsComponent
+    UserCardsComponent,
+    InvalidTokenModalComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SigninComponent, SignupComponent],
+  entryComponents: [SigninComponent, SignupComponent, InvalidTokenModalComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {
