@@ -6,9 +6,9 @@ import {LocalStorageService} from './local-storage.service';
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  @Output() public isLogedIn: EventEmitter<boolean> = new EventEmitter();
+  @Output() public loggedInEmitter: EventEmitter<boolean> = new EventEmitter();
 
-  private togle = false;
+  private loggedStatus = false;
 
   constructor(private localStorageService: LocalStorageService,
               // private jwtHelper: JwtHelperService
@@ -16,8 +16,12 @@ export class AuthService {
   }
 
   public emitLoggedStatus() {
-    this.togle = !this.togle;
-    this.isLogedIn.emit(this.togle);
+    this.loggedStatus = !this.loggedStatus;
+    this.loggedInEmitter.emit(this.loggedStatus);
+  }
+
+  public isLoggedIn(): Readonly<boolean> {
+    return this.loggedStatus;
   }
 
   public isAuthenticated(): boolean {

@@ -15,5 +15,4 @@ export class InvalidTokenModalComponent implements OnInit {
   ngOnInit() {
   }
 
-
 }

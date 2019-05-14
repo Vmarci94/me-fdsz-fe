@@ -31,8 +31,8 @@ export class UserService {
   }
 
   public signout() {
-    this.authService.emitLoggedStatus();
     this.localStorageService.deleteToken();
+    this.authService.emitLoggedStatus();
   }
 
   public updateUserData(user: User): Observable<User> {

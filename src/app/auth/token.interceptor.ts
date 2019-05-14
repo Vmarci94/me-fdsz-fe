@@ -4,11 +4,12 @@ import {Observable} from 'rxjs';
 import {LocalStorageService} from '../services/local-storage.service';
 import 'rxjs-compat/add/operator/do';
 import {MyModalsService} from '../services/my-modals.service';
+import {UserService} from '../services/user.service';
 
 @Injectable({providedIn: 'root'})
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private localStorageService: LocalStorageService, private modalsSercice: MyModalsService) {
+  constructor(private localStorageService: LocalStorageService, private modalsSercice: MyModalsService, private userService: UserService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -27,7 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
       (err: any) => {
         if (err instanceof HttpErrorResponse) {
           // do error handling here
-          this.localStorageService.deleteToken();
+          this.userService.signout();
           this.modalsSercice.openInvalidTokenAlertModal();
         }
       }

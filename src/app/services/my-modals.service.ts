@@ -15,7 +15,13 @@ export class MyModalsService {
 
   public openSigninModal() {
     const modalRef = this.modalService.open(SigninComponent);
-    modalRef.result.then(user => this.userService.callSignin(user));
+    modalRef.result.then(user => {
+      if (user != null) {
+        this.userService.callSignin(user);
+      } else {
+        this.openSignupModal();
+      }
+    });
   }
 
   public openSignupModal() {
@@ -24,11 +30,11 @@ export class MyModalsService {
       keyboard: false
     };
     const modalRef = this.modalService.open(SignupComponent, modalOptions);
-    modalRef.result.then(user => this.userService.callSignup(user));
+    // modalRef.result.then(user => this.userService.callSignup(user));
   }
 
   public openInvalidTokenAlertModal() {
-    const modalRef = this.modalService.open(InvalidTokenModalComponent);
+    const modalRef = this.modalService.open(InvalidTokenModalComponent).result.then(value => this.openSigninModal());
   }
 
 }

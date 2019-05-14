@@ -11,8 +11,6 @@ import {MyModalsService} from '../../../services/my-modals.service';
 })
 export class PageHeaderComponent implements OnInit {
 
-  private isLogedIn: boolean;
-
   private userName: string;
 
   constructor(private authService: AuthService,
@@ -22,14 +20,16 @@ export class PageHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.isLogedIn.subscribe(isLogedIn => {
-      this.isLogedIn = isLogedIn;
-      this.userService.callGetCurrentUser().subscribe(result => {
-        this.userName = result.userName;
-      });
+    this.authService.loggedInEmitter.subscribe(loggedStatus => {
+      if (loggedStatus) {
+        this.userService.callGetCurrentUser().subscribe(result => {
+          this.userName = result.userName;
+        });
+      }
     });
     if (this.localStorageService.getToken() != null) {
-      this.authService.isLogedIn.emit(true);
+      // this.authService.loggedInEmitter.emit(true);
+      this.authService.emitLoggedStatus();
     }
   }
 
