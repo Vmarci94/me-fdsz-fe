@@ -33,6 +33,7 @@ export class UserService {
   public signout() {
     this.localStorageService.deleteToken();
     this.authService.emitLoggedStatus();
+    this.router.navigate(['/']);
   }
 
   public updateUserData(user: User): Observable<User> {

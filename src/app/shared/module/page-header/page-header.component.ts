@@ -3,6 +3,9 @@ import {AuthService} from '../../../services/auth.service';
 import {UserService} from '../../../services/user.service';
 import {LocalStorageService} from '../../../services/local-storage.service';
 import {MyModalsService} from '../../../services/my-modals.service';
+import 'rxjs-compat/add/observable/of';
+import {User} from '../../../model/user';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-page-header',
@@ -11,7 +14,7 @@ import {MyModalsService} from '../../../services/my-modals.service';
 })
 export class PageHeaderComponent implements OnInit {
 
-  private userName: string;
+  private user: Observable<User>;
 
   constructor(private authService: AuthService,
               private modalsService: MyModalsService,
@@ -22,9 +25,7 @@ export class PageHeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.loggedInEmitter.subscribe(loggedStatus => {
       if (loggedStatus) {
-        this.userService.callGetCurrentUser().subscribe(result => {
-          this.userName = result.userName;
-        });
+        this.user = this.userService.callGetCurrentUser();
       }
     });
     if (this.localStorageService.getToken() != null) {
