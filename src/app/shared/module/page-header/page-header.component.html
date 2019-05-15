@@ -19,7 +19,7 @@
           <a class="nav-link" href="#">Beszámolók</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/resort" href="#">Üdülő</a>
+          <a class="nav-link" routerLink="/#" href="#">FIXME</a>
         </li>
       </ul>
 
@@ -28,7 +28,7 @@
         <i class="fa fa-user"></i> Bejelentkezés
       </button>
 
-      <div class="nav-item dropdown" *ngIf="authService.isLoggedIn()">
+      <div class="nav-item dropdown btn-group dropleft" *ngIf="authService.isLoggedIn()">
 
         <button class="btn-outline-info nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -37,10 +37,13 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="profilDropDown">
           <a class="dropdown-item" routerLink="personal">
-            <i class="fa fa-fw fa-gear"></i> Beállítások
+            <i class="fa fa-fw fa-gear"></i>Beállítások
+          </a>
+          <a class="dropdown-item" routerLink="/resort">
+            <i class="fa fa-fw fa-ticket"></i>Üdülő
           </a>
           <a class="dropdown-item" routerLink="/" (click)="this.userService.signout()">
-            <i class="fa fa-fw fa-power-off"></i> Kijelentkezés
+            <i class="fa fa-fw fa-power-off"></i>Kijelentkezés
           </a>
         </div>
       </div>
