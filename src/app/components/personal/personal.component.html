@@ -23,9 +23,32 @@
     </div>
 
     <div class="col-sm-9">
-
       <hr>
       <form class="form" method="post" id="registrationForm" #form="ngForm">
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <label for="title"><h4>Titulus</h4></label>
+            <input type="text" class="form-control" id="title" name="title" [(ngModel)]="user.title"
+                   title="Itt tudod megadni a titulusod!">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <label for="title"><h4>Vezetéknév</h4></label>
+            <input type="text" class="form-control" id="vezeteknev" name="vezeteknev" [(ngModel)]="user.firstName"
+                   title="Itt tudod megadni a vezetékneved!">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <label for="keresztnev"><h4>Keresztnév</h4></label>
+            <input type="text" class="form-control" id="keresztnev" name="keresztnev" [(ngModel)]="user.secoundName"
+                   title="Itt tudod megadni a keresztneved!">
+          </div>
+        </div>
 
         <div class="form-group">
           <div class="col-xs-6">
@@ -37,18 +60,14 @@
 
         <div class="form-group">
           <div class="col-xs-6">
-            <label for="personal_name"><h4>Név</h4></label>
-            <input type="text" class="form-control" id="personal_name" name="personal_name"
-                   [(ngModel)]="user.personalName"
-                   title="Itt változtathatja meg a nevét!">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-xs-6">
-            <label for="phone"><h4>Tefonszám</h4></label>
-            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="user.phoneNumber"
-                   title="Itt adhatja meg a kapcsolattartási telefonszámot!">
+            <label for="birthday"><h4>Születési idő</h4></label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="d2" id="birthday" [(ngModel)]="this.birthDayDate" ngbDatepicker #d2="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -57,6 +76,14 @@
             <label for="email"><h4>Email</h4></label>
             <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email"
                    title="Itt adhatsz meg új emailcímet.">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <label for="phone"><h4>Tefonszám</h4></label>
+            <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="user.phoneNumber"
+                   title="Itt adhatja meg a kapcsolattartási telefonszámot!">
           </div>
         </div>
 

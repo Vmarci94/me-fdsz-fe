@@ -1,8 +1,8 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../model/user';
 import {UserService} from '../../services/user.service';
-import {NgForm} from '@angular/forms';
 import 'rxjs-compat/add/operator/skip';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-personal',
@@ -14,26 +14,21 @@ export class PersonalComponent implements OnInit {
   @Input()
   private user = new User();
 
-  @ViewChild('form')
-  ngForm: NgForm;
-
-  private isChanged: boolean;
+  private birthDayDate: NgbDateStruct;
 
   constructor(private userService: UserService) {
-    this.isChanged = false;
   }
 
   ngOnInit() {
     this.userService.callGetCurrentUser().subscribe(user => {
       this.user = user;
     });
-    this.ngForm.form.valueChanges.skip(12).subscribe(x => {
-      this.isChanged = true;
-    });
-
   }
 
   saveChanges() {
+    if (this.birthDayDate != null) {
+      this.user.birthDay = new Date(this.birthDayDate.year, this.birthDayDate.month, this.birthDayDate.day);
+    }
     this.userService.updateUserData(this.user).subscribe(user => this.user = user);
   }
 
