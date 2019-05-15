@@ -19,7 +19,6 @@ import {FooterComponent} from './shared/footer/footer.component';
 import {ResortPageComponent} from './components/resort-page/resort-page.component';
 import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {UserCardsComponent} from './components/user-cards/user-cards.component';
-import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {InvalidTokenModalComponent} from './shared/module/modals/invalid-token-modal/invalid-token-modal.component';
 
 @NgModule({
@@ -44,8 +43,7 @@ import {InvalidTokenModalComponent} from './shared/module/modals/invalid-token-m
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-    HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    HttpClientModule
   ],
   providers: [
     {

@@ -25,8 +25,8 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request).do(
       (event: HttpEvent<any>) => {
       },
-      (err: any) => {
-        if (err instanceof HttpErrorResponse) {
+      (err: HttpErrorResponse) => {
+        if (err.status === 401) {
           // do error handling here
           this.userService.signout();
           this.modalsSercice.openInvalidTokenAlertModal();
