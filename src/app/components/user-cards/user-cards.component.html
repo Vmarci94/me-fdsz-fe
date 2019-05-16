@@ -22,9 +22,22 @@
           <div class="col-md-8">
             <h4 class="text-warning">
               {{selectedUser.firstName}} {{selectedUser.secoundName}} <i class="fa fa-fw fa-pencil-square"
-                                                                         (click)="editCard()" *ngIf="!editing"></i>
-            </h4>
-            <p class="text-info">{{selectedUser.email}}</p>
+                                                                         (click)="editCard()" *ngIf="!editing"></i></h4>
+            <div class="row">
+              <p class="text-warning"><b>email:</b></p>
+              <p class="text-info pl-2">{{selectedUser.email}}</p>
+            </div>
+
+            <div class="row">
+              <p class="text-warning"><b>telefonszám:</b></p>
+              <p class="text-info pl-2">{{selectedUser.phoneNumber}}</p>
+            </div>
+
+            <div class="row">
+              <p class="text-warning"><b>hivatalos cím:</b></p>
+              <p class="text-info pl-2">{{selectedUser.location}}</p>
+            </div>
+
           </div>
           <div class="col-md-4">
             <img class="profile-picture pull-right"
@@ -39,7 +52,7 @@
       <div class="row">
         <h6 class="text-warning">
           <b>{{selectedUser.firstName}} {{selectedUser.secoundName}} </b>
-          <b><a>jogköre:</a></b></h6>
+          <b>jogköre:</b></h6>
         <p class="text-info pl-2" *ngIf="!editing">{{selectedUser.role}}</p>
       </div>
       <select class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.role">
