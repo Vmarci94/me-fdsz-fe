@@ -47,8 +47,18 @@
         </div>
       </div>
 
-      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.firstName">
-      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.secoundName">
+      <div class="container">
+        <div class="row">
+          <label class="text-warning" for="fistNameEdit"><b>Vezetéknév</b></label>
+          <input class="form-control" name="firstNameEdit" id="fistNameEdit" *ngIf="editing"
+                 [(ngModel)]="selectedUser.firstName">
+          <label class="text-warning" for="secoundNameEdit"><b>Keresztnév</b></label>
+          <input class="form-control" name="secoundNameEdit" id="secoundNameEdit" *ngIf="editing"
+                 [(ngModel)]="selectedUser.secoundName">
+        </div>
+
+      </div>
+
       <div class="row">
         <h6 class="text-warning">
           <b>{{selectedUser.firstName}} {{selectedUser.secoundName}} </b>
