@@ -19,7 +19,7 @@
           <a class="nav-link" href="#">Beszámolók </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/admin" *ngIf="(user | async) != null && (user | async).role === 'ADMIN'">admin
+          <a class="nav-link" routerLink="/admin" *ngIf="(user | async) != null && (user | async)?.role === 'ADMIN'">admin
             oldal</a>
         </li>
       </ul>
@@ -33,7 +33,7 @@
 
         <button class="btn-outline-info nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user"></i> {{(user | async).userName}}
+          <i class="fa fa-user"></i> {{(user | async)?.userName}}
         </button>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="profilDropDown">

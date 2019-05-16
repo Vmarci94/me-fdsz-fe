@@ -28,10 +28,6 @@ export class UserCardsComponent implements OnInit {
   private getUsers() {
     this.users = this.userService.getAll();
 
-    // this.cards.subscribe(r => {
-    //   this.maxPages = Math.ceil(r.allResults / 5);
-    //   this.currentPage = r.page;
-    // });
   }
 
   editCard() {

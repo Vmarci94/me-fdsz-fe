@@ -1,31 +1,44 @@
-<div class="wrapper">
-  <nav id="sidebar">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-        Év
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <button class="dropdown-item" type="button" *ngFor="let year of (yearsList | async)" (click)="selectYear(year)">
-          {{year}}
+<div class="container main-container">
+  <div class="col-4 mx-2 justify-content-center">
+    <div class="row">
+      <p class="text-warning mytext mr-4"><b>szezon kiválasztása:</b></p>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+          szezonok
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button class="dropdown-item" type="button" *ngFor="let year of (yearsList | async)"
+                  (click)="selectYear(year)">
+            {{year}}. szezon
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action"
+                *ngFor="let turnus of (turnusList | async)" [class.active]="turnus === selectedTurnus"
+                (click)="selectedTurnus = turnus; selectTurnus()">
+          {{turnus.startDate}} - {{turnus.endDate}}
         </button>
       </div>
     </div>
-    <ul class="list-group" *ngIf="selectedYear != null">
-      <li class="list-group-item list-group-item-action" *ngFor="let turnus of (turnusList | async)"
-          [class.active]="turnus === selectedTurnus">
-        {{turnus.startDate}} - {{turnus.endDate}}
-      </li>
-    </ul>
-  </nav>
 
-  <ul class="flex-container" id="content">
-    <li class="flex-item">1</li>
-    <li class="flex-item">2</li>
-    <li class="flex-item">3</li>
-    <li class="flex-item">4</li>
-    <li class="flex-item">5</li>
-    <li class="flex-item">6</li>
-  </ul>
+  </div>
+
+  <div class="col-8 mx-2">
+    <form>
+      <div class="form-group">
+        <label for="roomControlSelect">Válasz szobát</label>
+        <select class="form-control" id="roomControlSelect" name="roomSelect" [(ngModel)]="selectedRooms">
+          <option class="text-warning mytext" *ngFor="let room of (roomList | async)">
+            {{room.roomNumber}}. {{getFormatedRoomType(room.roomType)}} ({{room.price}} Ft)
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
 
 </div>

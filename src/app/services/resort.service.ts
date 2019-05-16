@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {Turnus} from '../model/turnus';
+import {Room} from '../model/room';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,8 @@ export class ResortService {
     return this.http.get<Turnus[]>(url, options);
   }
 
+  getAvailableRoomsToTurnus(selectedTurnus: Turnus): Observable<Room[]> {
+    const url = environment.connectionURL + ResortService.resortServiceUrl + '/get-avaiable-rooms';
+    return this.http.post<Room[]>(url, selectedTurnus);
+  }
 }
