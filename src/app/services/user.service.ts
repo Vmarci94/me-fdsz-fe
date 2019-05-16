@@ -41,8 +41,8 @@ export class UserService {
     return this.http.post<User>(url, user);
   }
 
-  public getAllClientUser(): Observable<User[]> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all-client-users';
+  public getAll(): Observable<User[]> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all';
     return this.http.get<User[]>(url);
   }
 
@@ -71,5 +71,12 @@ export class UserService {
     //   console.log(value);
     // });
   }
+
+  public searchUsersByName(searchTerm: string): Observable<User[]> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/search-users-by-name';
+    const options = {params: new HttpParams().set('searchTerm', searchTerm)};
+    return this.http.get<User[]>(url, options);
+  }
+
 
 }

@@ -3,7 +3,7 @@
   <div class="col-lg-5 card border-primary">
     <div class="card-body">
       <input class="form-control" placeholder="Filter cards..." [(ngModel)]="searchTerm"
-             (keyup.enter)="getUsers()">
+             (keyup.enter)="search(searchTerm)">
       <!-- Here comes the list of cards. -->
       <div class="list-group">
         <a *ngFor="let user of (users | async)" [class.active]="user === selectedUser"

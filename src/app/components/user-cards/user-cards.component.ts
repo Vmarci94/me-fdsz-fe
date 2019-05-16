@@ -26,7 +26,7 @@ export class UserCardsComponent implements OnInit {
   }
 
   private getUsers() {
-    this.users = this.userService.getAllClientUser();
+    this.users = this.userService.getAll();
 
     // this.cards.subscribe(r => {
     //   this.maxPages = Math.ceil(r.allResults / 5);
@@ -67,5 +67,9 @@ export class UserCardsComponent implements OnInit {
     //     this.originalCard = undefined;
     //   });
     // }
+  }
+
+  search(searchTerm: string) {
+    this.users = this.userService.searchUsersByName(searchTerm);
   }
 }
