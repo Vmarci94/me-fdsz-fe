@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {MyModalsService} from '../../services/my-modals.service';
 
 @Component({
@@ -8,10 +8,13 @@ import {MyModalsService} from '../../services/my-modals.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private modalsService: MyModalsService) {
+  constructor(private elementRef: ElementRef, private modalsService: MyModalsService) {
   }
 
   ngOnInit() {
+    const video = this.elementRef.nativeElement.getElementsByTagName('video').item(0);
+    video.muted = true;
+    video.play();
   }
 
 }
