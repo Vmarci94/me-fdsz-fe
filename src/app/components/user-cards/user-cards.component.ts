@@ -10,15 +10,13 @@ import {UserService} from '../../services/user.service';
 })
 export class UserCardsComponent implements OnInit {
 
-  selectedUser: User;
-  originalCard: User;
-  editing = false;
-  searchTerm: '';
+  private selectedUser: User;
+  private originalCard: User;
+  private editing = false;
+  private searchTerm: '';
+  private roles = ['ADMIN', 'CLIENT'];
 
-  currentPage = 0;
-  maxPages = 0;
-
-  users: Observable<User[]>;
+  private users: Observable<User[]>;
 
   constructor(private userService: UserService) {
   }
@@ -43,14 +41,13 @@ export class UserCardsComponent implements OnInit {
   }
 
   saveCard(user: User) {
-    console.log('implement me!');
-    // this.cardService.addOrUpdateCard(user)
-    //   .subscribe(() => {
-    //     this.editing = false;
-    //     this.getCards();
-    //     this.selectedUser = undefined;
-    //     this.originalCard = undefined;
-    //   });
+    this.userService.updateUserData(user).subscribe(value => {
+
+      this.editing = false;
+      this.getUsers();
+      this.selectedUser = undefined;
+      this.originalCard = undefined;
+    });
   }
 
   cancel() {

@@ -29,7 +29,7 @@ export class PersonalComponent implements OnInit {
     if (this.birthDayDate != null) {
       this.user.birthDay = new Date(this.birthDayDate.year, this.birthDayDate.month, this.birthDayDate.day);
     }
-    this.userService.updateUserData(this.user).subscribe(user => this.user = user);
+    this.userService.updateUserData(this.user);
   }
 
 }

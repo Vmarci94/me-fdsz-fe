@@ -3,14 +3,13 @@
   <div class="col-lg-5 card border-primary">
     <div class="card-body">
       <input class="form-control" placeholder="Filter cards..." [(ngModel)]="searchTerm"
-             (keyup.enter)="currentPage=0;getUsers()">
+             (keyup.enter)="getUsers()">
       <!-- Here comes the list of cards. -->
       <div class="list-group">
         <a *ngFor="let user of (users | async)" [class.active]="user === selectedUser"
            class="list-group-item list-group-item list-group-item-success list-group-item-action"
            (click)="selectedUser = user">
-          <h6 class="text-info text-center">{{user.title}} {{user.firstName}} {{user.secoundName}} (<i>{{"fixme"}}</i>)
-          </h6>
+          <h6 class="text-info text-center">{{user.title}} {{user.firstName}} {{user.secoundName}}</h6>
         </a>
       </div>
     </div>
@@ -18,26 +17,38 @@
 
   <div class="col-lg-7 card current-card " *ngIf="selectedUser">
     <div class="card-body">
-      <img class="profile-picture pull-right" [src]="selectedUser.image">
-      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.image">
-      <h4 class="text-warning">{{selectedUser.firstName}}
-        {{selectedUser.secoundName}}
-        <i class="glyphicon glyphicon-pencil" (click)="editCard()" *ngIf="!editing"></i></h4>
+      <div class="header container">
+        <div class="row">
+          <div class="col-md-8">
+            <h4 class="text-warning">
+              {{selectedUser.firstName}} {{selectedUser.secoundName}} <i class="fa fa-fw fa-pencil-square"
+                                                                         (click)="editCard()" *ngIf="!editing"></i>
+            </h4>
+            <p class="text-info">{{selectedUser.email}}</p>
+          </div>
+          <div class="col-md-4">
+            <img class="profile-picture pull-right"
+                 [src]="selectedUser.image != null ? selectedUser.image : 'http://ssl.gstatic.com/accounts/ui/avatar_2x.png'">
+            <input class="text-left pull-left" type="file" *ngIf="editing" [(ngModel)]="selectedUser.image">
+          </div>
+        </div>
+      </div>
+
       <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.firstName">
       <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.secoundName">
-      <h6 class="text-warning">"
-        <b>{{selectedUser.role}}</b> at
-        <b><a>COMPANY_ID</a></b></h6>
-      <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.role">
-      <!--    <select class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.companyId">-->
-      <!--      <option *ngFor="let company of companies" [ngValue]="company.id">{{company.name}}</option>-->
-      <!--    </select>-->
-      <p class="text-info">{{selectedUser.email}}</p>
+      <div class="row">
+        <h6 class="text-warning">
+          <b>{{selectedUser.firstName}} {{selectedUser.secoundName}} </b>
+          <b><a>jogköre:</a></b></h6>
+        <p class="text-info pl-2" *ngIf="!editing">{{selectedUser.role}}</p>
+      </div>
+      <select class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.role">
+        <option *ngFor="let role of roles" [ngValue]="role">{{role}}</option>
+      </select>
       <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.email">
-      <button class="btn btn-default" *ngIf="editing" (click)="saveCard(selectedUser)">Save</button>
+      <button class="btn btn-success" *ngIf="editing" (click)="saveCard(selectedUser)">Save</button>
       <button class="btn btn-warning" *ngIf="editing" (click)="cancel()">Cancel</button>
-      <!--    <button class="btn btn-danger pull-right" *ngIf="editing && selectedUser.id" (click)="confirmDelete()">-->
-      <!--      Delete</button>-->
+      <button class="btn btn-danger pull-right" *ngIf="editing" (click)="confirmDelete()">Delete</button>
     </div>
     <!--<div class="panel-body">
         <button class="btn btn-info">Create user</button>
