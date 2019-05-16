@@ -17,7 +17,6 @@
   </div>
 
   <div class="col-lg-7 card current-card " *ngIf="selectedUser">
-    <!-- Here comes the selected or newly created user's editor / detail. -->
     <div class="card-body">
       <img class="profile-picture pull-right" [src]="selectedUser.image">
       <input class="form-control" *ngIf="editing" [(ngModel)]="selectedUser.image">
