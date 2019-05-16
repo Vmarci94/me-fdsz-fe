@@ -34,4 +34,8 @@ export class PageHeaderComponent implements OnInit {
     }
   }
 
+  signout() {
+    this.userService.signout();
+    this.user = Observable.of(null);
+  }
 }
