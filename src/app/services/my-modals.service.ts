@@ -37,4 +37,11 @@ export class MyModalsService {
     const modalRef = this.modalService.open(InvalidTokenModalComponent).result.then(value => this.openSigninModal());
   }
 
+  openDefaultErrorModal() {
+
+  }
+
+  openInvalidRequestModal() {
+
+  }
 }

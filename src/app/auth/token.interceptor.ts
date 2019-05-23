@@ -9,7 +9,9 @@ import {UserService} from '../services/user.service';
 @Injectable({providedIn: 'root'})
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private localStorageService: LocalStorageService, private modalsSercice: MyModalsService, private userService: UserService) {
+  constructor(private localStorageService: LocalStorageService,
+              private modalsService: MyModalsService,
+              private userService: UserService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,18 +24,28 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       });
     }
+
     return next.handle(request).do(
       (event: HttpEvent<any>) => {
       },
       (err: HttpErrorResponse) => {
-        if (err.status === 401) {
-          // do error handling here
-          this.userService.signout();
-          this.modalsSercice.openInvalidTokenAlertModal();
+        // do error handling
+        switch (err.status) {
+          case 401: {
+            this.userService.signout();
+            this.modalsService.openInvalidTokenAlertModal();
+            break;
+          }
+          case 202: {
+            this.modalsService.openInvalidRequestModal();
+            break;
+          }
+          default: {
+            this.modalsService.openDefaultErrorModal();
+          }
         }
       }
     );
   }
-
 
 }
