@@ -8,27 +8,11 @@ import {ResortPageComponent} from './components/resort-page/resort-page.componen
 import {AdminPageComponent} from './components/admin-page/admin-page.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'feeds',
-    component: FeedPageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'personal',
-    component: PersonalComponent
-  },
-  {
-    path: 'resort',
-    component: ResortPageComponent
-  },
-  {
-    path: 'admin',
-    component: AdminPageComponent
-  }
+  {path: '', component: HomeComponent},
+  {path: 'feeds', component: FeedPageComponent, canActivate: [AuthGuard]},
+  {path: 'personal', component: PersonalComponent},
+  {path: 'resort', component: ResortPageComponent},
+  {path: 'admin', component: AdminPageComponent}
 ];
 
 @NgModule({
