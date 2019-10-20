@@ -3,13 +3,37 @@
     <div class="row justify-content-md-center">
       <div class="card w-50">
         <div class="card-body">
-          <form class="form-group">
-            <input type="text" class="form-control card-title" id="title0" placeholder="Pl: Fantatsztikus új cím">
-            <label for="image-upload">
-              <input id="image-upload" type="file" accept='image/*' class="form-control-file upload-btn"
-                     (change)="onFileSelected($event)">
-              <img class="card-img-top" alt="Publikáció borítóképe" [src]="imageUrl">
-            </label>
+          <form>
+            <div class="form-group row justify-content-md-center">
+              <label for="title" class="col-lg-2 col-form-label">Cím:</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control card-title" id="title" placeholder="Pl: Fantasztikus Cím">
+              </div>
+            </div>
+
+            <div class="form-group row justify-content-md-center">
+              <label for="image-upload">
+                <input id="image-upload" type="file" accept='image/*' class="form-control-file upload-btn"
+                       (change)="onFileSelected($event)">
+                <img class="card-img-top" alt="Publikáció borítóképe" [src]="imageUrl">
+              </label>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col align-self-start">
+                  <label for="beszamolo-text" class="col-form-label">Example textarea</label>
+                </div>
+                <div class="col align-self-end">
+                  <div class="custom-control custom-checkbox">
+                    <label class="custom-control-label" for="publikacio">Cikk hozzátűzése</label>
+                    <input class="custom-control-input" type="checkbox" id="publikacio">
+                  </div>
+                </div>
+              </div>
+              <textarea class="form-control" id="beszamolo-text" rows="3" maxlength="300"
+                        placeholder="Ide jön a rövid beszámoló"></textarea>
+            </div>
 
           </form>
         </div>

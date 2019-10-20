@@ -10,7 +10,7 @@ import {FeedPageService} from '../../services/feed-page.service';
 export class NewFeedComponent implements OnInit {
 
   private feedPostDTO = {} as FeedPost;
-  private readonly imagePlaceholder = 'https://via.placeholder.com/300';
+  private readonly imagePlaceholder = 'https://via.placeholder.com/300x200';
   private selectedFile: File;
   private imageUrl: string | ArrayBuffer = this.imagePlaceholder;
 
