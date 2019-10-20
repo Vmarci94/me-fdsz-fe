@@ -1,3 +1,19 @@
 <section>
-  
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="card w-50">
+        <div class="card-body">
+          <form class="form-group">
+            <input type="text" class="form-control card-title" id="title0" placeholder="Pl: Fantatsztikus új cím">
+            <label for="image-upload">
+              <input id="image-upload" type="file" accept='image/*' class="form-control-file upload-btn"
+                     (change)="onFileSelected($event)">
+              <img class="card-img-top" alt="Publikáció borítóképe" [src]="imageUrl">
+            </label>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

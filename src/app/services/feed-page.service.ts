@@ -32,4 +32,5 @@ export class FeedPageService {
       .subscribe(result =>
         console.log(result));
   }
+
 }

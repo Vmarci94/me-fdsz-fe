@@ -6,5 +6,4 @@ export interface FeedPost {
   contentText: string;
   image: File;
   author: User;
-
 }

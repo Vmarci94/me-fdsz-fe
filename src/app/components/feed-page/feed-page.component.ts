@@ -21,14 +21,6 @@ export class FeedPageComponent implements OnInit {
     this.feedPostList = this.feedPageService.callGetAllPosts();
   }
 
-  private onFileSelected(htmlInputElement: HTMLInputElement) {
-    if (htmlInputElement && htmlInputElement.files.length === 1) {
-      this.selectedFile = htmlInputElement.files.item(0);
-    } else {
-      console.error('nem megfelelő file input!');
-    }
-  }
-
   private onUpload() {
     if (this.selectedFile) {
       this.feedPageService.uploadImage(this.selectedFile);
