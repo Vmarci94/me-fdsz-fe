@@ -1,3 +1,5 @@
-.router-outlet {
-  margin-top: 4rem;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }

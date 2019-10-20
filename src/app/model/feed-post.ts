@@ -1,14 +1,10 @@
 import {User} from './user';
 
-export class FeedPost {
-
-  constructor() {
-  }
-
+export interface FeedPost {
   id: number;
   title: string;
   contentText: string;
-  imageSrc: string;
+  image: File;
   author: User;
 
 }

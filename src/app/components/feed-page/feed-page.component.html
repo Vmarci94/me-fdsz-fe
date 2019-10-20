@@ -1,15 +1,15 @@
 <section id="main">
-  <blockquote class="blockquote text-center">
+  <div class="blockquote text-center">
     <p class="display-2 mb-0">Hírek</p>
     <p id="alcim" class="text-muted">Itt olvashatsz a legfrissebb híreinkről</p>
-  </blockquote>
+  </div>
 
   <div class="container my-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-4 col-sm-6 grid-padding" *ngFor="let feedPost of (feedPostList | async)">
         <div class="card ">
           <a href="#">
-            <img class="card-img-top" alt="post_image" src="{{feedPost.imageSrc}}"/>
+            <img class="card-img-top" alt="post_image" src="{{null}}"/>
           </a>
           <div class="card-body">
             <h2 class="card-title"><a href="#">{{feedPost.title}}</a></h2>
@@ -21,4 +21,9 @@
       </div>
     </div>
   </div>
+
+  <label class="btn btn-primary" for="file-upload"> Upload File
+    <input id="file-upload" type="file" class="form-control-file upload-btn" (change)="onFileSelected($event)">
+  </label>
+
 </section>

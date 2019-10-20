@@ -14,9 +14,20 @@ export class FeedPageComponent implements OnInit {
   }
 
   private feedPostList: Observable<FeedPost[]>;
+  private selectedFile: File;
+  private newFeedPost = {} as FeedPost;
 
   ngOnInit() {
     this.feedPostList = this.feedPageService.callGetAllPosts();
+  }
+
+  private onFileSelected(event) {
+    debugger;
+    this.selectedFile = event.target.files[0];
+  }
+
+  private onUpload() {
+
   }
 
 }
