@@ -25,4 +25,11 @@ export class FeedPageService {
 
   }
 
+  public uploadImage(file: File) {
+    const fd = new FormData();
+    fd.append('image', file, file.name);
+    this.http.put(environment.connectionURL + '/image/add-new-image', fd)
+      .subscribe(result =>
+        console.log(result));
+  }
 }

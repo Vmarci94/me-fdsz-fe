@@ -22,8 +22,13 @@
     </div>
   </div>
 
-  <label class="btn btn-primary" for="file-upload"> Upload File
-    <input id="file-upload" type="file" class="form-control-file upload-btn" (change)="onFileSelected($event)">
-  </label>
+  <div class="container">
+    <div class="row">
+      <label class="btn btn-primary" for="file-upload"> select file
+        <input id="file-upload" type="file" class="form-control-file upload-btn" (change)="onFileSelected($event.target)">
+      </label>
+      <button class="btn btn-success" (click)="onUpload()">upload file</button>
+    </div>
+  </div>
 
 </section>
