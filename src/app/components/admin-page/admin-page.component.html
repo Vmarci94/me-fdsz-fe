@@ -28,7 +28,7 @@
                 sint qui sapiente accusamus tattooed echo park.</p>
             </ng-template>
           </ngb-tab>
-          <ngb-tab title="Statisztikák" [disabled]="true">
+          <ngb-tab title="Új feedPost" [disabled]="!authService.isLoggedIn()">
             <ng-template ngbTabContent>
               <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
                 facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt
