@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FeedPost} from '../../model/feed-post';
 import {FeedPageService} from '../../services/feed-page.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-new-feed',
@@ -13,6 +14,11 @@ export class NewFeedComponent implements OnInit {
   private readonly imagePlaceholder = 'https://via.placeholder.com/300x200';
   private selectedFile: File;
   private imageUrl: string | ArrayBuffer = this.imagePlaceholder;
+  private Editor = ClassicEditor;
+  private checkboxFlag = false;
+  private editorModel = {
+    editorData: '<p>Tudományosan fantasztikus publikáció helye!</p>'
+  };
 
   constructor(private feedPageService: FeedPageService) {
   }
@@ -38,6 +44,16 @@ export class NewFeedComponent implements OnInit {
       console.error('Hiba a fájl feltöltésénél!');
     }
 
+  }
+
+  private toggleCheckbox() {
+    this.checkboxFlag = !this.checkboxFlag;
+  }
+
+  private saveAndUpload() {
+    this.feedPostDTO.image = this.selectedFile;
+    this.feedPostDTO.contentText = this.editorModel.editorData;
+    this.feedPageService.callSaveNewFeedPost(this.feedPostDTO);
   }
 
 }

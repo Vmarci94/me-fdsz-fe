@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {FeedPost} from '../model/feed-post';
+import * as _ from 'lodash';
 
 const URL_GET_ALL_FEEDS = '/feeds/get-all';
 const URL_ADD_NEW_FEED = '/feeds/add';
@@ -20,9 +21,16 @@ export class FeedPageService {
     return this.http.get<FeedPost[]>(url);
   }
 
-  public callCreateNewFeedPostService(feedPost: FeedPost) {
+  public callSaveNewFeedPost(feedPost: FeedPost) {
     const url = environment.connectionURL + URL_ADD_NEW_FEED;
-
+    const fd = new FormData();
+    if (feedPost.image) {
+      fd.append('image', feedPost.image, feedPost.image.name);
+    }
+    const tmpFeedPost = { title: feedPost.title, contentText: feedPost.contentText, introductionText: feedPost.introductionText };
+    const blob = new Blob([JSON.stringify(tmpFeedPost)], {type: 'application/json'});
+    fd.append('newFeedPost', blob);
+    this.http.put(url, fd).subscribe(value => console.log(value));
   }
 
   public uploadImage(file: File) {

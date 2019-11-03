@@ -20,6 +20,7 @@ import {AdminPageComponent} from './components/admin-page/admin-page.component';
 import {UserCardsComponent} from './components/user-cards/user-cards.component';
 import {InvalidTokenModalComponent} from './shared/module/modals/invalid-token-modal/invalid-token-modal.component';
 import { NewFeedComponent } from './shared/new-feed/new-feed.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NewFeedComponent } from './shared/new-feed/new-feed.component';
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    CKEditorModule
   ],
   providers: [
     {
