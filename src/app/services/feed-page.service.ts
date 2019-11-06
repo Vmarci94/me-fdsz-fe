@@ -21,11 +21,11 @@ export class FeedPageService {
     return this.http.get<FeedPost[]>(url);
   }
 
-  public callSaveNewFeedPost(feedPost: FeedPost) {
+  public callSaveNewFeedPost(feedPost: FeedPost, image: File) {
     const url = environment.connectionURL + URL_ADD_NEW_FEED;
     const fd = new FormData();
-    if (feedPost.image) {
-      fd.append('image', feedPost.image, feedPost.image.name);
+    if (image) {
+      fd.append('image', image, image.name);
     }
     const tmpFeedPost = { title: feedPost.title, contentText: feedPost.contentText, introductionText: feedPost.introductionText };
     const blob = new Blob([JSON.stringify(tmpFeedPost)], {type: 'application/json'});

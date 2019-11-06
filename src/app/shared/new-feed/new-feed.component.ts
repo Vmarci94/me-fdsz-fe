@@ -34,7 +34,7 @@ export class NewFeedComponent implements OnInit {
         const fileReader: FileReader = new FileReader();
         this.selectedFile = currentFile;
         fileReader.readAsDataURL(currentFile);
-        fileReader.onload = (e) => {
+        fileReader.onload = () => {
           this.imageUrl = fileReader.result;
         };
       } else {
@@ -51,9 +51,8 @@ export class NewFeedComponent implements OnInit {
   }
 
   private saveAndUpload() {
-    this.feedPostDTO.image = this.selectedFile;
     this.feedPostDTO.contentText = this.editorModel.editorData;
-    this.feedPageService.callSaveNewFeedPost(this.feedPostDTO);
+    this.feedPageService.callSaveNewFeedPost(this.feedPostDTO, this.selectedFile);
   }
 
 }

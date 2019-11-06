@@ -13,12 +13,24 @@ export class FeedPageComponent implements OnInit {
   constructor(private feedPageService: FeedPageService) {
   }
 
-  private feedPostList: Observable<FeedPost[]>;
+  private feedPostList = new Array<FeedPost>();
   private selectedFile: File;
   private newFeedPost = {} as FeedPost;
 
   ngOnInit() {
-    this.feedPostList = this.feedPageService.callGetAllPosts();
+    this.feedPageService.callGetAllPosts().subscribe(resultFeeds => {
+      resultFeeds
+        .filter(resultFeed => resultFeed.image && !resultFeed.imageUrl)
+        .forEach(resultFeed => {
+          const fr = new FileReader();
+          fr.onload = () => {
+            console.log(fr.result);
+            resultFeed.imageUrl = fr.result;
+          };
+          fr.readAsDataURL(new Blob([resultFeed.image], {type: 'image/jpeg'}));
+        });
+      this.feedPostList = resultFeeds;
+    });
   }
 
   private onUpload() {
