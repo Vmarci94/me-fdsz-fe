@@ -13,24 +13,11 @@ export class FeedPageComponent implements OnInit {
   constructor(private feedPageService: FeedPageService) {
   }
 
-  private feedPostList = new Array<FeedPost>();
+  private feedPostList: Observable<FeedPost[]>;
   private selectedFile: File;
-  private newFeedPost = {} as FeedPost;
 
   ngOnInit() {
-    this.feedPageService.callGetAllPosts().subscribe(resultFeeds => {
-      resultFeeds
-        .filter(resultFeed => resultFeed.image && !resultFeed.imageUrl)
-        .forEach(resultFeed => {
-          const fr = new FileReader();
-          fr.onload = () => {
-            console.log(fr.result);
-            resultFeed.imageUrl = fr.result;
-          };
-          fr.readAsDataURL(new Blob([resultFeed.image], {type: 'image/jpeg'}));
-        });
-      this.feedPostList = resultFeeds;
-    });
+    this.feedPostList = this.feedPageService.callGetAllPosts();
   }
 
   private onUpload() {
@@ -39,6 +26,10 @@ export class FeedPageComponent implements OnInit {
     } else {
       console.error('nincs kiválasztott file');
     }
+  }
+
+  private getUrlToImageSrc(imageDTO: Image): string {
+    return 'data:' + imageDTO.imageType + ';base64,' + imageDTO.rawImage;
   }
 
 }

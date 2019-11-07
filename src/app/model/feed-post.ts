@@ -5,8 +5,7 @@ export class FeedPost {
   title: string;
   contentText: string;
   introductionText: string;
-  image: string;
-  imageUrl: string | ArrayBuffer;
+  image: Image;
   author: User;
 
 }
