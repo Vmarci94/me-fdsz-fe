@@ -20,6 +20,9 @@ export class NewFeedComponent implements OnInit {
     editorData: '<p>Tudományosan fantasztikus publikáció helye!</p>'
   };
 
+  private readonly newImageMaxWidth = 300;
+  private readonly newImageMaxHeight = 300;
+
   constructor(private feedPageService: FeedPageService) {
   }
 
@@ -33,10 +36,23 @@ export class NewFeedComponent implements OnInit {
       if (currentFile.type.match(/image\/*/) != null) {
         const fileReader: FileReader = new FileReader();
         this.selectedFile = currentFile;
-        fileReader.readAsDataURL(currentFile);
-        fileReader.onload = () => {
-          this.imageUrl = fileReader.result;
+
+        const img = new Image();
+        img.src = URL.createObjectURL(this.selectedFile);
+        img.onload = () => {
+          const scale = Math.min((this.newImageMaxWidth / img.width), (this.newImageMaxHeight / img.height));
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          this.imageUrl = canvas.toDataURL();
         };
+
+        // fileReader.onload = () => {
+        //   this.imageUrl = fileReader.result;
+        // };
+        //
+
       } else {
         console.warn('Csak képet lehet feltölteni!');
       }
