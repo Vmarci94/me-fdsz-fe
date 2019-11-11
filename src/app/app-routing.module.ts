@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './components/home/home.component';
+import {MainComponent} from './components/home/main/main.component';
 import {FeedPageComponent} from './components/feed-page/feed-page.component';
 import {PersonalComponent} from './components/personal/personal.component';
 import {ResortPageComponent} from './components/resort-page/resort-page.component';
 import {AdminPageComponent} from './components/admin-page/admin-page.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: MainComponent},
   // {path: 'feeds', component: FeedPageComponent, canActivate: [AuthGuard]},
   {path: 'feeds', component: FeedPageComponent},
   {path: 'personal', component: PersonalComponent},

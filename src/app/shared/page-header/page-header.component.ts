@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../../services/auth.service';
-import {UserService} from '../../../services/user.service';
-import {LocalStorageService} from '../../../services/local-storage.service';
-import {MyModalsService} from '../../../services/my-modals.service';
+import {AuthService} from '../../services/auth.service';
+import {UserService} from '../../services/user.service';
+import {LocalStorageService} from '../../services/local-storage.service';
+import {MyModalsService} from '../../services/my-modals.service';
 import 'rxjs-compat/add/observable/of';
-import {User} from '../../../model/user';
 import {Observable} from 'rxjs';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-page-header',
