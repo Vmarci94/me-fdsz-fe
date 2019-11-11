@@ -24,6 +24,7 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { MainGalleryComponent } from './components/home/main-gallery/main-gallery.component';
 import { MainGalleryVideoComponent } from './components/home/main-gallery-video/main-gallery-video.component';
 import { MainGalleryImageComponent } from './components/home/main-gallery-image/main-gallery-image.component';
+import {NavbarModule} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MainGalleryImageComponent } from './components/home/main-gallery-image/
     FormsModule,
     NgbModule,
     HttpClientModule,
-    CKEditorModule
+    CKEditorModule,
+    NavbarModule
   ],
   providers: [
     {
