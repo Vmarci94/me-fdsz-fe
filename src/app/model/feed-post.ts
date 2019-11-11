@@ -5,7 +5,7 @@ export class FeedPost {
   title: string;
   contentText: string;
   introductionText: string;
-  image: Image;
+  imageId: number;
   author: User;
 
 }

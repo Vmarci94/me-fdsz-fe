@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FeedPageService} from '../../services/feed-page.service';
 import {FeedPost} from '../../model/feed-post';
 import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-feed-page',
@@ -20,6 +21,7 @@ export class FeedPageComponent implements OnInit {
     this.feedPostList = this.feedPageService.callGetAllPosts();
   }
 
+
   private onUpload() {
     if (this.selectedFile) {
       this.feedPageService.uploadImage(this.selectedFile);
@@ -28,8 +30,7 @@ export class FeedPageComponent implements OnInit {
     }
   }
 
-  private getUrlToImageSrc(imageDTO: Image): string {
-    return 'data:' + imageDTO.imageType + ';base64,' + imageDTO.rawImage;
+  getImageUrlById(imageId: number): string {
+    return environment.connectionURL + /image/ + imageId;
   }
-
 }

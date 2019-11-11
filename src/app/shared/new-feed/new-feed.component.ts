@@ -48,11 +48,6 @@ export class NewFeedComponent implements OnInit {
           this.imageUrl = canvas.toDataURL();
         };
 
-        // fileReader.onload = () => {
-        //   this.imageUrl = fileReader.result;
-        // };
-        //
-
       } else {
         console.warn('Csak képet lehet feltölteni!');
       }
