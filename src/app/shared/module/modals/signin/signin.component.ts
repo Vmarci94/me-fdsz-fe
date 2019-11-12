@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../../../../model/user';
+import {Subject} from 'rxjs';
+import {MDBModalRef} from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-signin',
@@ -10,10 +11,17 @@ import {User} from '../../../../model/user';
 export class SigninComponent implements OnInit {
 
   private user = new User();
+  public userAction = new Subject<User>();
 
-  constructor(private activeModal: NgbActiveModal) {
+  constructor(private modalRef: MDBModalRef) {
   }
 
   ngOnInit(): void {
+  }
+
+  onSubmint() {
+    if (this.user.email && this.user.password) {
+      this.userAction.next(this.user);
+    }
   }
 }

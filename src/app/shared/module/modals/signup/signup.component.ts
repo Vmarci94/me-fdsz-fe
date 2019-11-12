@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {NgbActiveModal, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {User} from '../../../../model/user';
-import {UserService} from '../../../../services/user.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -14,21 +14,16 @@ export class SignupComponent {
 
   private birthDayDate: NgbDateStruct;
 
-  constructor(private activeModal: NgbActiveModal, private userSercice: UserService) {
+  private userAction = new Subject<User>();
+
+  constructor() {
   }
 
   public submint() {
     if (this.birthDayDate != null) {
       this.user.birthDay = new Date(this.birthDayDate.year, this.birthDayDate.month, this.birthDayDate.day);
     }
-    this.userSercice.callSignup(this.user).subscribe(
-      result => {
-        this.activeModal.close(result);
-      },
-      err => {
-        console.log('Sikertelen regisztráció!');
-      }
-    );
+    this.userAction.next(this.user); //TODO csekkolni kéne, hogy mindent kitöltött az innas
   }
 
 }
