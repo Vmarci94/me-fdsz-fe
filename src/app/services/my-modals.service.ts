@@ -1,78 +1,40 @@
 import {Injectable} from '@angular/core';
+import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import {SigninComponent} from '../shared/module/modals/signin/signin.component';
 import {SignupComponent} from '../shared/module/modals/signup/signup.component';
 import {UserService} from './user.service';
 import {InvalidTokenModalComponent} from '../shared/module/modals/invalid-token-modal/invalid-token-modal.component';
-import {MDBModalService} from 'angular-bootstrap-md';
-import {User} from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyModalsService {
 
-  constructor(private modalService: MDBModalService, private userService: UserService) {
+  constructor(private modalService: NgbModal, private userService: UserService) {
   }
 
   public openSigninModal() {
-    const modalConfig = {
-      backdrop: true,
-      keyboard: true,
-      focus: true,
-      show: false,
-      ignoreBackdropClick: false,
-      class: '',
-      containerClass: '',
-      animated: true
-    };
-
-    const modalRef = this.modalService.show(SigninComponent, modalConfig);
-
-    modalRef.content.userAction.subscribe((user: User) => {
-      this.userService.callSignin(user);
+    const modalRef = this.modalService.open(SigninComponent);
+    modalRef.result.then(user => {
+      if (user != null) {
+        this.userService.callSignin(user);
+      } else {
+        this.openSignupModal();
+      }
     });
-
   }
 
   public openSignupModal() {
-    const modalConfig = {
+    const modalOptions: NgbModalOptions = {
       backdrop: 'static',
-      keyboard: false,
-      focus: true,
-      show: false,
-      ignoreBackdropClick: false,
-      class: '',
-      containerClass: '',
-      animated: true
+      keyboard: false
     };
-
-    const modalRef = this.modalService.show(SignupComponent, modalConfig);
-
-    modalRef.content.userAction.subscribe((user: User) => {
-      this.userService.callSignup(user);
-    });
+    const modalRef = this.modalService.open(SignupComponent, modalOptions);
+    // modalRef.result.then(user => this.userService.callSignup(user));
   }
 
   public openInvalidTokenAlertModal() {
-    const modalConfig = {
-      backdrop: true,
-      keyboard: true,
-      focus: true,
-      show: false,
-      ignoreBackdropClick: false,
-      class: '',
-      containerClass: '',
-      animated: true
-    };
-
-    const modalRef = this.modalService.show(InvalidTokenModalComponent, modalConfig);
-
-    this.modalService.closed.subscribe((needSigninModal: boolean) => {
-      if (needSigninModal) {
-        this.openSigninModal();
-      }
-    });
-
+    const modalRef = this.modalService.open(InvalidTokenModalComponent).result.then(value => this.openSigninModal());
   }
 
   openDefaultErrorModal() {

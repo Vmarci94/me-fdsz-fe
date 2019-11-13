@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalDirective} from 'angular-bootstrap-md';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-invalid-token-modal',
@@ -9,14 +9,10 @@ import {ModalDirective} from 'angular-bootstrap-md';
 export class InvalidTokenModalComponent implements OnInit {
 
 
-  constructor() {
+  constructor(private activeModal: NgbActiveModal) {
   }
 
   ngOnInit() {
   }
 
-  onClosed(modalDirective: ModalDirective): boolean {
-    console.log(modalDirective);
-    return true;
-  }
 }
