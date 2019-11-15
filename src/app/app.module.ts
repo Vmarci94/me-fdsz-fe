@@ -21,10 +21,10 @@ import {UserCardsComponent} from './components/user-cards/user-cards.component';
 import {InvalidTokenModalComponent} from './shared/module/modals/invalid-token-modal/invalid-token-modal.component';
 import {NewFeedComponent} from './shared/new-feed/new-feed.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import { MainGalleryComponent } from './components/home/main-gallery/main-gallery.component';
-import { MainGalleryVideoComponent } from './components/home/main-gallery-video/main-gallery-video.component';
-import { MainGalleryImageComponent } from './components/home/main-gallery-image/main-gallery-image.component';
-import {NavbarModule} from 'angular-bootstrap-md';
+import {MainGalleryComponent} from './components/home/main-gallery/main-gallery.component';
+import {MainGalleryVideoComponent} from './components/home/main-gallery-video/main-gallery-video.component';
+import {MainGalleryImageComponent} from './components/home/main-gallery-image/main-gallery-image.component';
+import {HighlightListComponent} from './components/home/highlight-list/highlight-list.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import {NavbarModule} from 'angular-bootstrap-md';
     NewFeedComponent,
     MainGalleryComponent,
     MainGalleryVideoComponent,
-    MainGalleryImageComponent
+    MainGalleryImageComponent,
+    HighlightListComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +53,7 @@ import {NavbarModule} from 'angular-bootstrap-md';
     FormsModule,
     NgbModule,
     HttpClientModule,
-    CKEditorModule,
-    NavbarModule
+    CKEditorModule
   ],
   providers: [
     {
