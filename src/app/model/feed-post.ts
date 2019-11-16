@@ -7,5 +7,4 @@ export class FeedPost {
   introductionText: string;
   imageId: number;
   author: User;
-
 }

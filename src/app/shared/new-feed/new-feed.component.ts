@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FeedPost} from '../../model/feed-post';
-import {FeedPageService} from '../../services/feed-page.service';
+import {FeedService} from '../../services/feed.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
@@ -23,7 +23,7 @@ export class NewFeedComponent implements OnInit {
   private readonly newImageMaxWidth = 300;
   private readonly newImageMaxHeight = 300;
 
-  constructor(private feedPageService: FeedPageService) {
+  constructor(private feedPageService: FeedService) {
   }
 
   ngOnInit() {

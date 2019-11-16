@@ -11,7 +11,7 @@
       <div class="col-md-4 col-sm-6 grid-padding" *ngFor="let feedPost of ( feedPostList | async )">
         <div class="card ">
           <a href="#">
-            <img class="card-img-top" alt="post_image" [src]="getImageUrlById(feedPost.imageId)"/>
+            <img class="card-img-top" alt="post_image" [src]="feedService.getImageUrlById(feedPost.imageId)"/>
           </a>
           <div class="card-body">
             <h2 class="card-title"><a href="#">{{feedPost.title}}</a></h2>

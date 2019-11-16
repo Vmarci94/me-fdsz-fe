@@ -2,7 +2,7 @@
   <div class="header-content">
     <h1>Felsőoktatási Dolgozók Szakszervezete</h1>
     <h2>Miskolci Egyetem</h2>
-    <button type="button" mdbBtn class="btn btn-success mt-4" (click)="modalsService.openSigninModal()">
+    <button type="button" class="btn btn-success mt-4" (click)="modalsService.openSigninModal()">
       Bejelentkezés
     </button>
     <button type="button" class="btn btn-success mt-4" (click)="modalsService.openSignupModal()">
@@ -11,17 +11,35 @@
   </div>
 </div>
 
-<div class="main-page-component">
-  <div class="main-highlight-section page-section">
-    <div class="container">
-      <div class="row no-gutters">
-        <div class="col-lg-8">
-          <app-main-gallery></app-main-gallery>
-        </div>
-        <div class="col-lg-4">
-          <app-highlight-list></app-highlight-list>
-        </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <ngb-carousel #carousel interval="1000" [pauseOnHover]="this.pauseOnHover" (slide)="onSlide($event)">
+        <ng-template ngbSlide *ngFor="let highlight of hightlightList; index as i">
+          <div *ngIf="i === 0">
+            <!--akkor a bemutató videó kell-->
+            <video #promoVideo class="video-fluid" autoplay loop muted>
+              <source [src]="highlight.mediaContentURL" type="video/mp4"/>
+            </video>
+            <div class="carousel-caption">
+              <h3>{{highlight.title}}</h3>
+              <p>{{highlight.introductionText}}</p>
+            </div>
+          </div>
+          <div *ngIf="i !== 0">
+            <div class="picsum-img-wrapper">
+              <img [src]="highlight.mediaContentURL" alt="Random second slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>{{highlight.title}}</h3>
+              <p>{{highlight.introductionText}}</p>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="col-lg-4">
+      <app-highlight-list></app-highlight-list>
     </div>
   </div>
 </div>

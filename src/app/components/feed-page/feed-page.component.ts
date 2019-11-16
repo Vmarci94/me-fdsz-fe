@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FeedPageService} from '../../services/feed-page.service';
+import {FeedService} from '../../services/feed.service';
 import {FeedPost} from '../../model/feed-post';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
@@ -11,26 +11,23 @@ import {environment} from '../../../environments/environment';
 })
 export class FeedPageComponent implements OnInit {
 
-  constructor(private feedPageService: FeedPageService) {
+  constructor(private feedService: FeedService) {
   }
 
   private feedPostList: Observable<FeedPost[]>;
   private selectedFile: File;
 
   ngOnInit() {
-    this.feedPostList = this.feedPageService.callGetAllPosts();
+    this.feedPostList = this.feedService.callGetAllPosts();
   }
 
 
   private onUpload() {
     if (this.selectedFile) {
-      this.feedPageService.uploadImage(this.selectedFile);
+      this.feedService.uploadImage(this.selectedFile);
     } else {
       console.error('nincs kiválasztott file');
     }
   }
 
-  getImageUrlById(imageId: number): string {
-    return environment.connectionURL + /image/ + imageId;
-  }
 }
