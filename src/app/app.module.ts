@@ -21,9 +21,6 @@ import {UserCardsComponent} from './components/user-cards/user-cards.component';
 import {InvalidTokenModalComponent} from './shared/module/modals/invalid-token-modal/invalid-token-modal.component';
 import {NewFeedComponent} from './shared/new-feed/new-feed.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import {MainGalleryComponent} from './components/home/main-gallery/main-gallery.component';
-import {MainGalleryVideoComponent} from './components/home/main-gallery-video/main-gallery-video.component';
-import {MainGalleryImageComponent} from './components/home/main-gallery-image/main-gallery-image.component';
 import {HighlightListComponent} from './components/home/highlight-list/highlight-list.component';
 
 @NgModule({
@@ -41,9 +38,6 @@ import {HighlightListComponent} from './components/home/highlight-list/highlight
     UserCardsComponent,
     InvalidTokenModalComponent,
     NewFeedComponent,
-    MainGalleryComponent,
-    MainGalleryVideoComponent,
-    MainGalleryImageComponent,
     HighlightListComponent
   ],
   imports: [
