@@ -29,25 +29,43 @@
         <i class="fa fa-user"></i> Bejelentkezés
       </button>
 
-      <div class="nav-item dropdown btn-group dropleft" *ngIf="authService.isLoggedIn()">
-
-        <button class="btn-outline-info nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+      <div ngbDropdown placement="bottom-right" display="dynamic" class="d-inline-block" *ngIf="authService.isLoggedIn()">
+        <button class="btn btn-outline-info nav-link" id="dropdownBasic1"
+                ngbDropdownToggle>
           <i class="fa fa-user"></i> {{(user | async)?.userName}}
         </button>
-
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="profilDropDown">
-          <a class="dropdown-item" routerLink="personal">
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem routerLink="/personal">
             <i class="fa fa-fw fa-gear"></i>Beállítások
-          </a>
-          <a class="dropdown-item" routerLink="/resort">
+          </button>
+          <button ngbDropdownItem routerLink="/resort">
             <i class="fa fa-fw fa-ticket"></i>Üdülő
-          </a>
-          <a class="dropdown-item" routerLink="/" (click)="signout()">
+          </button>
+          <button ngbDropdownItem routerLink="/" (click)="signout()">
             <i class="fa fa-fw fa-power-off"></i>Kijelentkezés
-          </a>
+          </button>
         </div>
       </div>
+
+      <!--      <div class="nav-item dropdown btn-group dropleft" *ngIf="authService.isLoggedIn()">-->
+
+      <!--        <button class="btn-outline-info nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" data-toggle="dropdown"-->
+      <!--                aria-haspopup="true" aria-expanded="false">-->
+      <!--          <i class="fa fa-user"></i> {{(user | async)?.userName}}-->
+      <!--        </button>-->
+
+      <!--        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="profilDropDown">-->
+      <!--          <a class="dropdown-item" routerLink="/personal">-->
+      <!--            <i class="fa fa-fw fa-gear"></i>Beállítások-->
+      <!--          </a>-->
+      <!--          <a class="dropdown-item" routerLink="/resort">-->
+      <!--            <i class="fa fa-fw fa-ticket"></i>Üdülő-->
+      <!--          </a>-->
+      <!--          <a class="dropdown-item" routerLink="/" (click)="signout()">-->
+      <!--            <i class="fa fa-fw fa-power-off"></i>Kijelentkezés-->
+      <!--          </a>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
     </div>
   </nav>
