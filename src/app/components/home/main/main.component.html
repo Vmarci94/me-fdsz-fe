@@ -14,20 +14,20 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
-      <ngb-carousel #carousel interval="1000" [pauseOnHover]="this.pauseOnHover" (slide)="onSlide($event)">
+      <ngb-carousel #carousel interval="10000" [pauseOnHover]="this.pauseOnHover" (slide)="onSlide($event)">
         <ng-template ngbSlide *ngFor="let highlight of hightlightList; index as i">
           <div *ngIf="i === 0">
             <!--akkor a bemutató videó kell-->
-            <video #promoVideo class="video-fluid" autoplay loop muted>
+            <videfo #promoVideo class="video-fluid d-block w-100" autoplay loop muted>
               <source [src]="highlight.mediaContentURL" type="video/mp4"/>
-            </video>
+            </videfo>
             <div class="carousel-caption">
               <h3>{{highlight.title}}</h3>
               <p>{{highlight.introductionText}}</p>
             </div>
           </div>
           <div *ngIf="i !== 0">
-            <div class="picsum-img-wrapper">
+            <div class="d-block w-100">
               <img [src]="highlight.mediaContentURL" alt="Random second slide">
             </div>
             <div class="carousel-caption">

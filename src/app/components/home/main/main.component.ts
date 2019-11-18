@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MyModalsService} from '../../../services/my-modals.service';
 import {FeedPost} from '../../../model/feed-post';
 import {FeedService} from '../../../services/feed.service';
@@ -23,7 +23,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   } as HightlightFeed;
 
   @ViewChild('carousel', {static: true}) carousel: NgbCarousel;
-  @ViewChild('promoVideo', {static: false}) introVideoElement: HTMLVideoElement;
+  @ViewChild('promoVideo', {static: false}) introVideoElement: ElementRef;
 
   private pauseOnHover = true;
   private unpauseOnArrow = false;
@@ -72,8 +72,11 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.introVideoElement.muted = true;
-    this.introVideoElement.play();
+    if (this.introVideoElement && this.introVideoElement.nativeElement) {
+      const video: HTMLVideoElement = this.introVideoElement.nativeElement;
+      video.muted = true;
+      video.play();
+    }
   }
 
 }

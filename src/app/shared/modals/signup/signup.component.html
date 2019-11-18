@@ -10,22 +10,25 @@
         <div class="mb-4">
           <div class="form-row">
             <div class="col-4">
-              <input type="text" id="title" class="form-control" placeholder="Titulus">
+              <input type="text" id="title" class="form-control" placeholder="Titulus" [(ngModel)]="user.title">
             </div>
             <div class="col-8">
-              <input type="text" id="firstName" class="form-control" placeholder="Vezetéknév">
+              <input type="text" id="firstName" class="form-control" placeholder="Vezetéknév" required
+                     [(ngModel)]="user.firstName">
             </div>
           </div>
-          <input type="text" id="lastName" class="form-control mb-4 mt-2" placeholder="Keresztnév">
+          <input type="text" id="lastName" class="form-control mb-4 mt-2" placeholder="Keresztnév" required
+                 [(ngModel)]="user.secoundName">
         </div>
 
-        <input type="text" id="userName" class="form-control mb-4" placeholder="Felhasználónév">
+        <input type="text" id="userName" class="form-control mb-4" placeholder="Felhasználónév"
+               [(ngModel)]="user.userName">
 
-        <input type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+        <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" [(ngModel)]="user.email">
 
         <!-- Password -->
         <input type="password" id="password" class="form-control" placeholder="Jelszó"
-               aria-describedby="passwordHelpBlock">
+               aria-describedby="passwordHelpBlock" [(ngModel)]="user.password">
         <small id="passwordHelpBlock" class="form-text text-muted mb-4">
           legalább X karakter
         </small>
@@ -46,7 +49,7 @@
     </div>
     <div class="modal-footer">
       <!-- Sign up button -->
-      <button mdbBtn color="info" class="my-4" type="submit">Regisztráció</button>
+      <button class="btn btn-success my-4" type="button" (click)="submint()">Regisztráció</button>
     </div>
   </div>
 </div>

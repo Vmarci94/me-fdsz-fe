@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {User} from '../../../../model/user';
+import {User} from '../../../model/user';
 
 @Component({
   selector: 'app-signin',

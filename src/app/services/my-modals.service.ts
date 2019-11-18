@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
-import {SigninComponent} from '../shared/module/modals/signin/signin.component';
-import {SignupComponent} from '../shared/module/modals/signup/signup.component';
+import {SigninComponent} from '../shared/modals/signin/signin.component';
+import {SignupComponent} from '../shared/modals/signup/signup.component';
 import {UserService} from './user.service';
-import {InvalidTokenModalComponent} from '../shared/module/modals/invalid-token-modal/invalid-token-modal.component';
+import {InvalidTokenModalComponent} from '../shared/modals/invalid-token-modal/invalid-token-modal.component';
 
 @Injectable({
   providedIn: 'root'
