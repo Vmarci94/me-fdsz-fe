@@ -1,62 +1,63 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
-import {HomeComponent} from './components/home/home.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
-import {TokenInterceptor} from './auth/token.interceptor';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FeedPageComponent} from './components/feed-page/feed-page.component';
-import {PageHeaderComponent} from './shared/module/page-header/page-header.component';
-import {SigninComponent} from './shared/module/modals/signin/signin.component';
-import {SignupComponent} from './shared/module/modals/signup/signup.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {PersonalComponent} from './components/personal/personal.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {RouterModule} from '@angular/router';
+import {PageHeaderComponent} from './shared/page-header/page-header.component';
 import {FooterComponent} from './shared/footer/footer.component';
-import {ResortPageComponent} from './components/resort-page/resort-page.component';
-import {AdminPageComponent} from './components/admin-page/admin-page.component';
-import {UserCardsComponent} from './components/user-cards/user-cards.component';
-import {InvalidTokenModalComponent} from './shared/module/modals/invalid-token-modal/invalid-token-modal.component';
-import {NewFeedComponent} from './shared/new-feed/new-feed.component';
-import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {AppRoutingModule} from './app-routing.module';
+import {MainComponent} from './components/home/main/main.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {SigninModalComponent} from './shared/signin-modal/signin-modal.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SignupModalComponent} from './shared/signup-modal/signup-modal.component';
+import {TokenInteceptor} from './interceptors/token.inteceptor';
+import {FeedPostsPageComponent} from './components/feed-posts-page/feed-posts-page.component';
+import {RecordBookComponent} from './admin/record-book/record-book.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import { AuthErrorModalComponent } from './shared/auth-error-modal/auth-error-modal.component';
+import { PostPageComponent } from './components/post-page/post-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    FeedPageComponent,
     PageHeaderComponent,
-    SigninComponent,
-    SignupComponent,
-    PersonalComponent,
     FooterComponent,
-    ResortPageComponent,
-    AdminPageComponent,
-    UserCardsComponent,
-    InvalidTokenModalComponent,
-    NewFeedComponent
+    MainComponent,
+    SigninModalComponent,
+    SignupModalComponent,
+    FeedPostsPageComponent,
+    RecordBookComponent,
+    AuthErrorModalComponent,
+    PostPageComponent
   ],
   imports: [
     BrowserModule,
+    MDBBootstrapModule.forRoot(),
+    RouterModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    NgbModule,
     HttpClientModule,
-    CKEditorModule
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatMomentDateModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: TokenInteceptor,
       multi: true
-    }
+    }, MatNativeDateModule, MatDatepickerModule, MatMomentDateModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [SigninComponent, SignupComponent, InvalidTokenModalComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  entryComponents: [SigninModalComponent, SignupModalComponent, AuthErrorModalComponent],
 })
 export class AppModule {
 }

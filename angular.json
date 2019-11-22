@@ -3,40 +3,64 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "me-fdsz-fe": {
-      "root": "",
-      "sourceRoot": "src",
+    "me-fdsz-fe-private": {
       "projectType": "application",
-      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/me-fdsz-fe",
+            "outputPath": "dist/me-fdsz-fe-private",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
-              "src/styles/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              {
+                "input": "src/styles.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/solid.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/regular.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/brands.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/assets/scss/mdb.scss"
+              },
+              {
+                "input": "node_modules/animate.css/animate.css"
+              }
             ],
             "scripts": [
-              "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/chart.js/dist/Chart.js",
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/hammerjs/hammer.min.js"
+              {
+                "input": "node_modules/chart.js/dist/Chart.js"
+              },
+              {
+                "input": "node_modules/hammerjs/hammer.min.js"
+              }
             ]
           },
           "configurations": {
@@ -61,6 +85,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -69,18 +98,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "me-fdsz-fe:build"
+            "browserTarget": "me-fdsz-fe-private:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "me-fdsz-fe:build:production"
+              "browserTarget": "me-fdsz-fe-private:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "me-fdsz-fe:build"
+            "browserTarget": "me-fdsz-fe-private:build"
           }
         },
         "test": {
@@ -88,63 +118,46 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "node_modules/font-awesome/css/font-awesome.css",
-              "src/styles/styles.scss"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
             ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "me-fdsz-fe-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "me-fdsz-fe:serve"
+            "devServerTarget": "me-fdsz-fe-private:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "me-fdsz-fe:serve:production"
+              "devServerTarget": "me-fdsz-fe-private:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
     }
   },
-  "defaultProject": "me-fdsz-fe"
+  "defaultProject": "me-fdsz-fe-private"
 }

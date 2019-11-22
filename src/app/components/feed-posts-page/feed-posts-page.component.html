@@ -1,0 +1,22 @@
+<div class="blockquote text-center">
+  <h1>Hírek</h1>
+  <h3 class="text-muted">Itt olvashatsz a legfrissebb híreinkről</h3>
+</div>
+
+<div class="container my-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4 col-sm-6 grid-padding" *ngFor="let feedPost of ( postList | async )">
+      <div class="card ">
+        <a href="#">
+          <img class="card-img-top" alt="post_image" [src]="postService.getImageUrlById(feedPost.imageId)"/>
+        </a>
+        <div class="card-body">
+          <h2 class="card-title"><a href="#">{{feedPost.title}}</a></h2>
+          <p size="12px">
+            {{feedPost.contentText}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

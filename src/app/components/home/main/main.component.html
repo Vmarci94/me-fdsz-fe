@@ -1,0 +1,43 @@
+<div class="container pb-5" *ngIf="mainPageContent">
+  <div class="row">
+    <div class="col-12">
+      <h1>Felsőoktatási Dolgozók Szakszervezete</h1>
+      <h2>Miskolci Egyetem</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
+        <!-- TODO: fix képarány-->
+
+        <mdb-carousel-item *ngFor="let highLight of this.mainPageContent.highlightList">
+          <video class="video-fluid" autoplay loop *ngIf="highLight.isVideo;else image">
+            <source src="./assets/videos/me.mp4" type="video/mp4"/>
+          </video>
+
+          <ng-template #image>
+            <div class="view w-100" >
+              <img class="d-block w-100" [src]="postService.getImageUrlById(highLight.imageId)">
+              <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+            </div>
+          </ng-template>
+
+
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">{{highLight.title}}</h3>
+            <p>{{highLight.introductionText}}</p>
+          </div>
+        </mdb-carousel-item>
+
+      </mdb-carousel>
+    </div>
+
+    <div class="col-4">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let highLight of this.mainPageContent.highlightList">
+          {{ highLight.title }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

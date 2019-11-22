@@ -1,0 +1,34 @@
+<!-- TODO: input háttér színét megszűntetni!!! -->
+<div class="modal-dialog modal-dialog-scrollable m-0" role="document">
+  <div class="modal-content" role="document">
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-bold">Bejelentkezés</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body mx-3">
+      <div class="container-fluid">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <input matInput placeholder="emai cím" type="email" [(ngModel)]="user.email"
+                   [formControl]="loginFormModalEmail" required>
+            <mat-error *ngIf="loginFormModalEmail.invalid">Email cím nem megfelelő</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Jelszó" type="password" [(ngModel)]="user.password" required>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer d-flex justify-content-center">
+      <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="showSignUp()">Regisztráció</button>
+      <button mdbBtn color="primary" class="waves-light" mdbWavesEffect (click)="submint()">Bejelentkezés</button>
+    </div>
+  </div>
+</div>
+
+

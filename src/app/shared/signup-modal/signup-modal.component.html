@@ -1,0 +1,59 @@
+<div class="modal-dialog modal-dialog-scrollable m-0" role="document">
+  <div class="modal-content">
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-bold">Regisztráció</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="this.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body mx-3">
+      <div class="container-fluid">
+        <div class="row">
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Titulus" type="text" [(ngModel)]="user.title">
+          </mat-form-field>
+
+          <mat-form-field class="col-8">
+            <input matInput placeholder="Vezetéknév" required type="text" [(ngModel)]="user.firstName">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Keresztnév" required type="text" [(ngModel)]="user.secoundName">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Felhasználó név" type="text" required [(ngModel)]="user.username">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Email cím" type="email" required [(ngModel)]="user.email"
+                   [formControl]="signupFormModalEmail">
+            <mat-error *ngIf="signupFormModalEmail.invalid">Email cím nem megfelelő</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput id="picker" [matDatepicker]="picker"
+                   placeholder="Choose a date" (dataChange)="dateChange($event)" [formControl]="date">
+            <label for="picker"></label>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Telefonszám" type="tel" required [(ngModel)]="user.phoneNumber">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Jelszó" type="password" required [(ngModel)]="user.password">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer d-flex justify-content-center">
+      <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect (click)="submint()">Sign up</button>
+    </div>
+  </div>
+
+</div>

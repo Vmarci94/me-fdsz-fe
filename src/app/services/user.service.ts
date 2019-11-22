@@ -1,14 +1,12 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {environment} from '../../environments/environment';
 import {User} from '../model/user';
-import 'rxjs-compat/add/operator/map';
-import {Token} from '../model/token';
+import {environment} from '../../environments/environment';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {LocalStorageService} from './local-storage.service';
-import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
-
+import {Router} from '@angular/router';
+import {Token} from '../model/token';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +15,10 @@ export class UserService {
 
   private static readonly usersServiceUrl: string = '/users';
 
-  @Output() public userName: EventEmitter<string> = new EventEmitter();
-
   constructor(private http: HttpClient,
               private localStorageService: LocalStorageService,
-              private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
   }
 
   public callGetCurrentUser(): Observable<User> {
@@ -36,24 +32,8 @@ export class UserService {
     this.router.navigate(['/']);
   }
 
-  public updateUserData(user: User): Observable<User> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
-    return this.http.post<User>(url, user);
-  }
-
-  public getAll(): Observable<User[]> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all';
-    return this.http.get<User[]>(url);
-  }
-
-  public searchClientUsersByName(fullName: string): Observable<User[]> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-client-users-by-name';
-    const options = {params: new HttpParams().set('fullName', fullName)};
-    return this.http.get<User[]>(url, options);
-  }
-
   // bejelentkezés
-  public callSignin(pUser: User) {
+  public callSignin(pUser: User): void {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/signin';
     this.http.post<Token>(url, pUser, {headers: environment.header}).subscribe(tokenDTO => {
       this.localStorageService.updateToken(tokenDTO.token);
@@ -63,13 +43,21 @@ export class UserService {
   }
 
   // regisztráció
-  public callSignup(pUser: User): Observable<User> {
+  public callSignup(pUser: User): void {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/signup';
-    return this.http.post<User>(url, pUser, {headers: environment.header});
+    this.http.post<User>(url, pUser, {headers: environment.header}).subscribe((user: User) => {
+      this.callSignin(user);
+    });
+  }
 
-    // this.http.post(url, pUser, {headers: environment.header, observe: 'response'}).subscribe(value => {
-    //   console.log(value);
-    // });
+  public callGetAllClientUser(): Observable<User[]> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all-client-user';
+    return this.http.get<User[]>(url);
+  }
+
+  public callGetAllUser(): Observable<User[]> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-all';
+    return this.http.get<User[]>(url);
   }
 
   public searchUsersByName(searchTerm: string): Observable<User[]> {
@@ -77,6 +65,5 @@ export class UserService {
     const options = {params: new HttpParams().set('searchTerm', searchTerm)};
     return this.http.get<User[]>(url, options);
   }
-
 
 }

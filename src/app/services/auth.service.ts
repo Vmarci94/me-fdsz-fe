@@ -1,16 +1,16 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {LocalStorageService} from './local-storage.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
-  @Output() public loggedInEmitter: EventEmitter<boolean> = new EventEmitter();
+  public loggedInEmitter: EventEmitter<boolean> = new EventEmitter();
 
   private loggedStatus = false;
 
-  constructor(private localStorageService: LocalStorageService,
-              // private jwtHelper: JwtHelperService
-  ) {
+  constructor(private localStorageService: LocalStorageService) {
   }
 
   public emitLoggedStatus() {
@@ -30,4 +30,5 @@ export class AuthService {
     // return !this.jwtHelper.isTokenExpired(token);
     return true; // FIXME dummy
   }
+
 }

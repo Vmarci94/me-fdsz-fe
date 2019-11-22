@@ -1,0 +1,4 @@
+//megoldja, hogy a dátumválasztó a modal-ba nyíljon meg
+::ng-deep .cdk-overlay-container{
+  z-index: 1200 !important;
+}

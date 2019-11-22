@@ -1,19 +1,16 @@
 export class User {
 
-  constructor() {
-  }
-
-  public title: string;
-  public firstName: string;
-  public secoundName: string;
-  public fullName: string;
+  public title = '';
+  public firstName = '';
+  public secoundName = '';
+  public fullName = '';
 
   public birthDay: Date;
   public phoneNumber: string;
   public location: string;
 
   public email: string;
-  public userName: string;
+  public username: string;
   public password: string;
   public role: string;
   public image: string;
