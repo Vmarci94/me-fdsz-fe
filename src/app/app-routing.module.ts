@@ -8,7 +8,6 @@ import {AdminPageComponent} from './components/admin-page/admin-page.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
-  // {path: 'feeds', component: FeedPageComponent, canActivate: [AuthGuard]},
   {path: 'feeds', component: FeedPageComponent},
   {path: 'personal', component: PersonalComponent},
   {path: 'resort', component: ResortPageComponent},

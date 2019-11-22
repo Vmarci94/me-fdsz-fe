@@ -66,10 +66,6 @@ export class UserService {
   public callSignup(pUser: User): Observable<User> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/signup';
     return this.http.post<User>(url, pUser, {headers: environment.header});
-
-    // this.http.post(url, pUser, {headers: environment.header, observe: 'response'}).subscribe(value => {
-    //   console.log(value);
-    // });
   }
 
   public searchUsersByName(searchTerm: string): Observable<User[]> {

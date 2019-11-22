@@ -68,4 +68,5 @@ export class UserCardsComponent implements OnInit {
   search(searchTerm: string) {
     this.users = this.userService.searchUsersByName(searchTerm);
   }
+
 }

@@ -8,9 +8,7 @@ export class AuthService {
 
   private loggedStatus = false;
 
-  constructor(private localStorageService: LocalStorageService,
-              // private jwtHelper: JwtHelperService
-  ) {
+  constructor(private localStorageService: LocalStorageService) {
   }
 
   public emitLoggedStatus() {

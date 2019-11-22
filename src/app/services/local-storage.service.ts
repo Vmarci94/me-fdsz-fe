@@ -16,7 +16,7 @@ export class LocalStorageService {
     if (currentToken == null) {
       console.log('új token beállítása');
       this.storage.set(LocalStorageService.TOKEN_KEY, token);
-    } else{
+    } else {
       throw new Error('Már volt beállítva token!');
     }
   }
