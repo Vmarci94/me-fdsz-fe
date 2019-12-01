@@ -11,6 +11,7 @@ import {InboxComponent} from './components/inbox/inbox.component';
 import {PostAdminComponent} from './components/post-admin/post-admin.component';
 import {UserEditorComponent} from './components/user-editor/user-editor.component';
 import {BookingComponent} from './components/booking/booking.component';
+import {EditBookingComponent} from './components/edit-booking/edit-booking.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'inbox', component: InboxComponent},
   {path: 'post-admin', component: PostAdminComponent},
   {path: 'booking', component: BookingComponent},
+  {path: 'edit-booking', component: EditBookingComponent},
   {path: '**', redirectTo: '/'}
 ];
 

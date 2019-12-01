@@ -1,0 +1,74 @@
+<div class="container pb-5">
+  <div class="row">
+    <div class="col-12 col-sm-4 ">
+      <h3 class="text-center">Turnusok</h3>
+      <div class="turnus-container">
+        <ul class="list-group mt-4">
+          <ng-container *ngFor="let turnus of turnusList">
+            <div class="list-group-item cursor-pointer">
+              <div class="row">
+                <div class="col">
+                  {{ turnus.startDate }} - {{ turnus.endDate }}
+                </div>
+                <div class="col-4 text-right" *ngIf="userAdmin">
+                  <button class="btn btn-sm btn-danger" (click)="deleteTurnus(turnus.id)" [disabled]="!turnus.deletable">
+                    Törlés
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="col-12 col-sm-8 mt-4 mt-sm-0">
+      <h3 class="text-center">Új turnus felvétele</h3>
+      <app-room-selector [selectedTrurnus]="newTurnus"></app-room-selector>
+
+
+      <div class="row pt-4">
+        <div class="col-6 pt-3">
+          <app-date-input [startDate]="newTurnus.startDate"
+                          (dateChange)="newTurnus.startDate = $event"></app-date-input>
+        </div>
+        <div class="col-6 pt-3">
+          <app-date-input [startDate]="newTurnus.endDate"
+                          (dateChange)="newTurnus.endDate = $event"></app-date-input>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12 text-right mt-3">
+          <button (click)="addNewTurnus()" [disabled]="!hasSelectedRoom()" class="btn btn-primary">
+            Turnus felvétele
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf="myBookingList && myBookingList.length > 0">
+    <div class="col turnus-containe">
+      <h3 class="text-center mb-4">Felhasználók foglalásai</h3>
+      <div class="list-group">
+        <ng-container *ngFor="let booking of myBookingList">
+          <div class="list-group-item">
+            <div class="row">
+              <div class="col-4 col-sm">
+                {{booking.author.fullName}}
+              </div>
+              <div class="col-8 col-sm">
+                {{booking.turnusDTO.startDate}}-{{booking.turnusDTO.endDate}}
+              </div>
+              <div class="col text-right mt-2 mt-sm-0">
+                <button class="btn-sm btn-danger" (click)="deleteBooking(booking.id)">
+                  Törlés
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Turnus} from '../../../model/turnus';
+import {Turnus} from '../../model/turnus';
 
 @Component({
   selector: 'app-turnus-list',

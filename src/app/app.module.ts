@@ -31,9 +31,10 @@ import {PostAdminComponent} from './components/post-admin/post-admin.component';
 import {PostEditorComponent} from './components/post-editor/post-editor.component';
 import { DateInputComponent } from './shared/date-input/date-input.component';
 import { BookingComponent } from './components/booking/booking.component';
-import { RoomComponent } from './components/booking/room/room.component';
-import { RoomSelectorComponent } from './components/booking/room-selector/room-selector.component';
-import { TurnusListComponent } from './components/booking/turnus-list/turnus-list.component';
+import { RoomComponent } from './shared/room/room.component';
+import { RoomSelectorComponent } from './shared/room-selector/room-selector.component';
+import { TurnusListComponent } from './shared/turnus-list/turnus-list.component';
+import {EditBookingComponent} from './components/edit-booking/edit-booking.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { TurnusListComponent } from './components/booking/turnus-list/turnus-lis
     BookingComponent,
     RoomComponent,
     RoomSelectorComponent,
-    TurnusListComponent
+    TurnusListComponent,
+    EditBookingComponent
   ],
   imports: [
     BrowserModule,

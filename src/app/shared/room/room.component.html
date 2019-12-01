@@ -1,0 +1,16 @@
+<div class="list-group">
+  <ng-container *ngFor="let room of selectedTrurnus.rooms">
+    <div class="list-group-item" *ngIf="room.roomType === roomType">
+      <div class="row">
+        <div class="col">
+          <mat-checkbox
+            [disabled]="!room.available"
+            (change)="room.selected = $event.checked"
+            [checked]="room.selected">
+            {{room.roomNumber}}. szoba
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

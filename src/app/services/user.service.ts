@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {User} from '../model/user';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
@@ -13,8 +13,12 @@ import {Post} from '../model/post';
   providedIn: 'root'
 })
 export class UserService {
-
   private static readonly usersServiceUrl: string = '/users';
+
+  public userAdmin = false;
+  private userData: User;
+
+  private eventChangeCurrentUser: Subject<User> = new Subject();
 
   constructor(private http: HttpClient,
               private localStorageService: LocalStorageService,
@@ -22,9 +26,18 @@ export class UserService {
               private router: Router) {
   }
 
-  public callGetCurrentUser(): Observable<User> {
+
+  public emitCurrentUser(): Observable<User> {
+    return this.eventChangeCurrentUser.asObservable();
+  }
+
+  public callGetCurrentUser() {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/get-current-user';
-    return this.http.get<User>(url);
+    this.http.get<User>(url).subscribe((data) => {
+      this.eventChangeCurrentUser.next(data);
+      this.userAdmin = data.admin;
+      this.userData = data;
+    });
   }
 
   public callGetUserById(userId: number): Observable<User> {
@@ -33,7 +46,6 @@ export class UserService {
     return this.http.get<User>(url, options);
   }
 
-
   /*
   public callUpdateUserData(pUser: User): Observable<any> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
@@ -41,7 +53,7 @@ export class UserService {
   }
   */
 
-  public callUpdateUserData(userData: User, image: File) {
+  public callUpdateUserData(userData: User, image: File): Observable<User> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
     const fd = new FormData();
     if (image) {
@@ -49,7 +61,7 @@ export class UserService {
     }
     const blob = new Blob([JSON.stringify(userData)], {type: 'application/json'});
     fd.append('user', blob);
-    this.http.post(url, fd).subscribe(value => console.log(value));
+    return this.http.post<User>(url, fd);
   }
 
   public signout() {

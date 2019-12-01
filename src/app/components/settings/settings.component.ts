@@ -17,6 +17,8 @@ export class SettingsComponent implements OnInit {
 
   private formDisabled = true;
 
+  private newPasswordFlag = false;
+
   private userData: User;
   private oldUserData: User;
 
@@ -27,7 +29,8 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.disableForm();
-    this.userService.callGetCurrentUser().subscribe((user: User) => {
+    this.userService.callGetCurrentUser();
+    this.userService.emitCurrentUser().subscribe((user: User) => {
       this.userData = user;
       this.oldUserData = user;
     });
@@ -60,10 +63,15 @@ export class SettingsComponent implements OnInit {
   }
 
   save() {
-    this.userService.callUpdateUserData(this.userData, this.image);
+    this.userService.callUpdateUserData(this.userData, this.image).subscribe( (user: User) => {
+      this.userData = user;
+      this.oldUserData = user;
+      this.disableForm();
+    });
   }
 
   onImageLoad(image) {
     this.image = image;
   }
+
 }

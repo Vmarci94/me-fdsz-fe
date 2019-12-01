@@ -54,6 +54,9 @@
               <button class="dropdown-item" routerLink="/user-editor" *ngIf="isLoggedIn() && (user | async)?.admin">
                 Nyilvántartás
               </button>
+              <button class="dropdown-item" routerLink="/booking" *ngIf="isLoggedIn()">
+                Foglalás
+              </button>
               <div class="divider dropdown-divider"></div>
               <button class="dropdown-item" (click)="signout()">
                 Kijelentkezés

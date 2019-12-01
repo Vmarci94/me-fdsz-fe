@@ -29,7 +29,8 @@ export class PageHeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.loggedInEmitter.subscribe(loggedStatus => {
       if (loggedStatus) {
-        this.user = this.userService.callGetCurrentUser();
+        this.userService.callGetCurrentUser()
+        this.user = this.userService.emitCurrentUser();
       }
     });
     if (this.localStorageService.getToken() != null) {

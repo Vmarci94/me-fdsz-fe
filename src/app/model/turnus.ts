@@ -7,4 +7,5 @@ export class Turnus {
   rooms: Room[];
   startDate: string;
   selected: boolean;
+  deletable: boolean
 }

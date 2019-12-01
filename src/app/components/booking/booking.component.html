@@ -1,21 +1,52 @@
 <div class="container pb-5">
   <div class="row">
-    <div class="col-4 turnus-container">
+    <div class="col-12 col-sm-4 turnus-container">
       <h3 class="text-center">Turnusok</h3>
       <ul class="list-group mt-4">
         <ng-container *ngFor="let turnus of turnusList">
-          <li class="list-group-item cursor-pointer"
-              [class.active]="turnus === selectedTrurnus"
-              (click)="selectedTrurnus = turnus">
-            {{ turnus.startDate }} - {{ turnus.endDate }}
-          </li>
+          <div class="list-group-item cursor-pointer" [class.active]="turnus === selectedTrurnus"
+               (click)="selectTurnus(turnus)">
+            <div class="row">
+              <div class="col">
+                {{ turnus.startDate }} - {{ turnus.endDate }}
+              </div>
+              <!--              <div class="col-4 text-right" *ngIf="userAdmin">-->
+              <!--                <button class="btn btn-sm btn-danger" >Törlés</button>-->
+              <!--              </div>-->
+            </div>
+          </div>
         </ng-container>
       </ul>
     </div>
-    <div class="col-8 text-center" *ngIf="selectedTrurnus">
+    <div class="col-12 col-sm-8 mt-4 mt-sm-0" *ngIf="selectedTrurnus">
+      <h3 class="text-center">Foglalás</h3>
       <app-room-selector [selectedTrurnus]="selectedTrurnus"></app-room-selector>
       <div class="col-12 text-right mt-3">
-        <button (click)="addNewBooking()" class="btn btn-primary">Foglalás</button>
+        <button (click)="addNewBooking()" [disabled]="!hasSelectedRoom()" class="btn btn-primary">Foglalás</button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" *ngIf="myBookingList && myBookingList.length > 0">
+    <div class="col turnus-containe">
+      <h3 class="text-center mb-4">Sikeres foglalások</h3>
+      <div class="list-group">
+        <ng-container *ngFor="let booking of myBookingList">
+          <div class="list-group-item">
+            <div class="row">
+              <div class="col-4 col-sm">
+                {{booking.author.fullName}}
+              </div>
+              <div class="col-8 col-sm">
+                {{booking.turnusDTO.startDate}}-{{booking.turnusDTO.endDate}}
+              </div>
+              <div class="col text-right mt-2 mt-sm-0">
+                <button class="btn-sm btn-danger" (click)="deleteBooking(booking.id)">
+                  Törlés
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

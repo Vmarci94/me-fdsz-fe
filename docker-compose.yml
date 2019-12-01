@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  backend:
+    container_name: me-fdsz-backend
+    image: vmarci94/me-fdsz-be:latest
+    #    build:
+    #      context: .
+    #      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      #<outside>:<inside>
+      - 8081:8081
+      - 33061:3306 #Add this only if you want to expose the mysql to outer world.
+      - 4200:4200
+    depends_on:
+      - db # start db before backend
+    #    command: ["./wait-for-it.sh", "db:3306", "--", "echo", "db is udp"]
+    links:
+      - "db:database"
+  db:
+    container_name: me-fdsz-database
+    image: mysql
+    environment:
+      MYSQL_USER: marci
+      MYSQL_PASSWORD: userpass
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: ME_FDSZ
+    restart: always
+  frontend:
+    container_name: me-fdsz-frontend
+    image: vmarci94/me-fdsz-fe:latest
+    restart: always
+    depends_on:
+      - backend
+    links:
+      - "db:database"
+
+#    volumes:
+#      - "./volumes/database:/var/lib/mysql"

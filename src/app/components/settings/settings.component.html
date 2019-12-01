@@ -48,14 +48,18 @@
              [(ngModel)]="userData.phoneNumber">
     </mat-form-field>
 
+    <mat-checkbox class="col-12" [disabled]="formDisabled" [checked]="newPasswordFlag"
+                  (change)="newPasswordFlag = !newPasswordFlag">
+      Új jelszó
+    </mat-checkbox>
     <mat-form-field class="col-12">
-      <input [disabled]="formDisabled" matInput placeholder="Jelszó" type="password" required
+      <input [disabled]="!newPasswordFlag || formDisabled" matInput placeholder="Jelszó" type="password" required
              [(ngModel)]="userData.password">
     </mat-form-field>
 
     <div class="col-12">
-        <app-image-upload (imageLoaded)="onImageLoad($event)" [imageUrl]="postService.getImageUrlById(userData.imageId)"
-        [disabled]="formDisabled">
+      <app-image-upload (imageLoaded)="onImageLoad($event)" [imageUrl]="postService.getImageUrlById(userData.imageId)"
+                        [disabled]="formDisabled">
       </app-image-upload>
     </div>
   </div>
