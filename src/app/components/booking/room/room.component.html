@@ -1,0 +1,10 @@
+<div class="row" *ngFor="let room of selectedTrurnus.rooms">
+  <div class="col" *ngIf="room.roomType === roomType">
+    <mat-checkbox
+      [disabled]="!room.available"
+      (change)="room.selected = $event.checked"
+      [checked]="room.selected">
+      {{room.roomNumber}}. szoba
+    </mat-checkbox>
+  </div>
+</div>

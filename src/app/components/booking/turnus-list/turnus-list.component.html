@@ -1,0 +1,10 @@
+<h3 class="text-center">Turnusok</h3>
+<ul class="list-group mt-4">
+  <ng-container *ngFor="let turnus of turnusList">
+    <li class="list-group-item cursor-pointer"
+        [class.active]="selectTurnus(turnus)"
+        (click)="selectedTrurnus = turnus">
+      {{ turnus.startDate }} - {{ turnus.endDate }}
+    </li>
+  </ng-container>
+</ul>

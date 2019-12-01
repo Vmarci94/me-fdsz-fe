@@ -3,6 +3,7 @@ import {MainPageService} from '../../../services/main-page.service';
 import {Main} from '../../../model/main';
 import {Highlight} from '../../../model/highlight';
 import {PostService} from '../../../services/post.service';
+import {Post} from '../../../model/post';
 
 @Component({
   selector: 'app-main',
@@ -13,10 +14,11 @@ export class MainComponent implements OnInit {
   private mainPageContent: Main;
   private videoSlide: Highlight = {
     title: 'Video title',
-    introductionText: 'video text',
+    introduction: 'video text',
     contentText: '',
     imageId: undefined,
     isVideo: true,
+    id: undefined
   };
 
   constructor(
@@ -31,6 +33,10 @@ export class MainComponent implements OnInit {
 
       this.mainPageContent.highlightList = [this.videoSlide].concat(data.highlightList);
     });
+  }
+
+  private getPostRelativeLink(id: number): string {
+    return '/feed/' + id;
   }
 
 }

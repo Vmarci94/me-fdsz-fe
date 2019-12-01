@@ -1,5 +1,8 @@
 <app-page-header></app-page-header>
-<main>
+<main style="min-height: 100vh">
   <router-outlet></router-outlet>
 </main>
 <app-footer></app-footer>
+
+<!--Loading screen-->
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

@@ -1,5 +1,5 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo mb-3 mb-sm-5" [containerInside]="false">
 
   <!-- Navbar brand -->
   <mdb-navbar-brand>
@@ -35,13 +35,29 @@
         <a class="nav-link" *ngIf="isLoggedIn()">
           <div class="btn-group" mdbDropdown>
             <a mdbDropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
-              <i class="fa fa-user"></i>{{(user | async)?.username}}</a>
+              <i class="fa fa-user mr-1"></i>
+              {{(user | async)?.fullName}}
+            </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <button class="dropdown-item">Beállítások</button>
-              <button class="dropdown-item">Üzenetek</button>
-              <button *ngIf="isLoggedIn() && (user | async)?.role === 'ADMIN'" class="dropdown-item">Admin</button>
+              <button class="dropdown-item" routerLink="/settings">
+                Beállítások
+              </button>
+              <button class="dropdown-item" routerLink="/messages" *ngIf="isLoggedIn() && !(user | async)?.admin">
+                Üzenetek
+              </button>
+              <button class="dropdown-item" routerLink="/inbox" *ngIf="isLoggedIn() && (user | async)?.admin">
+                Üzenetek
+              </button>
+              <button class="dropdown-item" routerLink="/post-admin" *ngIf="isLoggedIn() && (user | async)?.admin">
+                Posztok
+              </button>
+              <button class="dropdown-item" routerLink="/user-editor" *ngIf="isLoggedIn() && (user | async)?.admin">
+                Nyilvántartás
+              </button>
               <div class="divider dropdown-divider"></div>
-              <button class="dropdown-item" (click)="signout()">Kijelentkezés</button>
+              <button class="dropdown-item" (click)="signout()">
+                Kijelentkezés
+              </button>
             </div>
           </div>
         </a>

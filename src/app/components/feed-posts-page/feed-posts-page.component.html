@@ -5,15 +5,16 @@
 
 <div class="container my-5">
   <div class="row d-flex justify-content-center">
-    <div class="col-md-4 col-sm-6 grid-padding" *ngFor="let feedPost of ( postList | async )">
-      <div class="card ">
-        <a href="#">
-          <img class="card-img-top" alt="post_image" [src]="postService.getImageUrlById(feedPost.imageId)"/>
-        </a>
+    <div class="col-md-4 col-sm-6 grid-padding" *ngFor="let post of postList">
+      <div class="card" [routerLink]="[getPostRelativeLink(post)]">
+        <div class="card-img-top image-container">
+          <img class="card-image" alt="post_image" [src]="postService.getImageUrlById(post.imageId)"/>
+        </div>
+
         <div class="card-body">
-          <h2 class="card-title"><a href="#">{{feedPost.title}}</a></h2>
+          <h2 class="card-title"><a href="#">{{post.title}}</a></h2>
           <p size="12px">
-            {{feedPost.contentText}}
+            {{post.introduction}}
           </p>
         </div>
       </div>

@@ -1,0 +1,10 @@
+<div class="form-group justify-content-md-center">
+  <label for="image-upload">
+    <input id="image-upload" type="file" accept='image/*' class="form-control-file upload-btn mb-3"
+           (change)="onFileSelected($event)" [disabled]="disabled">
+    <div class="position-relative d-inline-block">
+      <img class="card-img-top" alt="Publikáció borítóképe" [src]="imageUrl">
+      <div class="img-overlay" [class.img-disabled]="disabled"></div>
+    </div>
+  </label>
+</div>

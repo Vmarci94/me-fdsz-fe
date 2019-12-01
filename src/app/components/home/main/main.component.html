@@ -1,42 +1,47 @@
 <div class="container pb-5" *ngIf="mainPageContent">
-  <div class="row">
+  <div class="row text-center pb-5">
     <div class="col-12">
+      <h3>Miskolci Egyetem</h3>
       <h1>Felsőoktatási Dolgozók Szakszervezete</h1>
-      <h2>Miskolci Egyetem</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
+    <div class="col-sm-8 col-12">
       <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
         <!-- TODO: fix képarány-->
 
-        <mdb-carousel-item *ngFor="let highLight of this.mainPageContent.highlightList">
-          <video class="video-fluid" autoplay loop *ngIf="highLight.isVideo;else image">
-            <source src="./assets/videos/me.mp4" type="video/mp4"/>
-          </video>
+        <ng-container *ngFor="let highLight of this.mainPageContent.highlightList">
+          <mdb-carousel-item [routerLink]="highLight.isVideo ? '' : getPostRelativeLink(highLight.id)" class="cursor-pointer"
+                             [class.cursor-pointer]="!highLight.isVideo">
+            <video class="video-fluid" autoplay loop *ngIf="highLight.isVideo;else image">
+              <source src="./assets/videos/me.mp4" type="video/mp4"/>
+            </video>
 
-          <ng-template #image>
-            <div class="view w-100" >
-              <img class="d-block w-100" [src]="postService.getImageUrlById(highLight.imageId)">
-              <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+            <ng-template #image>
+              <div class="view w-100" style="padding-top: 56.25%;">
+                <img class="d-block w-100 carousel-image" [src]="postService.getImageUrlById(highLight.imageId)">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+              </div>
+            </ng-template>
+
+
+            <div class="carousel-caption">
+              <h3 class="h3-responsive">{{highLight.title}}</h3>
+              <p>{{highLight.introduction}}</p>
             </div>
-          </ng-template>
-
-
-          <div class="carousel-caption">
-            <h3 class="h3-responsive">{{highLight.title}}</h3>
-            <p>{{highLight.introductionText}}</p>
-          </div>
-        </mdb-carousel-item>
+          </mdb-carousel-item>
+        </ng-container>
 
       </mdb-carousel>
     </div>
 
-    <div class="col-4">
+    <div class="col-sm-4 col-12">
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let highLight of this.mainPageContent.highlightList">
-          {{ highLight.title }}
-        </li>
+        <ng-container *ngFor="let highLight of this.mainPageContent.highlightList.slice(1, this.mainPageContent.highlightList.length)">
+          <li class="list-group-item cursor-pointer" [routerLink]="getPostRelativeLink(highLight.id)">
+            {{ highLight.title }}
+          </li>
+        </ng-container>
       </ul>
     </div>
   </div>

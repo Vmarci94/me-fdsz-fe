@@ -1,7 +1,8 @@
 export interface Highlight {
   title: string;
-  introductionText: string;
+  introduction: string;
   contentText: string;
   imageId: number;
   isVideo: boolean;
+  id: number;
 }

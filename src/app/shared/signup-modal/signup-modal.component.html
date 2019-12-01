@@ -32,13 +32,10 @@
             <mat-error *ngIf="signupFormModalEmail.invalid">Email cím nem megfelelő</mat-error>
           </mat-form-field>
 
-          <mat-form-field class="col-12">
-            <input matInput id="picker" [matDatepicker]="picker"
-                   placeholder="Choose a date" (dataChange)="dateChange($event)" [formControl]="date">
-            <label for="picker"></label>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+          <div class="col-12">
+            <app-date-input [startDate]="user.birthDay"
+                            (dateChange)="user.birthDay = $event"></app-date-input>
+          </div>
 
           <mat-form-field class="col-12">
             <input matInput placeholder="Telefonszám" type="tel" required [(ngModel)]="user.phoneNumber">

@@ -5,7 +5,7 @@ export class User {
   public secoundName = '';
   public fullName = '';
 
-  public birthDay: Date;
+  public birthDay: string;
   public phoneNumber: string;
   public location: string;
 
@@ -13,6 +13,8 @@ export class User {
   public username: string;
   public password: string;
   public role: string;
-  public image: string;
+  public imageId: number;
+  public id: number;
+  public admin: boolean;
 
 }

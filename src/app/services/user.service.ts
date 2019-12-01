@@ -7,6 +7,7 @@ import {LocalStorageService} from './local-storage.service';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {Token} from '../model/token';
+import {Post} from '../model/post';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,33 @@ export class UserService {
   }
 
   public callGetCurrentUser(): Observable<User> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-currnet-user';
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-current-user';
     return this.http.get<User>(url);
+  }
+
+  public callGetUserById(userId: number): Observable<User> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/get-by-id';
+    const options = {params: new HttpParams().set('userId', '' + userId)};
+    return this.http.get<User>(url, options);
+  }
+
+
+  /*
+  public callUpdateUserData(pUser: User): Observable<any> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
+    return this.http.post<User>(url, pUser, {headers: environment.header});
+  }
+  */
+
+  public callUpdateUserData(userData: User, image: File) {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
+    const fd = new FormData();
+    if (image) {
+      fd.append('image', image, image.name);
+    }
+    const blob = new Blob([JSON.stringify(userData)], {type: 'application/json'});
+    fd.append('user', blob);
+    this.http.post(url, fd).subscribe(value => console.log(value));
   }
 
   public signout() {
@@ -66,4 +92,9 @@ export class UserService {
     return this.http.get<User[]>(url, options);
   }
 
+  public delete(userId: number): Observable<boolean> {
+    const url = environment.connectionURL + UserService.usersServiceUrl + '/delete';
+    const options = {params: new HttpParams().set('userId', '' + userId)};
+    return this.http.delete<boolean>(url, options);
+  }
 }

@@ -1,0 +1,25 @@
+<div class="container pb-5">
+  <div class="row pb-3">
+    <div class="col-8">
+      <h3>Posztok kezelése</h3>
+    </div>
+    <div class="col-4 text-right">
+      <button class="btn btn-primary" (click)="newPost()">Új Poszt</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 col-12 list-container mb-4">
+      <ul class="list-group">
+        <ng-container *ngFor="let post_ of posts">
+          <li class="list-group-item cursor-pointer" (click)="loadPost(post_.id)" [class.active]="post_ === this.post">
+            {{ post_.title }}
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="col-sm-8 col-12">
+      <app-post-editor [postData]="post"></app-post-editor>
+    </div>
+  </div>
+
+</div>

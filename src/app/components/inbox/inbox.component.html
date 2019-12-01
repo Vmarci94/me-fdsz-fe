@@ -1,0 +1,35 @@
+<div class="container pb-5">
+  <div class="row mb-3">
+    <div class="col">
+      <h4>Beérkező üzenetek</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="example-container table-conatiner">
+        <table class="table table-borderless">
+          <thead>
+          <tr>
+            <th scope="col">Feladó neve</th>
+            <th scope="col">Beérkezési idő</th>
+            <th scope="col">Utolsó üzenet</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let message of inbox">
+            <tr>
+              <th scope="row">{{message.sender.fullName}}</th>
+              <td>{{message.incommindDate}}</td>
+              <td>{{message.topMessage}}</td>
+              <td class="text-right">
+                <button class="btn-sm btn-primary" routerLink="/messages/{{message.sender.id}}">Megnéz</button>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,15 +39,8 @@ export class SignupModalComponent implements OnInit {
 
   private submint(): void {
     // egyenlőre megspórolom a validációt
-    const md: Moment = this.date.value;
-    this.user.birthDay = new Date(md.year(), md.month(), md.day());
     this.outUser.next(this.user);
     this.hide();
-  }
-
-
-  private dateChange(momentDate: Moment) {
-    this.user.birthDay = new Date(momentDate.year(), momentDate.month(), momentDate.day());
   }
 
 }

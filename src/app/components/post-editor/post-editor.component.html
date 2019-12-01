@@ -1,0 +1,35 @@
+<div class="row" *ngIf="postData">
+  <mat-form-field class="col-12">
+    <input matInput placeholder="Cím" type="text" [(ngModel)]="postData.title">
+  </mat-form-field>
+
+  <div class="col-12">
+    <app-image-upload (imageLoaded)="onImageLoad($event)" [imageUrl]="postService.getImageUrlById(postData.imageId)">
+    </app-image-upload>
+  </div>
+
+  <mat-form-field class="col-12">
+    <textarea matInput placeholder="Beszámoló" [(ngModel)]="postData.introduction"></textarea>
+  </mat-form-field>
+
+  <div class="col-12">
+    <mat-checkbox (change)="toggleCheckbox()" [checked]="checkboxFlag">Publikáció csatolás</mat-checkbox>
+  </div>
+
+
+  <div class="col-12 mb-3" *ngIf="checkboxFlag">
+    <ckeditor [editor]="editor" [(ngModel)]="postData.contentText"></ckeditor>
+  </div>
+
+  <div class="col">
+    <button class="btn btn-danger mr-2" (click)="delete()" *ngIf="postData.id">Törlés</button>
+  </div>
+
+ <div class="col text-right" *ngIf="formTouched()">
+   <button class="btn btn-secondary mr-2" (click)="cancel()">Mégse</button>
+   <button class="btn btn-primary" (click)="saveAndUpload()">Mentés</button>
+ </div>
+</div>
+
+
+

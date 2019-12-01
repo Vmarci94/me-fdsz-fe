@@ -1,0 +1,71 @@
+<div class="container" *ngIf="allUser">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="panel-body">
+        <input class="form-control mb-3" placeholder="Tagok keresése"
+               [(ngModel)]="searchTerm" (keyup.enter)="search(searchTerm)" autocomplete="off">
+
+        <ul class="list-group" role="tablist">
+          <li class="list-group-item" *ngFor="let user of (allUser | async)"
+              [class.active]="user === selectedUser" (click)="selectUser(user)">
+            <h6>{{user.title}} {{user.firstName}} {{user.secoundName}}</h6>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-lg-9" *ngIf="selectedUser">
+      <div class="row">
+
+        <div class="col-8">
+          <h4>
+            {{selectedUser.fullName}}
+
+          </h4>
+        </div>
+
+        <div class="col-4 text-right">
+          <button class="btn btn-danger mr-2" *ngIf="editFlag" (click)="delete(selectedUser.id)">Törlés</button>
+          <button class="btn btn-primary mr-2" (click)="saveAndUpload()" *ngIf="editFlag && formTouched()">Mentés</button>
+          <button class="btn btn-secondary mr-2" (click)="onClickEdit()" *ngIf="editFlag">Mégse</button>
+          <button class="btn btn-primary" (click)="onClickEdit()" *ngIf="!editFlag">Szerkeztés</button>
+        </div>
+
+        <app-image-upload class="profile-picture pull-right col-12 mt-3" (imageLoaded)="onImageLoad($event)"
+                          [imageUrl]="postService.getImageUrlById(selectedUser.imageId)" [disabled]="formDisabled">
+        </app-image-upload>
+
+
+        <mat-form-field class="col-12">
+          <input [disabled]="formDisabled" matInput placeholder="Felhasználó név" type="text" required
+                 [(ngModel)]="selectedUser.username">
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <input matInput placeholder="Email cím" type="email" required
+                 [(ngModel)]="selectedUser.email"
+                 [formControl]="email">
+          <mat-error *ngIf="email.invalid">Email cím nem megfelelő</mat-error>
+        </mat-form-field>
+
+        <div class="col-12">
+          <app-date-input [formDisabled]="formDisabled" [startDate]="selectedUser.birthDay"
+                          (dateChange)="selectedUser.birthDay = $event"></app-date-input>
+        </div>
+
+        <mat-form-field class="col-12">
+          <input [disabled]="formDisabled" matInput placeholder="Telefonszám" type="tel" required
+                 [(ngModel)]="selectedUser.phoneNumber">
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <input [disabled]="formDisabled" matInput placeholder="Jelszó" type="password" required
+                 [(ngModel)]="selectedUser.password">
+        </mat-form-field>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

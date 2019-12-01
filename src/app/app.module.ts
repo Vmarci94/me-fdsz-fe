@@ -14,12 +14,27 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SignupModalComponent} from './shared/signup-modal/signup-modal.component';
 import {TokenInteceptor} from './interceptors/token.inteceptor';
 import {FeedPostsPageComponent} from './components/feed-posts-page/feed-posts-page.component';
-import {RecordBookComponent} from './admin/record-book/record-book.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import {MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
-import { AuthErrorModalComponent } from './shared/auth-error-modal/auth-error-modal.component';
-import { PostPageComponent } from './components/post-page/post-page.component';
+import {AuthErrorModalComponent} from './shared/auth-error-modal/auth-error-modal.component';
+import {PostPageComponent} from './components/post-page/post-page.component';
+import {NgxLoadingModule} from 'ngx-loading';
+import {SettingsComponent} from './components/settings/settings.component';
+import {NewPostComponent} from './components/new-post/new-post.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {ImageUploadComponent} from './shared/image-upload/image-upload.component';
+import {MessagesComponent} from './components/messages/messages.component';
+import {UserEditorComponent} from './components/user-editor/user-editor.component';
+import {InboxComponent} from './components/inbox/inbox.component';
+import {PostAdminComponent} from './components/post-admin/post-admin.component';
+import {PostEditorComponent} from './components/post-editor/post-editor.component';
+import { DateInputComponent } from './shared/date-input/date-input.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { RoomComponent } from './components/booking/room/room.component';
+import { RoomSelectorComponent } from './components/booking/room-selector/room-selector.component';
+import { TurnusListComponent } from './components/booking/turnus-list/turnus-list.component';
+
 
 @NgModule({
   declarations: [
@@ -30,9 +45,21 @@ import { PostPageComponent } from './components/post-page/post-page.component';
     SigninModalComponent,
     SignupModalComponent,
     FeedPostsPageComponent,
-    RecordBookComponent,
     AuthErrorModalComponent,
-    PostPageComponent
+    PostPageComponent,
+    SettingsComponent,
+    NewPostComponent,
+    ImageUploadComponent,
+    MessagesComponent,
+    UserEditorComponent,
+    InboxComponent,
+    PostAdminComponent,
+    PostEditorComponent,
+    DateInputComponent,
+    BookingComponent,
+    RoomComponent,
+    RoomSelectorComponent,
+    TurnusListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +74,10 @@ import { PostPageComponent } from './components/post-page/post-page.component';
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    NgxLoadingModule,
+    CKEditorModule,
+    MatCheckboxModule
   ],
   providers: [
     {

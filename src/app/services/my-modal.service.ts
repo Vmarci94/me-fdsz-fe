@@ -5,12 +5,19 @@ import {User} from '../model/user';
 import {SignupModalComponent} from '../shared/signup-modal/signup-modal.component';
 import {UserService} from './user.service';
 import {AuthErrorModalComponent} from '../shared/auth-error-modal/auth-error-modal.component';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyModalService {
 
+  private static readonly minAnimationTime = 300; //in 1/1000s
+
+  private loading = false;
+  private lastStartTimeStamp: number;
+
+  private eventChangeLoading: Subject<boolean> = new BehaviorSubject(false);
 
   constructor(private modalService: MDBModalService, private userService: UserService) {
   }
@@ -18,6 +25,7 @@ export class MyModalService {
   public showSignInModal(): void {
     const modalRef = this.modalService.show(SigninModalComponent);
     modalRef.content.outUser.subscribe((user: User) => {
+      // this.loadingStart();
       this.userService.callSignin(user);
     });
     modalRef.content.needSignupModal.subscribe((flag: boolean) => {
@@ -40,6 +48,10 @@ export class MyModalService {
     });
   }
 
+  public emitLoadingChange(): Observable<boolean> {
+    return this.eventChangeLoading.asObservable();
+  }
+
   public showAuthErrorModal(): void {
     this.userService.signout();
     const modalRef = this.modalService.show(AuthErrorModalComponent);
@@ -48,6 +60,27 @@ export class MyModalService {
         this.showSignInModal();
       }
     });
+  }
+
+  public loadingStart(): void {
+    if (!this.loading) {
+      this.lastStartTimeStamp = (new Date()).getTime();
+      this.eventChangeLoading.next(true);
+      this.loading = true;
+    }
+  }
+
+  public loadingStop(): void {
+    // if (!this.errorState) {
+    //   this.errorState = false;
+    if (this.loading) {
+      const timeStamp = (new Date()).getTime();
+      setTimeout(() => {
+        this.eventChangeLoading.next(false);
+        this.loading = false;
+      }, ((timeStamp - this.lastStartTimeStamp) < MyModalService.minAnimationTime) ? MyModalService.minAnimationTime : 0);
+    }
+    // }
   }
 
 }

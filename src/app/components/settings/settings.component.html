@@ -1,0 +1,63 @@
+<div class="container" *ngIf="userData">
+  <div class="row mb-4">
+    <div class="col-8">
+      <h3>Beállítások</h3>
+    </div>
+    <div class="col-4 text-right">
+      <button class="btn btn-success mr-2" *ngIf="formTouched() && !formDisabled" (click)="save()">Mentés</button>
+      <button class="btn btn-primary" *ngIf="formDisabled" (click)="edit()">Szerkeztés</button>
+      <button class="btn btn-secondary" *ngIf="!formDisabled" (click)="cancel()">Mégse</button>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <mat-form-field class="col-4">
+      <input [disabled]="formDisabled" matInput placeholder="Titulus" type="text" [(ngModel)]="userData.title">
+    </mat-form-field>
+
+    <mat-form-field class="col-8">
+      <input [disabled]="formDisabled" matInput placeholder="Vezetéknév" required type="text"
+             [(ngModel)]="userData.firstName">
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <input [disabled]="formDisabled" matInput placeholder="Keresztnév" required type="text"
+             [(ngModel)]="userData.secoundName">
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <input [disabled]="formDisabled" matInput placeholder="Felhasználó név" type="text" required
+             [(ngModel)]="userData.username">
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <input [disabled]="formDisabled" matInput placeholder="Email cím" type="email" required
+             [(ngModel)]="userData.email"
+             [formControl]="email">
+      <mat-error *ngIf="email.invalid">Email cím nem megfelelő</mat-error>
+    </mat-form-field>
+
+    <div class="col-12">
+      <app-date-input [formDisabled]="formDisabled" [startDate]="userData.birthDay"
+                      (dateChange)="userData.birthDay = $event"></app-date-input>
+    </div>
+
+    <mat-form-field class="col-12">
+      <input [disabled]="formDisabled" matInput placeholder="Telefonszám" type="tel" required
+             [(ngModel)]="userData.phoneNumber">
+    </mat-form-field>
+
+    <mat-form-field class="col-12">
+      <input [disabled]="formDisabled" matInput placeholder="Jelszó" type="password" required
+             [(ngModel)]="userData.password">
+    </mat-form-field>
+
+    <div class="col-12">
+        <app-image-upload (imageLoaded)="onImageLoad($event)" [imageUrl]="postService.getImageUrlById(userData.imageId)"
+        [disabled]="formDisabled">
+      </app-image-upload>
+    </div>
+  </div>
+
+</div>
