@@ -22,7 +22,7 @@
         <a class="nav-link waves-light" mdbWavesEffect>Magunkról</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>Üdülő</a>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/booking">Üdülő</a>
       </li>
     </ul>
     <!-- Links -->
@@ -54,7 +54,7 @@
               <button class="dropdown-item" routerLink="/user-editor" *ngIf="isLoggedIn() && (user | async)?.admin">
                 Nyilvántartás
               </button>
-              <button class="dropdown-item" routerLink="/booking" *ngIf="isLoggedIn()">
+              <button class="dropdown-item" routerLink="/edit-booking" *ngIf="isLoggedIn()">
                 Foglalás
               </button>
               <div class="divider dropdown-divider"></div>

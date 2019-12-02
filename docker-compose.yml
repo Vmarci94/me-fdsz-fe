@@ -12,7 +12,6 @@ services:
       #<outside>:<inside>
       - 8081:8081
       - 33061:3306 #Add this only if you want to expose the mysql to outer world.
-      - 4200:4200
     depends_on:
       - db # start db before backend
     #    command: ["./wait-for-it.sh", "db:3306", "--", "echo", "db is udp"]
@@ -35,6 +34,9 @@ services:
       - backend
     links:
       - "db:database"
+    ports:
+    - 4200:4200
+
 
 #    volumes:
 #      - "./volumes/database:/var/lib/mysql"
