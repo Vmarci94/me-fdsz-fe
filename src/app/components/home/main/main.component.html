@@ -38,11 +38,15 @@
     <div class="col-sm-4 col-12">
       <ul class="list-group">
         <ng-container *ngFor="let highLight of this.mainPageContent.highlightList.slice(1, this.mainPageContent.highlightList.length)">
-          <li class="list-group-item cursor-pointer" [routerLink]="getPostRelativeLink(highLight.id)">
+          <li class="list-group-item cursor-pointer font-size" [routerLink]="getPostRelativeLink(highLight.id)">
             {{ highLight.title }}
           </li>
         </ng-container>
       </ul>
+    </div>
+
+    <div class="col-12 my-5">
+      <div class="font-size text-justify" [innerHTML]="mainPageContent.introductionInHTML"></div>
     </div>
   </div>
 </div>

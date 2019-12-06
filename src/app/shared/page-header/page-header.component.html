@@ -22,7 +22,7 @@
         <a class="nav-link waves-light" mdbWavesEffect>Magunkról</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/booking">Üdülő</a>
+        <a class="nav-link waves-light" mdbWavesEffect routerLink="/booking">Siófoki üdülő</a>
       </li>
     </ul>
     <!-- Links -->
@@ -45,6 +45,7 @@
               <button class="dropdown-item" routerLink="/messages" *ngIf="isLoggedIn() && !(user | async)?.admin">
                 Üzenetek
               </button>
+              <div class="divider dropdown-divider" *ngIf="isLoggedIn() && (user | async)?.admin"></div>
               <button class="dropdown-item" routerLink="/inbox" *ngIf="isLoggedIn() && (user | async)?.admin">
                 Üzenetek
               </button>
@@ -54,8 +55,8 @@
               <button class="dropdown-item" routerLink="/user-editor" *ngIf="isLoggedIn() && (user | async)?.admin">
                 Nyilvántartás
               </button>
-              <button class="dropdown-item" routerLink="/edit-booking" *ngIf="isLoggedIn()">
-                Foglalás
+              <button class="dropdown-item" routerLink="/edit-booking" *ngIf="isLoggedIn() && (user | async)?.admin">
+                Üdülő turnusok kezelése
               </button>
               <div class="divider dropdown-divider"></div>
               <button class="dropdown-item" (click)="signout()">
