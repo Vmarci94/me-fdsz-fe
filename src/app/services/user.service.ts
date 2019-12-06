@@ -46,12 +46,6 @@ export class UserService {
     return this.http.get<User>(url, options);
   }
 
-  /*
-  public callUpdateUserData(pUser: User): Observable<any> {
-    const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';
-    return this.http.post<User>(url, pUser, {headers: environment.header});
-  }
-  */
 
   public callUpdateUserData(userData: User, image: File): Observable<User> {
     const url = environment.connectionURL + UserService.usersServiceUrl + '/update-user-data';

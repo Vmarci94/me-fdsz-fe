@@ -72,11 +72,9 @@ export class BookingService {
     });
   }
 
-  public callAddNewTurnus(newTurnus: Turnus) {
+  public callAddNewTurnus(newTurnus: Turnus): Observable<Turnus> {
     const url = environment.connectionURL + BookingService.urlPostAddTurnus;
-    this.http.post<any>(url, newTurnus, {headers: environment.header}).subscribe(() => {
-      this.callGetAllTurnus();
-    });
+    return this.http.post<Turnus>(url, newTurnus, {headers: environment.header});
   }
 
   callDeleteBookingById(postId: number) {

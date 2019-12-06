@@ -8,7 +8,7 @@
         <ul class="list-group" role="tablist">
           <li class="list-group-item" *ngFor="let user of (allUser | async)"
               [class.active]="user === selectedUser" (click)="selectUser(user)">
-            <h6>{{user.title}} {{user.firstName}} {{user.secoundName}}</h6>
+            <h6>{{user.fullName}}</h6>
           </li>
         </ul>
       </div>
@@ -19,8 +19,7 @@
 
         <div class="col-8">
           <h4>
-            {{selectedUser.fullName}}
-
+            {{selectedUser.title ? selectedUser.title : ''}} {{selectedUser.firstName}} {{selectedUser.secoundName}}
           </h4>
         </div>
 
@@ -35,6 +34,20 @@
                           [imageUrl]="postService.getImageUrlById(selectedUser.imageId)" [disabled]="formDisabled">
         </app-image-upload>
 
+
+        <mat-form-field class="col-4">
+          <input [disabled]="formDisabled" matInput placeholder="Titulus" type="text" [(ngModel)]="selectedUser.title">
+        </mat-form-field>
+
+        <mat-form-field class="col-8">
+          <input [disabled]="formDisabled" matInput placeholder="Vezetéknév" required type="text"
+                 [(ngModel)]="selectedUser.firstName">
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <input [disabled]="formDisabled" matInput placeholder="Keresztnév" required type="text"
+                 [(ngModel)]="selectedUser.secoundName">
+        </mat-form-field>
 
         <mat-form-field class="col-12">
           <input [disabled]="formDisabled" matInput placeholder="Felhasználó név" type="text" required

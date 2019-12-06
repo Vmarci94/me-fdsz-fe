@@ -6,14 +6,14 @@ import {Booking} from '../../model/booking';
 import {UserService} from '../../services/user.service';
 
 const defaultRooms = [
-  {roomNumber: 1, roomType: 'FOUR_BED', price: 10000, available: true, selected: false},
-  {roomNumber: 2, roomType: 'FOUR_BED', price: 10000, available: true, selected: false},
-  {roomNumber: 3, roomType: 'FOUR_BED', price: 10000, available: true, selected: false},
-  {roomNumber: 4, roomType: 'FOUR_BED', price: 10000, available: true, selected: false},
-  {roomNumber: 5, roomType: 'THREE_BED', price: 5000, available: true, selected: false},
-  {roomNumber: 6, roomType: 'THREE_BED', price: 5000, available: true, selected: false},
-  {roomNumber: 7, roomType: 'THREE_BED', price: 5000, available: true, selected: false},
-  {roomNumber: 8, roomType: 'THREE_BED', price: 5000, available: true, selected: false}
+  {roomNumber: 1, roomType: 'FOUR_BED', available: true, selected: false},
+  {roomNumber: 2, roomType: 'FOUR_BED', available: true, selected: false},
+  {roomNumber: 3, roomType: 'FOUR_BED', available: true, selected: false},
+  {roomNumber: 4, roomType: 'FOUR_BED', available: true, selected: false},
+  {roomNumber: 5, roomType: 'THREE_BED', available: true, selected: false},
+  {roomNumber: 6, roomType: 'THREE_BED', available: true, selected: false},
+  {roomNumber: 7, roomType: 'THREE_BED', available: true, selected: false},
+  {roomNumber: 8, roomType: 'THREE_BED', available: true, selected: false}
 ];
 
 @Component({
@@ -28,7 +28,6 @@ export class EditBookingComponent implements OnInit {
   private newTurnus: Turnus;
 
   constructor(private bookingService: BookingService, private userService: UserService) {
-    this.setDefaultTurnus();
   }
 
   ngOnInit() {
@@ -42,13 +41,13 @@ export class EditBookingComponent implements OnInit {
     this.bookingService.emitAllBooking().subscribe((data) => {
       this.myBookingList = data;
     });
+
+    this.setDefaultTurnus();
   }
 
   setDefaultTurnus() {
     this.newTurnus = new Turnus();
     this.newTurnus.rooms = JSON.parse(JSON.stringify(defaultRooms));
-    this.newTurnus.startDate = '1969-04-20';
-    this.newTurnus.endDate = '1969-04-21';
   }
 
   hasSelectedRoom(): boolean {
@@ -67,7 +66,9 @@ export class EditBookingComponent implements OnInit {
     if (!this.hasSelectedRoom()) {
       return;
     }
-    this.bookingService.callAddNewTurnus(this.newTurnus);
+    this.bookingService.callAddNewTurnus(this.newTurnus).subscribe((turnus: Turnus) => {
+      this.bookingService.callGetAllTurnus();
+    });
     this.setDefaultTurnus();
   }
 
@@ -83,4 +84,12 @@ export class EditBookingComponent implements OnInit {
   deleteTurnus(turnusId: number) {
     this.bookingService.callDeleteTurnusById(turnusId);
   }
+
+  private endDateChangeHandler(endDate: Date) {
+    if (endDate < this.newTurnus.startDate) {
+      endDate = this.newTurnus.startDate;
+    }
+    this.newTurnus.endDate = endDate;
+  }
+
 }

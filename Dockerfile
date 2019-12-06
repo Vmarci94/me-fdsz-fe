@@ -24,4 +24,4 @@ CMD rm proxy.conf.json
 CMD echo '{ "/api/*": { "target": "backend:8081", "secure": false } } ' > proxy.conf.json
 
 # start app
-ENTRYPOINT ["ng serve"]
+CMD ng serve

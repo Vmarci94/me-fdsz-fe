@@ -73,7 +73,11 @@ export class UserEditorComponent implements OnInit {
   }
 
   saveAndUpload() {
-    this.userService.callUpdateUserData(this.selectedUser, this.image);
+    this.userService.callUpdateUserData(this.selectedUser, this.image).subscribe( (user: User) => {
+      this.selectedUser = user;
+      this.oldSelectedUser = user;
+      this.disableForm();
+    });
   }
 
   selectUser(user: User) {
