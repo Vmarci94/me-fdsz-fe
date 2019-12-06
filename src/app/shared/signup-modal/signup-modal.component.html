@@ -34,7 +34,7 @@
 
           <div class="col-12">
             <app-date-input [startDate]="user.birthDay"
-                            (dateChange)="user.birthDay = $event"></app-date-input>
+                            (dateChange)="birthDayDateChange($event)"></app-date-input>
           </div>
 
           <mat-form-field class="col-12">

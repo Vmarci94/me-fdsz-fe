@@ -25,13 +25,14 @@ export class DateInputComponent implements OnInit {
   ngOnInit() {
     if (this.startDate) {
       this.date = new Date(this.startDate);
+    } else {
+      this.date = new Date();
     }
   }
 
   handleDateChange(momentDate: Moment) {
-    const newDate: Date = momentDate.toDate() < new Date() ? new Date() : momentDate.toDate();
+    const newDate: Date = momentDate.toDate();
     this.date = newDate;
-    // const dateStr = moment(newDate).format('YYYY-MM-DD');
     this.dateChange.emit(newDate);
   }
 

@@ -65,7 +65,11 @@ export class PostService {
   }
 
   public getImageUrlById(imageId: number): string {
-    return imageId || imageId >= 0 ? environment.connectionURL + /image/ + imageId : this.imagePlaceholder;
+    if (imageId || imageId === 0) {
+      return environment.connectionURL + /image/ + imageId;
+    } else {
+      return this.imagePlaceholder;
+    }
   }
 
   cellGetPostById(postId: number): Observable<Post> {

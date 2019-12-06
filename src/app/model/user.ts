@@ -1,11 +1,11 @@
 export class User {
 
-  public title = '';
-  public firstName = '';
-  public secoundName = '';
-  public fullName = '';
+  public title: string;
+  public firstName: string;
+  public secoundName: string;
+  public fullName: string;
 
-  public birthDay: string;
+  public birthDay: Date;
   public phoneNumber: string;
   public location: string;
 
@@ -16,5 +16,13 @@ export class User {
   public imageId: number;
   public id: number;
   public admin: boolean;
+
+  constructor() {
+    this.title = '';
+    this.firstName = '';
+    this.secoundName = '';
+    this.fullName = '';
+    this.birthDay = new Date();
+  }
 
 }

@@ -29,7 +29,7 @@
       <div class="row pt-4">
         <div class="col-6 pt-3">
           <app-date-input [startDate]="newTurnus.startDate"
-                          (dateChange)="newTurnus.startDate = $event"></app-date-input>
+                          (dateChange)="startDateChangeHandler($event)"></app-date-input>
         </div>
         <div class="col-6 pt-3">
           <app-date-input [startDate]="newTurnus.endDate"

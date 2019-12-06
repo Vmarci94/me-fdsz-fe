@@ -63,10 +63,11 @@ export class SettingsComponent implements OnInit {
   }
 
   save() {
-    this.userService.callUpdateUserData(this.userData, this.image).subscribe( (user: User) => {
+    this.userService.callUpdateUserData(this.userData, this.image).subscribe((user: User) => {
       this.userData = user;
       this.oldUserData = user;
       this.disableForm();
+      this.userService.eventChangeCurrentUser.next(user);
     });
   }
 

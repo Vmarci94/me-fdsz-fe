@@ -43,4 +43,7 @@ export class SignupModalComponent implements OnInit {
     this.hide();
   }
 
+  private birthDayDateChange(date: Date) {
+    this.user.birthDay = date;
+  }
 }

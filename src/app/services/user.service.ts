@@ -18,7 +18,7 @@ export class UserService {
   public userAdmin = false;
   private userData: User;
 
-  private eventChangeCurrentUser: Subject<User> = new Subject();
+  public eventChangeCurrentUser: Subject<User> = new Subject();
 
   constructor(private http: HttpClient,
               private localStorageService: LocalStorageService,

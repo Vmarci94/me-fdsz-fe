@@ -92,4 +92,11 @@ export class EditBookingComponent implements OnInit {
     this.newTurnus.endDate = endDate;
   }
 
+  private startDateChangeHandler(startDate: Date) {
+    if (startDate < new Date()) {
+      this.newTurnus.startDate = new Date();
+    } else {
+      this.newTurnus.startDate = startDate;
+    }
+  }
 }
