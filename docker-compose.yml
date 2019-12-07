@@ -4,9 +4,6 @@ services:
   backend:
     container_name: me-fdsz-backend
     image: vmarci94/me-fdsz-be:latest
-    #    build:
-    #      context: .
-    #      dockerfile: Dockerfile.dev
     restart: always
     ports:
       #<outside>:<inside>
@@ -33,9 +30,9 @@ services:
     depends_on:
       - backend
     links:
-      - "db:database"
+      - "backend:backend"
     ports:
-    - 4200:4200
+      - 8080:80 #nginx port expose to outer world.
 
 
 #    volumes:

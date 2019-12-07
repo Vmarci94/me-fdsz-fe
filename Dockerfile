@@ -1,5 +1,5 @@
 # base image
-FROM node:10.15.3-stretch-slim
+FROM node:latest AS builder
 
 # install chrome for protractor tests
 #RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -10,18 +10,22 @@ FROM node:10.15.3-stretch-slim
 WORKDIR /app
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+#ENV PATH /app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install
-RUN npm install -g @angular/cli@8.3.19
+#COPY package.json /app/package.json
+COPY . .
+RUN npm install && npm install -g @angular/cli@8.3.19 && npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
+
 
 # add app
-COPY . /app
+#COPY . /app
 
-CMD rm proxy.conf.json
-CMD echo '{ "/api/*": { "target": "backend:8081", "secure": false } } ' > proxy.conf.json
+
 
 # start app
-CMD ng serve
+#CMD ng serve
