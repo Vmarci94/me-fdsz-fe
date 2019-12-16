@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {PostService} from '../../services/post.service';
-import {Observable} from 'rxjs';
 import {Post} from '../../model/post';
 import {MyModalService} from '../../services/my-modal.service';
 

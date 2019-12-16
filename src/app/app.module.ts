@@ -12,7 +12,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {SigninModalComponent} from './shared/signin-modal/signin-modal.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SignupModalComponent} from './shared/signup-modal/signup-modal.component';
-import {TokenInteceptor} from './interceptors/token.inteceptor';
+import {TokenIntreceptor} from './interceptors/token-intreceptor.service';
 import {FeedPostsPageComponent} from './pages/feed-posts-page/feed-posts-page.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
@@ -84,7 +84,7 @@ import {EditBookingComponent} from './pages/edit-booking/edit-booking.component'
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInteceptor,
+      useClass: TokenIntreceptor,
       multi: true
     }, MatNativeDateModule, MatDatepickerModule, MatMomentDateModule
   ],

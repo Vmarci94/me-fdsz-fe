@@ -8,7 +8,6 @@
   <div class="row">
     <div class="col-sm-8 col-12">
       <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
-        <!-- TODO: fix képarány-->
 
         <ng-container *ngFor="let highLight of this.mainPageContent.highlightList">
           <mdb-carousel-item [routerLink]="highLight.isVideo ? '' : getPostRelativeLink(highLight.id)" class="cursor-pointer"

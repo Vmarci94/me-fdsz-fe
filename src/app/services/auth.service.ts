@@ -1,10 +1,12 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {LocalStorageService} from './local-storage.service';
+import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements CanActivate {
 
   public loggedInEmitter: EventEmitter<boolean> = new EventEmitter();
 
@@ -22,13 +24,9 @@ export class AuthService {
     return this.loggedStatus;
   }
 
-  public isAuthenticated(): boolean {
-    // get the token
-    const token = this.localStorageService.getToken();
-    // return a boolean reflecting
-    // whether or not the token is expired
-    // return !this.jwtHelper.isTokenExpired(token);
-    return true; // FIXME dummy
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
+    : Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.isLoggedIn();
   }
 
 }

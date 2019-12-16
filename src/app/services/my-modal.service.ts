@@ -12,14 +12,14 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 })
 export class MyModalService {
 
-  private static readonly minAnimationTime = 300; //in 1/1000s
-
+  // in 1/1000s
+  private static readonly minAnimationTime = 300;
   private loading = false;
   private lastStartTimeStamp: number;
-
   private eventChangeLoading: Subject<boolean> = new BehaviorSubject(false);
 
-  constructor(private modalService: MDBModalService, private userService: UserService) {
+  constructor(private modalService: MDBModalService,
+              private userService: UserService) {
   }
 
   public showSignInModal(): void {
@@ -28,19 +28,9 @@ export class MyModalService {
       // this.loadingStart();
       this.userService.callSignin(user);
     });
-    modalRef.content.needSignupModal.subscribe((flag: boolean) => {
-      if (flag) {
-        const config = {
-          keyboard: true,
-          focus: true,
-          show: false,
-          ignoreBackdropClick: false,
-          // class: 'modal-side modal-top-right',
-          // containerClass: 'right',
-          animated: true
-        };
-
-        const signUpModalRef = this.modalService.show(SignupModalComponent, config);
+    modalRef.content.needSignupModal.subscribe((showSignupModalFlag: boolean) => {
+      if (showSignupModalFlag) {
+        const signUpModalRef = this.modalService.show(SignupModalComponent);
         signUpModalRef.content.outUser.subscribe((user: User) => {
           this.userService.callSignup(user);
         });
@@ -54,7 +44,11 @@ export class MyModalService {
 
   public showAuthErrorModal(): void {
     this.userService.signout();
+    if (this.modalService.getModalsCount() > 0) {
+      return;
+    }
     const modalRef = this.modalService.show(AuthErrorModalComponent);
+    this.loadingStop();
     modalRef.content.needSigninModal.subscribe((flag: boolean) => {
       if (flag) {
         this.showSignInModal();

@@ -1,3 +1,7 @@
+import {HttpHeaders} from '@angular/common/http';
+
 export const environment = {
-  production: true
+  production: false,
+  connectionURL: '/api',
+  header: new HttpHeaders({'Content-Type': 'application/json'})
 };

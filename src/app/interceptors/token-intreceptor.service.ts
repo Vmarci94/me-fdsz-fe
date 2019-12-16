@@ -6,7 +6,7 @@ import 'rxjs-compat/add/operator/do';
 import {MyModalService} from '../services/my-modal.service';
 
 @Injectable({providedIn: 'root'})
-export class TokenInteceptor implements HttpInterceptor {
+export class TokenIntreceptor implements HttpInterceptor {
 
   constructor(private localStorageService: LocalStorageService,
               private myModalService: MyModalService) {

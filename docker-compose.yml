@@ -32,7 +32,7 @@ services:
     links:
       - "backend:backend"
     ports:
-      - 8080:80 #nginx port expose to outer world.
+      - 4201:80 #nginx port expose to outer world.
 
 
 #    volumes:
