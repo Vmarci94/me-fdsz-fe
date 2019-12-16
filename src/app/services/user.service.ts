@@ -7,13 +7,12 @@ import {LocalStorageService} from './local-storage.service';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {Token} from '../model/token';
-import {Post} from '../model/post';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private static readonly usersServiceUrl: string = '/users';
+  private static readonly usersServiceUrl: string = '/user';
 
   public userAdmin = false;
   private userData: User;

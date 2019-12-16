@@ -4,19 +4,17 @@ import {environment} from '../../environments/environment';
 import {Observable, Subject} from 'rxjs';
 import {Post} from '../model/post';
 
-const URL_ADD_NEW_POST = '/feeds/add';
-const URL_UPDATE_POST = '/feeds/update';
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  private static readonly urlGetAllPosts = '/feeds/get-all';
-  private static readonly urlAddNewPost = '/feeds/add';
-  private static readonly urlGetTopLimitedPosts = '/feeds/get-top-posts';
-  private static readonly urlDeletePost = '/feeds/delete/';
+  private static readonly urlPostAPI = '/post';
+  private static readonly urlUpdatePost = PostService.urlPostAPI + '/update';
+  private static readonly urlGetAllPosts = PostService.urlPostAPI + '/get-all';
+  private static readonly urlAddNewPost = PostService.urlPostAPI + '/add';
+  private static readonly urlGetTopLimitedPosts = PostService.urlPostAPI + '/get-top-posts';
+  private static readonly urlDeletePost = PostService.urlPostAPI + '/delete/';
 
   private readonly imagePlaceholder = 'https://via.placeholder.com/800x518';
 
@@ -56,14 +54,6 @@ export class PostService {
     this.http.put(url, fd).subscribe(value => console.log(value));
   }
 
-  public uploadImage(file: File) {
-    const fd = new FormData();
-    fd.append('image', file, file.name);
-    this.http.put(environment.connectionURL + '/image/add-new-image', fd)
-      .subscribe(result =>
-        console.log(result));
-  }
-
   public getImageUrlById(imageId: number): string {
     if (imageId || imageId === 0) {
       return environment.connectionURL + /image/ + imageId;
@@ -73,7 +63,7 @@ export class PostService {
   }
 
   cellGetPostById(postId: number): Observable<Post> {
-    const url = environment.connectionURL + '/feeds/' + postId;
+    const url = environment.connectionURL + PostService.urlPostAPI + '/' + postId;
     // const options = {params: new HttpParams().set('postId', postId + '')};
     return this.http.get<Post>(url);
   }
@@ -86,7 +76,7 @@ export class PostService {
   }
 
   public callSaveNewFeedPost(feedPost: Post, image: File) {
-    const url = environment.connectionURL + URL_ADD_NEW_POST;
+    const url = environment.connectionURL + PostService.urlAddNewPost;
     const fd = new FormData();
     if (image) {
       fd.append('image', image, image.name);
@@ -101,7 +91,7 @@ export class PostService {
 
 
   public callUpdatePost(feedPost: Post, image: File) {
-    const url = environment.connectionURL + URL_UPDATE_POST;
+    const url = environment.connectionURL + PostService.urlUpdatePost;
     const fd = new FormData();
     if (image) {
       fd.append('image', image, image.name);
