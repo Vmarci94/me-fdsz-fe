@@ -9,7 +9,7 @@ import {Post} from '../../model/post';
 })
 export class PostAdminComponent implements OnInit {
   private posts: Post[];
-  private post: Post;
+  private post = new Post();
 
   constructor(private postService: PostService) {
   }

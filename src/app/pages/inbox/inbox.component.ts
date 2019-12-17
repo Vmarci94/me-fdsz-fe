@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MessagesService} from '../../services/messages.service';
 import {InboxItem} from '../../model/inbox-item';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-inbox',
@@ -8,15 +9,12 @@ import {InboxItem} from '../../model/inbox-item';
   styleUrls: ['./inbox.component.scss']
 })
 export class InboxComponent implements OnInit {
-  private inbox: InboxItem[];
+  private inbox: Observable<InboxItem[]>;
 
   constructor(private messagesService: MessagesService) { }
 
   ngOnInit() {
-    this.messagesService.callGetInBox().subscribe((data) => {
-      this.inbox = data;
-      console.log(data);
-    });
+    this.inbox = this.messagesService.callGetInBox();
   }
 
 }

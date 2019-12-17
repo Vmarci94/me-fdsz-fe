@@ -17,7 +17,7 @@
           </tr>
           </thead>
           <tbody>
-          <ng-container *ngFor="let message of inbox">
+          <ng-container *ngFor="let message of (inbox | async)">
             <tr>
               <th scope="row">{{message.sender.fullName}}</th>
               <td>{{message.incommindDate}}</td>
