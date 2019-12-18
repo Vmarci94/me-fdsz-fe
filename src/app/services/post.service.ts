@@ -42,18 +42,6 @@ export class PostService {
     return this.http.get<Post[]>(url, {params: queryParams});
   }
 
-  public callSaveNewPost(post: Post, image: File) {
-    const url = environment.connectionURL + PostService.urlAddNewPost;
-    const fd = new FormData();
-    if (image) {
-      fd.append('image', image, image.name);
-    }
-    const tmpPost = {title: post.title, contentText: post.contentText, introductionText: post.introduction};
-    const blob = new Blob([JSON.stringify(tmpPost)], {type: 'application/json'});
-    fd.append('newFeedPost', blob); // FIXME átnevezni newPost-ra
-    this.http.put(url, fd).subscribe(value => console.log(value));
-  }
-
   public getImageUrlById(imageId: number): string {
     if (imageId || imageId === 0) {
       return environment.connectionURL + /image/ + imageId;
@@ -81,7 +69,8 @@ export class PostService {
     if (image) {
       fd.append('image', image, image.name);
     }
-    const tmpFeedPost = {title: feedPost.title, contentText: feedPost.contentText, introduction: feedPost.introduction};
+    const tmpFeedPost = {
+      title: feedPost.title, contentText: feedPost.contentText, introduction: feedPost.introduction};
     const blob = new Blob([JSON.stringify(tmpFeedPost)], {type: 'application/json'});
     fd.append('newFeedPost', blob);
     this.http.put(url, fd).subscribe(() => {

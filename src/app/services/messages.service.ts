@@ -29,8 +29,7 @@ export class MessagesService {
 
   public callGetMessagesToUser(userId: number): Observable<Message[]> {
     const url = environment.connectionURL + MessagesService.urlGetMessagesToUser;
-    const queryParams = new HttpParams()
-      .set('userId', '' + userId);
+    const queryParams = new HttpParams().set('userId', '' + userId);
     return this.http.get<Message[]>(url, {params: queryParams});
   }
 

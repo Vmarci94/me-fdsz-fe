@@ -6,12 +6,10 @@ services:
     image: vmarci94/me-fdsz-be:latest
     restart: always
     ports:
-      #<outside>:<inside>
       - 8081:8081
-      - 33061:3306 #Add this only if you want to expose the mysql to outer world.
+      - 33061:3306
     depends_on:
-      - db # start db before backend
-    #    command: ["./wait-for-it.sh", "db:3306", "--", "echo", "db is udp"]
+      - db
     links:
       - "db:database"
   db:
@@ -32,8 +30,9 @@ services:
     links:
       - "backend:backend"
     ports:
-      - 4201:80 #nginx port expose to outer world.
+      - 4201:80
 
 
-#    volumes:
-#      - "./volumes/database:/var/lib/mysql"
+
+
+

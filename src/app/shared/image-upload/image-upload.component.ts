@@ -50,7 +50,7 @@ export class ImageUploadComponent implements OnInit {
 
         this.imageLoaded.emit(this.selectedFile);
       } else {
-        console.warn('Csak képet lehet feltölteni!');
+        console.warn('Csak kép formátumú fájlt lehet feltölteni!');
       }
     } else {
       console.error('Hiba a fájl feltöltésénél!');
