@@ -2,7 +2,8 @@ import {Highlight} from './highlight';
 
 
 export interface Main {
-  introductionInHTML: string;
+  introduction: string;
   highlightList: Array<Highlight>;
-  userReports: [];
+  title: string;
+  contentText: string;
 }

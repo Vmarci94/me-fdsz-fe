@@ -13,6 +13,7 @@ import {UserEditorComponent} from './pages/user-editor/user-editor.component';
 import {BookingComponent} from './pages/booking/booking.component';
 import {EditBookingComponent} from './pages/edit-booking/edit-booking.component';
 import {AuthService} from './services/auth.service';
+import {AboutUsComponent} from './pages/about-us/about-us.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'post-admin', component: PostAdminComponent, canActivate: [AuthService]},
   {path: 'booking', component: BookingComponent, canActivate: [AuthService]},
   {path: 'edit-booking', component: EditBookingComponent, canActivate: [AuthService]},
+  {path: 'about-us', component: AboutUsComponent},
   {path: '**', redirectTo: '/'}
 ];
 

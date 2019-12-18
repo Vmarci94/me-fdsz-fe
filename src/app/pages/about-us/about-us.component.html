@@ -1,0 +1,21 @@
+<div class="container" *ngIf="(main | async) as main_">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-2">{{main_.title}}</h1>
+    </div>
+
+    <div class="col-12">
+      <h3 class="text-muted mb-3">{{main_.introduction}}</h3>
+    </div>
+
+    <div class="col-12">
+      <video class="video-fluid" autoplay loop>
+        <source src="./assets/videos/me.mp4" type="video/mp4"/>
+      </video>
+    </div>
+
+    <div class="col-12 font-size-1_3">
+      <div [innerHTML]="main_.contentText"></div>
+    </div>
+  </div>
+</div>
