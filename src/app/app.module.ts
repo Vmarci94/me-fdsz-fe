@@ -36,6 +36,7 @@ import { RoomSelectorComponent } from './shared/room-selector/room-selector.comp
 import { TurnusListComponent } from './shared/turnus-list/turnus-list.component';
 import {EditBookingComponent} from './pages/edit-booking/edit-booking.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { AboutUsEditComponent } from './pages/about-us-edit/about-us-edit.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
     RoomSelectorComponent,
     TurnusListComponent,
     EditBookingComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    AboutUsEditComponent
   ],
   imports: [
     BrowserModule,
