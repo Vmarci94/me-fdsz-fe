@@ -7,7 +7,7 @@ import {RouterModule} from '@angular/router';
 import {PageHeaderComponent} from './shared/page-header/page-header.component';
 import {FooterComponent} from './shared/footer/footer.component';
 import {AppRoutingModule} from './app-routing.module';
-import {MainComponent} from './pages/home/main/main.component';
+import {MainComponent} from './pages/main/main.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {SigninModalComponent} from './shared/signin-modal/signin-modal.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';

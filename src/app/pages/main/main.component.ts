@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MainPageService} from '../../../services/main-page.service';
-import {Main} from '../../../model/main';
-import {Highlight} from '../../../model/highlight';
-import {PostService} from '../../../services/post.service';
-import {Post} from '../../../model/post';
+import {MainPageService} from '../../services/main-page.service';
+import {Main} from '../../model/main';
+import {Highlight} from '../../model/highlight';
+import {PostService} from '../../services/post.service';
+import {Post} from '../../model/post';
 
 @Component({
   selector: 'app-main',

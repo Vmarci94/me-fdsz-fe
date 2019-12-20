@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {MainComponent} from './pages/home/main/main.component';
+import {MainComponent} from './pages/main/main.component';
 import {FeedPostsPageComponent} from './pages/feed-posts-page/feed-posts-page.component';
 import {PostPageComponent} from './pages/post-page/post-page.component';
 import {SettingsComponent} from './pages/settings/settings.component';
