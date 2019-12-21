@@ -3,7 +3,7 @@
     <input matInput placeholder="Cím" type="text" [(ngModel)]="postData.title">
   </mat-form-field>
 
-  <div class="col-12">
+  <div class="col-12" *ngIf="postData.id >= 0">
     <app-image-upload (imageLoaded)="onImageLoad($event)" [imageUrl]="postService.getImageUrlById(postData.imageId)">
     </app-image-upload>
   </div>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="col">
-    <button class="btn btn-danger mr-2" (click)="delete()" *ngIf="postData.id">Törlés</button>
+    <button class="btn btn-danger mr-2" (click)="delete()" *ngIf="postData.id && postData.id >= 0">Törlés</button>
   </div>
 
  <div class="col text-right" *ngIf="formTouched()">

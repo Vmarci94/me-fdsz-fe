@@ -37,6 +37,7 @@ import { TurnusListComponent } from './shared/turnus-list/turnus-list.component'
 import {EditBookingComponent} from './pages/edit-booking/edit-booking.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { AboutUsEditComponent } from './pages/about-us-edit/about-us-edit.component';
+import { EditAboutUsComponent } from './pages/edit-about-us/edit-about-us.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { AboutUsEditComponent } from './pages/about-us-edit/about-us-edit.compon
     TurnusListComponent,
     EditBookingComponent,
     AboutUsComponent,
-    AboutUsEditComponent
+    AboutUsEditComponent,
+    EditAboutUsComponent
   ],
   imports: [
     BrowserModule,

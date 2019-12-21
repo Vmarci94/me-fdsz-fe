@@ -43,9 +43,11 @@ export class PostEditorComponent implements OnInit, OnChanges {
   }
 
   private saveAndUpload() {
-    // this.postData.contentText = this.editorModel.editorData;
     if (this.postData.id) {
-      this.postService.callUpdatePost(this.postData, this.image);
+      this.postService.callUpdatePost(this.postData, this.image).subscribe(() => {
+        this.postService.callGetAllPosts();
+        this.oldPostData = this.postData;
+      });
     } else {
       this.postService.callSaveNewFeedPost(this.postData, this.image);
     }

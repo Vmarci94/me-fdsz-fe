@@ -58,6 +58,9 @@
               <button class="dropdown-item" routerLink="/edit-booking" *ngIf="isLoggedIn() && (user | async)?.admin">
                 Üdülő turnusok kezelése
               </button>
+              <button class="dropdown-item" routerLink="/about-us-edit" *ngIf="isLoggedIn() && (user | async)?.admin">
+                Főoldal kezelése
+              </button>
               <div class="divider dropdown-divider"></div>
               <button class="dropdown-item" (click)="signout()">
                 Kijelentkezés

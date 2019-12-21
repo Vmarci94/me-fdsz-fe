@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
   private mainPageContent: Main;
   private videoSlide: Highlight = {
     title: 'Video title',
-    introduction: 'video text',
+    introduction: '',
     contentText: '',
     imageId: undefined,
     isVideo: true,
@@ -30,8 +30,8 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.mainPageService.callGetMainpage().subscribe((data) => {
       this.mainPageContent = data;
-
       this.mainPageContent.highlightList = [this.videoSlide].concat(data.highlightList);
+      this.videoSlide.title = data.title;
     });
   }
 

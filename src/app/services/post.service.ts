@@ -79,7 +79,7 @@ export class PostService {
   }
 
 
-  public callUpdatePost(feedPost: Post, image: File) {
+  public callUpdatePost(feedPost: Post, image: File): Observable<any> {
     const url = environment.connectionURL + PostService.urlUpdatePost;
     const fd = new FormData();
     if (image) {
@@ -95,8 +95,6 @@ export class PostService {
     };
     const blob = new Blob([JSON.stringify(tmpFeedPost)], {type: 'application/json'});
     fd.append('newFeedPost', blob);
-    this.http.post(url, fd).subscribe(() => {
-      this.callGetAllPosts();
-    });
+    return this.http.post<any>(url, fd);
   }
 }
